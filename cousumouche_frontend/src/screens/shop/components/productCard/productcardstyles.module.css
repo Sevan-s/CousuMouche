@@ -1,0 +1,138 @@
+.imageFormat {
+    width: 250px;
+    height: 250px;
+}
+.cardBody {
+    width: 300px;
+    margin-top: 10%;
+}
+
+
+.fontStyle{
+    font-family: 'Poiret', sans-serif;
+    font-weight: bold;
+    color: #7E649D;
+    font-size: 20px;
+}
+
+.buttonStyles{
+    background-color: white;
+    border-color: #7E649D;
+    border-style: solid;
+    border-width: 3px;
+    color:#7E649D;
+    width: 50%;
+}
+
+.buttonStyles:hover {
+    background-color: #7E649D;
+    border-color: #7E649D;
+    border-style: solid;
+    border-width: 3px;
+    color:white
+}
+
+.buttonFontStyle {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.productScreenBody {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5px;
+    justify-content: center;
+    width: 50%;
+}
+
+.productScreencolumn {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 2%;
+}
+
+.secondaryPicturePosition {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 5px;
+    border: none;
+    background-color: white;
+}
+
+.secondaryPictureStyle {
+    width: 100px;
+    margin-top: 2%;
+}
+
+.buttonStyle {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 5px;
+}
+
+
+.ColorsButton {
+    background-color: white;
+    border-style: solid;
+    border-color: #7E649D;
+    color: #7E649D;
+    border-width: 1px;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 10%;
+    font-size: 16px;
+}
+
+.selectedColor {
+    background-color: #7E649D;
+    border-style: solid;
+    border-color: #7E649D;
+    color: white;
+    border-width: 1px;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 10%;
+    font-size: 16px;
+}
+
+.ColorsButton:hover {
+    background-color: #7E649D;
+    border-style: solid;
+    border-color: #7E649D;
+    color: white;
+    border-width: 1px;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 10%;
+    font-size: 16px;
+}
+
+.inputStyle {
+    width: 100%;
+    height: 30px;
+    border-color:#7E649D;
+    border-style: solid;
+    border-width: 1px;
+    color:#7E649D;
+    font-family: 'Poiret';
+    font-weight: bold;
+}
+
+.validationButton {
+    margin-top: 5%;
+    padding: 2%;
+    border-color: #7E649D;
+    border-style: solid;
+    color:#7E649D;
+    background-color: white;
+    font-family: 'Poiret';
+    font-weight: bold;
+}
+
+.validationButton:hover {
+    border-color: #7E649D;
+    color:white;
+    background-color: #7E649D;
+}

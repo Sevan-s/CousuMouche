@@ -1,0 +1,26 @@
+.inputStyle {
+    width: 30%;
+}
+
+.validateButton {
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: white;
+    border-color: #7E649D;
+    color: #7E649D;
+    border-style: solid;
+    margin-top: 1%;
+}
+
+.validateButton:hover {
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: #7E649D;
+    border-color: #7E649D;
+    color: white;
+    border-style: solid;
+}

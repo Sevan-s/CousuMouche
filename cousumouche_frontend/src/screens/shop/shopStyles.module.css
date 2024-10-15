@@ -1,0 +1,14 @@
+.productCardPosition {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.productCardAlignement{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

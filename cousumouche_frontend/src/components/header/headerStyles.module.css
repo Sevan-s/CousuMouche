@@ -1,0 +1,26 @@
+.headerBody {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.buttonStyles {
+    background-color: white;
+    border-style: none;
+    color: #7E649D;
+    font-family: 'Poiret', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.buttonActive {
+    background-color: white;
+    border-style: none;
+    color: #d3c0e9;
+    font-family: 'Poiret', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}

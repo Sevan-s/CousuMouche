@@ -1,0 +1,16 @@
+.EngagementBody {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,250px));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+.EngagementBigBody {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px,350px));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}

@@ -1,0 +1,51 @@
+
+.panierBody {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    background-color: #d7b5e9;
+}
+
+.productBody {
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+.product {
+    display: flex;
+    margin-left: 2%;
+    align-items: center;
+}
+
+.validationButton {
+    padding: 1%;
+    border-color: #7E649D;
+    border-style: solid;
+    color:#7E649D;
+    background-color: white;
+    font-family: 'Poiret';
+    font-weight: bold;
+}
+
+.validationButton:hover {
+    border-color: #7E649D;
+    color:white;
+    background-color: #7E649D;
+}
+
+.productListBody {
+    width: 60%;
+    border: #EAEAEA solid 0;
+}
+@media (max-width: 768px) { /* Vous pouvez ajuster cette valeur selon vos besoins */
+    .votre-element {
+      width: 95%;
+    }
+  }
