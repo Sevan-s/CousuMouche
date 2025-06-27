@@ -4,15 +4,12 @@ export interface IColors {
   }
   
   export interface IColorData {
-    id: number
-    attributes: Attributes
+    _id: number
+    name: string
   }
   
   export interface Attributes {
-    Colors: string
-    createdAt: string
-    updatedAt: string
-    publishedAt: string
+    
   }
   
   export interface Meta {

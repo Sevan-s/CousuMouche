@@ -1,67 +1,78 @@
-import React, { useState } from "react";
-import styles from "./headerStyles.module.css";
+import React, { useEffect } from "react";
 import Logo from '../../assets/images/CousuMoucheLogo.png';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Article } from "../../utils/interfaces/articleInterfaces";
+import France from '../../assets/images/france.png';
 
-export function Header({cartItems} : {cartItems: Article[]}) {
-    const [buttonStates, setButtonStates] = useState([false, false, false, false, false]);
+const navItems = [
+  { path: "/", label: "Accueil" },
+  { path: "/shop", label: "Boutique" },
+  { path: "/about", label: "Qui suis-je ?" },
+  { path: "/contact", label: "Contact" },
+  { path: "/panier", label: "Panier" },
+];
 
-    const handleButtonClick = (buttonIndex: number) => {
-        const updatedButtonStates = buttonStates.map((state, index) => index === buttonIndex);
-        setButtonStates(updatedButtonStates);
+export function Header({ cartItems, setCartItems }: { cartItems: Article[], setCartItems: React.Dispatch<React.SetStateAction<Article[]>> }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const panier = localStorage.getItem("Panier");
+      setCartItems(panier ? JSON.parse(panier) : []);
     };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, [setCartItems]);
 
-    return (
-        <div style={{ margin: 0 }}>
-            <div style={{ width: '100%', fontFamily: 'Poiret', fontWeight: 'bold', backgroundColor: '#7E649D', marginTop: 0, paddingTop: '0.5%', paddingBottom: '0.5%' }}>
-                <p style={{ margin: 0, color: 'white', paddingTop: '0.2%', paddingBottom: '0.2%' }}>Commande livrée en France Métropolitaine et en Belgique. Délai de confection et de livraison : 4 semaines</p>
-            </div>
-            <img src={Logo} style={{ width: '12%' }} />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <div className={styles.headerBody}>
-                    <Link to="/">
-                        <button
-                            className={buttonStates[0] ? `${styles.buttonStyles} ${styles.buttonActive}` : styles.buttonStyles}
-                            onClick={() => handleButtonClick(0)}
-                        >
-                            Accueil
-                        </button>
-                    </Link>
-                    <Link to="/shop">
-                        <button
-                            className={buttonStates[1] ? `${styles.buttonStyles} ${styles.buttonActive}` : styles.buttonStyles}
-                            onClick={() => handleButtonClick(1)}
-                        >
-                            Boutique
-                        </button>
-                    </Link>
-                    <Link to="/about">
-                        <button
-                            className={buttonStates[2] ? `${styles.buttonStyles} ${styles.buttonActive}` : styles.buttonStyles}
-                            onClick={() => handleButtonClick(2)}
-                        >
-                            Qui suis-je ?
-                        </button>
-                    </Link>
-                    <Link to="/contact">
-                        <button
-                            className={buttonStates[3] ? `${styles.buttonStyles} ${styles.buttonActive}` : styles.buttonStyles}
-                            onClick={() => handleButtonClick(3)}
-                        >
-                            Contact
-                        </button>
-                    </Link>
-                    <Link to="/panier">
-                        <button
-                            className={buttonStates[4] ? `${styles.buttonStyles} ${styles.buttonActive}` : styles.buttonStyles}
-                            onClick={() => handleButtonClick(4)}
-                        >
-                            Panier {cartItems.length > 0 && `(${cartItems.length})`}
-                        </button>
-                    </Link>
-                </div>
-            </div>
+  return (
+    <header className="m-0 w-full">
+      <div className="w-full font-poiret font-bold bg-[#7E649D] mt-0 pt-2 pb-2 text-center text-xs sm:text-base">
+        <p className="m-0 text-white">
+          Commande livrée en France Métropolitaine et en Belgique. Délai de confection et de livraison : 4 semaines
+        </p>
+      </div>
+      <div className="flex flex-col items-center w-full">
+        <div className="grid grid-cols-3  w-full">
+            <img src={France} loading="lazy" className="my-2 ml-2 w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[100px] md:min-w-[40px] md:max-h-[100px] md:min-h-[40px]"
+            />
+
+          <img loading="lazy"
+            src={Logo}
+            className="my-2 mx-auto w-[40vw] max-w-[180px] min-w-[130px]  md:max-w-[200px] md:min-w-[120px]"
+            alt="Logo"
+          />
+          <div></div>
         </div>
-    )
+        <nav className="w-full">
+          <div className="
+            flex flex-wrap justify-center gap-2 md:gap-6
+            flex-col xs:flex-row sm:flex-row md:flex-row
+            items-center
+          ">
+            {navItems.map((item, i) => {
+              let text = item.label;
+              if (item.path === "/panier" && cartItems.length > 0) {
+                text += ` (${cartItems.length})`;
+              }
+              const isActive = location.pathname === item.path;
+              return (
+                <Link key={item.path} to={item.path} className="w-full xs:w-auto sm:w-auto md:w-auto">
+                  <button
+                    className={`
+                      font-poiret font-bold text-sm xs:text-base md:text-lg px-2 py-1 bg-transparent border-none transition-colors
+                      ${isActive ? "text-[#BDA9D4]" : "text-[#7E649D]"}
+                      hover:underline focus:outline-none w-full xs:w-auto sm:w-auto
+                    `}
+                    style={{ background: 'none', boxShadow: 'none' }}
+                  >
+                    {text}
+                  </button>
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
 }

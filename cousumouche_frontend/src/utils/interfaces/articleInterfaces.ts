@@ -4,5 +4,7 @@ export interface Article {
     color: string;
     motif: string;
     broderieFirstName: string;
-    image: string;
+    image: string | string[] | '';
+    subTotal:number;
+    quantity: number;
 }

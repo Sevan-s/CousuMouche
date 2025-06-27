@@ -1,7 +1,23 @@
+
 export interface Iproduct {
-  data: productData[]
-  meta: Meta
+  products: Product[]
 }
+
+export interface Product {
+  _id: string
+  name: string
+  price: number
+  description: string
+  shortDescription: string
+  maintenance: string
+  stock: number
+  category: string
+  createdAt: string
+  __v: number
+  imageUrl?: string
+  imageUrls?: string[]
+}
+
 
 export interface productData {
   id: number

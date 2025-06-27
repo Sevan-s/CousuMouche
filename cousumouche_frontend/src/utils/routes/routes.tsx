@@ -13,16 +13,33 @@ import { Livraison } from "../../screens/Livraison/livraison";
 import { confidentiality } from "../../screens/polituqueConfidentialite/politiqueConfidentialite";
 import { PanierScreen } from "../../screens/panier/panierScreen";
 import { Article } from "../interfaces/articleInterfaces";
+import { LivraisonForm } from "../../screens/livraisonForm/livraisonForm";
+import { ParcelShopID, ParcelShopSelected } from '@frontboi/mondial-relay/types'
+// import { Payment } from "../../screens/payment/payment";
+import SuccessScreen from "../../screens/payment/succesScreen";
+import ReturnPage from "../../screens/payment/return";
 
 export function AppRoutes() {
     const [cartItems, setCartItems] = useState<Article[]>([]);
+    const [parcelShop, setParcelShop] = useState<ParcelShopSelected & ParcelShopID>()
 
-    useEffect(() =>{
-        console.log("le panier: ", cartItems)
-    },[cartItems])
+    useEffect(() => {
+        const storedCartItems = localStorage.getItem('Panier');
+        if (storedCartItems) {
+            setCartItems(JSON.parse(storedCartItems));
+        }
+        // localStorage.clear();
+    }, []);
+
+    useEffect(() => {
+        if (cartItems.length > 0) {
+            localStorage.setItem('Panier', JSON.stringify(cartItems));
+        }
+    }, [cartItems]);
+
     return (
         <BrowserRouter>
-            <Header cartItems={cartItems}/>
+            <Header cartItems={cartItems} setCartItems={setCartItems}/>
             <Routes>
                 <Route path="/" Component={HomeScreen} />
                 <Route path="/about" Component={Aboutscreen} />
@@ -33,7 +50,10 @@ export function AppRoutes() {
                 <Route path="/livraison" Component={Livraison}/>
                 <Route path="/confidentialite" Component={confidentiality}/>
                 <Route path="/panier" element={<PanierScreen setCartItems={setCartItems} cartItems={cartItems} />}/>
+                <Route path="/livraisonForm" element={<LivraisonForm parcelShop={parcelShop} setParcelShop={setParcelShop} />} />
                 <Route path="/product/:productName" element={<ProductDetails setCartItems={setCartItems} cartItems={cartItems} />} />
+                <Route path="/return" element={<ReturnPage />} />
+                <Route path="/success" element={<SuccessScreen />} />
             </Routes>
             <Footer/>
         </BrowserRouter>

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
 }
@@ -30,6 +34,7 @@
 
 @keyframes App-logo-spin {
   from {
+
     transform: rotate(0deg);
   }
   to {
@@ -40,13 +45,7 @@ button:hover {
   cursor: pointer;
 }
 
-@font-face {
-  font-family: 'Poiret';
-  src: url('./fonts/PoiretOne-Regular.ttf') format('truetype');
-}
 
-
-@font-face {
-  font-family: 'Nickainley';
-  src: url('./fonts/Nickainley-Normal.otf') format('truetype');
+::-webkit-scrollbar {
+  display: none;
 }

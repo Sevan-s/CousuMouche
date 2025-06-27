@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "./static/css/main.777f2e86.css",
+    "main.js": "./static/js/main.3fe11a67.js",
+    "static/js/453.03ce2157.chunk.js": "./static/js/453.03ce2157.chunk.js",
+    "static/media/fou3.jpg": "./static/media/fou3.cfb1bf6955b71b080bd5.jpg",
+    "static/media/mouche.jpg": "./static/media/mouche.817b9f11afe5ec70723e.jpg",
+    "static/media/bavoirBandana.jpg": "./static/media/bavoirBandana.8598b1b434bd98792b81.jpg",
+    "static/media/CousuMoucheLogo.png": "./static/media/CousuMoucheLogo.f087a3667cff1820796a.png",
+    "static/media/couvertureTresor.jpg": "./static/media/couvertureTresor.71570a5e0d8556a5d092.jpg",
+    "static/media/sac_a_dos.jpg": "./static/media/sac_a_dos.7a3f58d02d61c5deb5d2.jpg",
+    "static/media/broderie.jpg": "./static/media/broderie.76c3dc843cf9c8c3202d.jpg",
+    "static/media/packaging.jpg": "./static/media/packaging.03c09df0f41e222d2192.jpg",
+    "static/media/SortieDeBains.jpg": "./static/media/SortieDeBains.a4c577e32819b9786958.jpg",
+    "static/media/Nickainley-Normal.otf": "./static/media/Nickainley-Normal.4484295cc8d72807de8a.otf",
+    "static/media/PoiretOne-Regular.ttf": "./static/media/PoiretOne-Regular.2d5fb32d52ffaed4fde4.ttf",
+    "static/media/lit.jpg": "./static/media/lit.828b91d8797ad1bd7ec9.jpg",
+    "static/media/balle_de_prehension.jpg": "./static/media/balle_de_prehension.06b0265df831812c1950.jpg",
+    "index.html": "./index.html",
+    "main.777f2e86.css.map": "./static/css/main.777f2e86.css.map",
+    "main.3fe11a67.js.map": "./static/js/main.3fe11a67.js.map",
+    "453.03ce2157.chunk.js.map": "./static/js/453.03ce2157.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.777f2e86.css",
+    "static/js/main.3fe11a67.js"
+  ]
+}

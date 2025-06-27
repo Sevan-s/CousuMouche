@@ -2,11 +2,17 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { AppRoutes } from './utils/routes/routes';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('ta_clé_publique_stripe');
 
 function App() {
   return (
     <div className="App">
-      <AppRoutes/>
+      <Elements stripe={stripePromise}>
+        <AppRoutes />
+      </Elements>
+
     </div>
   );
 }
