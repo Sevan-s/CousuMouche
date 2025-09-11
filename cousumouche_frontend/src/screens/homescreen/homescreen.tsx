@@ -16,27 +16,57 @@ import { FaTruck } from "react-icons/fa";
 import { BsCreditCard2FrontFill } from "react-icons/bs";
 import { FaHands } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { Carousel } from "flowbite-react";
+import CustomCarousel from "../../components/carroussel"
+import WelcomeBanner from "../../components/welcomeBanner";
 
 export function HomeScreen() {
+    const NAVBAR_PX = 310;
     return (
         <div style={{ marginBottom: 50 }}>
-            <div>
-                <h1
-                    className="text-black font-nickainley mt-5 font-normal text-4xl mb-2"
-                >Création couture pour enfants et parents</h1>
-                <h2
-                    className="font-poiret text-black font-bold mb-5 text-xl"
-                >
-                    AUTHENTIQUE, PERSONNALISÉ ET ÉCO-RESPONSABLE</h2>
-            </div>
-            <div className="bg-[#BDA9D4]">
-                <p
-                    className="font-poiret font-bold text-white text-lg pt-2 pb-2"
-                >
-                    Vous préparez votre séjour à la maternité ?<br />
-                    Vous accueillez la naissance ?<br />
-                    Vous souhaitez féliciter les heureux parents ?<br />
-                    Vous êtes au bon endroit, Bienvenue  !</p>
+            <section
+                className="2xl:h-[calc(100svh-310px)] lg:h-[calc(100svh-500px)] md:h-[calc(100svh-600px)] sm:h-[calc(100svh-700px)] h-[calc(100svh-750px)]"
+            >
+                <div className="mx-auto flex h-full w-full flex-col items-center">
+                    <div className="shrink-0 pt-10 pb-2 text-center">
+                        <h1 className="text-black font-nickainley font-normal text-4xl mb-2">
+                            Création couture pour enfants et parents
+                        </h1>
+                        <h2 className="font-poiret text-black font-bold text-xl">
+                            AUTHENTIQUE, PERSONNALISÉ ET ÉCO-RESPONSABLE
+                        </h2>
+                    </div>
+                    <div className="flex-1 w-11/12 2xl:w-9/12 3xl:w-8/12 xl:w-9/12h-full">
+                        <WelcomeBanner />
+                    </div>
+
+                    {/* <CustomCarousel
+                        images={[BathTowel, Bag, Bavoir, Packaging, Broderie]}
+                        className="flex-1 min-h-0 h-full w-full md:w-3/4"
+                        interval={5000}
+                    /> */}
+                </div>
+            </section>
+            {/* <div
+                className="relative mx-auto max-w-5xl rounded-xl overflow-hidden mt-10"
+                style={{
+                    backgroundImage: `url(${BathTowel})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+            >
+                <div className="absolute inset-0 bg-white/70"></div>
+
+                <div className="relative p-8 text-center">
+                    <p className="font-poiret text-violet-900 font-semibold text-xl leading-relaxed">
+                        Vous préparez votre séjour à la maternité ? <br />
+                        Vous accueillez la naissance ? <br />
+                        Vous souhaitez féliciter les heureux parents ? <br />
+                        Vous êtes au bon endroit, Bienvenue !
+                    </p>
+                </div>
+            </div> */}
+            <div className=" mb-10">
             </div>
             <div>
                 <h1
@@ -54,18 +84,18 @@ export function HomeScreen() {
                         </p>
                     </div>
                     <div className="flex flex-row gap-5 w-full custom:w-auto justify-center">
-                        <img loading="lazy" src={Bed}  className="w-full max-w-[300px] sm:block custom:max-w-[250px]" />
-                        <img loading="lazy" src={BathTowel} className="w-full max-w-[300px] hidden sm:block custom:max-w-[250px]" />
-                        <img loading="lazy" src={Blanket} className="w-full max-w-[300px] custom:max-w-[250px] hidden mediumcustom:block" />
+                        <img loading="lazy" src={Bed} alt="lit" className="w-full max-w-[300px] sm:block custom:max-w-[250px]" />
+                        <img loading="lazy" src={BathTowel} alt="Serviette de bain" className="w-full max-w-[300px] hidden sm:block custom:max-w-[250px]" />
+                        <img loading="lazy" src={Blanket} alt="Couverture" className="w-full max-w-[300px] custom:max-w-[250px] hidden mediumcustom:block" />
                     </div>
                 </div>
             </div>
             <div className="flex justify-center mx-5">
                 <div className="mt-5 gap-5 flex flex-col custom:flex-row flex-wrap justify-start w-full max-w-[1100px]">
                     <div className="flex flex-row gap-5 w-full custom:w-auto justify-center order-2 custom:order-1">
-                        <img loading="lazy" src={Balle}   className="w-full max-w-[300px] custom:max-w-[250px]"/>
-                        <img loading="lazy" src={Bag} className="w-full max-w-[300px] hidden sm:block custom:max-w-[250px]" />
-                        <img loading="lazy" src={Bavoir} className="w-full max-w-[300px] custom:max-w-[250px] hidden mediumcustom:block" />
+                        <img loading="lazy" src={Balle} alt="Balle" className="w-full max-w-[300px] custom:max-w-[250px]" />
+                        <img loading="lazy" src={Bag} alt="sac" className="w-full max-w-[300px] hidden sm:block custom:max-w-[250px]" />
+                        <img loading="lazy" src={Bavoir} alt="bavoir" className="w-full max-w-[300px] custom:max-w-[250px] hidden mediumcustom:block" />
                     </div>
                     <div className="w-full custom:w-[250px] order-1 custom:order-2 px-5">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl m-0">
@@ -85,12 +115,12 @@ export function HomeScreen() {
                         >
                             Broderie à la main</p>
                         <img loading="lazy" src={Broderie} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
-                        <p className="text-left font-poiret font-bold">Envie de mettre votre touche personnel à votre commande ? Demandez moi de vous broder le nom ou le petit surnom du petit coeur</p>
+                        <p className="text-left font-poiret font-bold">Envie de mettre votre touche personnelle à votre commande ? Demandez moi de vous broder le nom ou le surnom du petit coeur</p>
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Packaging soigné</p>
                         <img loading="lazy" src={Packaging} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
-                        <p className="text-left font-poiret font-bold">Invitez-vous au voyage ! Vos commandes sont soigneusement emballées et embaumées aux senteurs du sud. Et si c’est à offrir, comblez les heureux parents en y glissant un doux message. Il vous suffit de communiquer votre texte à la créatrice, elle se chargera du reste</p>
+                        <p className="text-left font-poiret font-bold">Invitez-vous au voyage ! Vos commandes sont soigneusement emballées et embaumées aux senteurs du sud. Et si c’est à offrir, comblez les heureux parents en y glissant un doux message. Il vous suffit de me communiquer votre texte, je me chargerai du reste</p>
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Prêt à porter</p>

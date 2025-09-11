@@ -55,7 +55,7 @@ export async function getAllItemsList() {
 
     console.log("getAllItemsList called");
     try {
-        const response = await axios.get('http://localhost:8000' + "/products");
+        const response = await axios.get(apiUrl + "/products");
         console.log('Réponse : ', response.data);
         return response.data;
     } catch (error) {
@@ -84,11 +84,20 @@ export async function getStripeStatus(sessionId: string) {
             params: { session_id: sessionId },
         });
         console.log("stripe", response);
-        localStorage.clear();
         window.dispatchEvent(new Event("storage")); 
         return response;
     } catch (error) {
         console.log("Erreur lors de la requête : ", error);
         throw error;
+    }
+}
+
+export async function GetPromotionCodeByCode(code: string) {
+    try {
+        const response = await axios.get(apiUrl +`/giftcards/${code}`)
+        console.log("gift : ", response)
+        return response
+    } catch (error) {
+        console.log(error);
     }
 }

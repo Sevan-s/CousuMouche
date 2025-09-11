@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Styles from './contactStyles.module.css';
-
+import Lavande from '../../assets/images/lavande.jpg'
 export function ContactScreen() {
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
@@ -28,15 +28,20 @@ export function ContactScreen() {
 
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center p-4 mb-32 lg:mb-12">
-      <div className="w-full max-w-[70%] bg-[#e8e3f1] text-[#4a3964] rounded-2xl px-6 mb-8 py-4 text-center shadow font-poiret font-bold text-lg">
-        Besoin d’un renseignement sur une création, une commande en cours ou l'envie de personnaliser votre commande?<br />
-        Laissez-moi un message via ce formulaire de contact ou par message privé via les réseaux sociaux.<br /><br />
-        Je réponds à vos demandes dans un délai de 72h.<br />
-        Merci de votre compréhension !
+    <div
+      className="w-screen h-screen bg-cover bg-no-repeat bg-center mb-8 aspect-square mt-12"
+      // style={{ backgroundImage: `url(${Lavande})`, }}
+    >
+      <div className="flex justify-center">
+        <div className="w-full max-w-[70%] text-[#4a3964] mb-8 py-4 text-center font-poiret font-bold text-lg">
+          Besoin d’un renseignement sur une création, une commande en cours ou l'envie de personnaliser votre commande?<br />
+          Laissez-moi un message via ce formulaire de contact ou par message privé via les réseaux sociaux.<br /><br />
+          Je réponds à vos demandes dans un délai de 72h.<br />
+          Merci de votre compréhension !
+        </div>
       </div>
 
-      <div className="relative w-full max-w-xl mx-auto bg-[#ede6f7] rounded-[36px] px-6 py-10 shadow-lg border border-[#c3a2df]">
+      <div className="relative w-full max-w-xl mx-auto bg-[#ede6f7] rounded-[36px] px-6 py-6 shadow-lg border border-[#c3a2df]">
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-7 relative z-10">
           <label className="font-poiret text-[#4a3964] text-xl text-center font-bold ">Sujet</label>

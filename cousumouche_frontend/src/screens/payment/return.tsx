@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { getStripeStatus } from "../../API/api";
+import { Article } from "../../utils/interfaces/articleInterfaces";
 
-export default function ReturnPage() {
+export default function ReturnPage({ parcelShop, setCartItems, cartItems }: { parcelShop: any, setCartItems: any, cartItems: Article[] }) {
   const [status, setStatus] = useState<string | null>(null);
   const [customerEmail, setCustomerEmail] = useState('');
   const sessionId = new URLSearchParams(window.location.search).get("session_id");
+  const adresse = localStorage.getItem("adresse");
 
   useEffect(() => {
     if (!sessionId) return;
@@ -27,7 +29,8 @@ export default function ReturnPage() {
 
     fetchStatus();
   }, [sessionId]);
-
+  
+  console.log("cartItems ! ", cartItems, adresse, customerEmail)
   if (!sessionId) return <p>Aucune session trouvée.</p>;
   if (!status) return <p>Chargement...</p>;
 
@@ -36,6 +39,7 @@ export default function ReturnPage() {
   }
 
   if (status === "complete") {
+    localStorage.clear();
     return (
       <section id="success">
         <p>

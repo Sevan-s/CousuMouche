@@ -15,9 +15,8 @@ import { PanierScreen } from "../../screens/panier/panierScreen";
 import { Article } from "../interfaces/articleInterfaces";
 import { LivraisonForm } from "../../screens/livraisonForm/livraisonForm";
 import { ParcelShopID, ParcelShopSelected } from '@frontboi/mondial-relay/types'
-// import { Payment } from "../../screens/payment/payment";
-import SuccessScreen from "../../screens/payment/succesScreen";
 import ReturnPage from "../../screens/payment/return";
+import ScrollToTop from "../../components/scrollToTop";
 
 export function AppRoutes() {
     const [cartItems, setCartItems] = useState<Article[]>([]);
@@ -40,10 +39,11 @@ export function AppRoutes() {
     return (
         <BrowserRouter>
             <Header cartItems={cartItems} setCartItems={setCartItems}/>
+            <ScrollToTop/>
             <Routes>
                 <Route path="/" Component={HomeScreen} />
-                <Route path="/about" Component={Aboutscreen} />
-                <Route path="/shop" Component={ShopScreen} />
+                <Route path="/apropos" Component={Aboutscreen} />
+                <Route path="/boutique" Component={ShopScreen} />
                 <Route path="/contact" Component={ContactScreen} />
                 <Route path="/cgv" Component={CgvScreen}/>
                 <Route path="/mentionlegal" Component={LegalMention}/>
@@ -52,8 +52,7 @@ export function AppRoutes() {
                 <Route path="/panier" element={<PanierScreen setCartItems={setCartItems} cartItems={cartItems} />}/>
                 <Route path="/livraisonForm" element={<LivraisonForm parcelShop={parcelShop} setParcelShop={setParcelShop} />} />
                 <Route path="/product/:productName" element={<ProductDetails setCartItems={setCartItems} cartItems={cartItems} />} />
-                <Route path="/return" element={<ReturnPage />} />
-                <Route path="/success" element={<SuccessScreen />} />
+                <Route path="/return" element={<ReturnPage parcelShop={parcelShop} setCartItems={setCartItems} cartItems={cartItems}/>} />
             </Routes>
             <Footer/>
         </BrowserRouter>

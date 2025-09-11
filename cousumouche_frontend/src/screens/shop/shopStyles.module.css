@@ -1,7 +1,7 @@
 .productCardPosition {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
-  gap: 5px;
+  gap: 10px;
   align-items: center;
   justify-content: center;
 }

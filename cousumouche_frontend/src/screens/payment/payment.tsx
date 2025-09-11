@@ -17,7 +17,6 @@ const stripePromise = loadStripe("pk_test_51NSIZ7HiexHhMVstDdU5QphNH5lvdMevutvML
 
 export function CheckoutForm({ total }: { total: number }) {
   const totalAmount = Math.round(total * 100);
-  console.log("Montant envoyé à Stripe :", totalAmount);
 
   const fetchClientSecret = useCallback(async () => {
     const response = await createStripeSession(totalAmount);

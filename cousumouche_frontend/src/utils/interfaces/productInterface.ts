@@ -12,12 +12,22 @@ export interface Product {
   maintenance: string
   stock: number
   category: string
+  subCategory: string[]
   createdAt: string
   __v: number
   imageUrl?: string
   imageUrls?: string[]
+  options?: string[]
+  fabrics?: string[]
+  fabricsQuantities: number
+  associateProduct?: string
+  who: string[]
+  lot: Lot[];
 }
-
+export type Lot = {
+  quantities: number;
+  price: number;
+};
 
 export interface productData {
   id: number

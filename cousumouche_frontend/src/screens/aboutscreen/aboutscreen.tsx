@@ -23,7 +23,7 @@ export function Aboutscreen() {
                 </div>
                 <div className="flex justify-center items-center w-full mx-auto lg:mx-0 mb-6 lg:mb-0 lg:max-w-[600px] min-w-[200px] max-w-[80%]">
                     <p style={{ textAlign: 'justify', fontFamily: 'Poiret', fontWeight: 'bold', lineHeight: 1.78 }}>
-                        Avant même de découvrir la créatrice, vous vous demandez peut-être pourquoi avoir mêlé une mouche à tout ça !? Ici, Elle prend la parole et lève le voile ...<br /><br />
+                        Avant même de découvrir Cousu Mouche, vous vous demandez peut-être pourquoi avoir mêlé une mouche à tout ça !? Ici, je prends la parole et lève le voile ...<br /><br />
                         Né d’une anecdote familiale, je réponds depuis ma tendre enfance au doux surnom de « Mouche ».<br />
                         C’est au sein du foyer familial aux valeurs simples et humanistes que j’ai développé ma créativité, mon goût pour le « fait main » et mon plaisir d’offrir.<br /><br />
                         Fille d’une infirmière et d’un entrepreneur, je me suis à mon tour formée pour devenir une blouse blanche. Guidée par la passion et l’envie de liberté, je me suis alors lancée dans l’entreprenariat en 2021 en créant « Cousu Mouche ». Et oui, comme le dicton le dit si bien : « des chiens ne font pas des chats ! », mieux encore « des mouches ne font pas des moustiques! ».<br /><br />

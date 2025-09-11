@@ -32,7 +32,7 @@ export default function CategoriesNavbar({
                 { name: "Tout", status: false },
                 { name: "Enfant", status: false },
                 { name: "Maman", status: false },
-                { name: "Carte cadeau", status: false},
+                { name: "Carte cadeau", status: false },
             ];
     });
 
@@ -40,11 +40,13 @@ export default function CategoriesNavbar({
 
     const [subCategorie, setSubCategorie] = useState<subCategorie[]>([
         { name: "Tout", status: false },
-        { name: "Le dodo", status: false },
-        { name: "Le repas", status: false },
-        { name: "Le bain", status: false },
+        { name: "Dodo", status: false },
+        { name: "Repas", status: false },
+        { name: "Bain", status: false },
         { name: "Accessoires", status: false },
         { name: "Mode", status: false },
+        { name: "Décoration", status: false },
+
     ]);
 
     const [momSubCategorie, setMomSubCategorie] = useState<subCategorie[]>([
@@ -52,6 +54,8 @@ export default function CategoriesNavbar({
         { name: "Maternité", status: false },
         { name: "Beauté", status: false },
         { name: "Accessoires", status: false },
+        { name: "Mode", status: false },
+
     ]);
 
     const handleClick = (index: number) => {
@@ -67,7 +71,7 @@ export default function CategoriesNavbar({
         onSubCatChange(subCategorie[index].name);
     }
 
-        const momSubCatHandleClick = (index: number) => {
+    const momSubCatHandleClick = (index: number) => {
         setMomSubCategorie((prev) => prev.map((subCat, i) => i === index ? { ...subCat, status: true } : { ...subCat, status: false }))
         onMomSubCatChange(momSubCategorie[index].name);
     }
@@ -80,7 +84,7 @@ export default function CategoriesNavbar({
     return (
         <div>
             <nav>
-                <ul className="flex w-[20%] justify-center gap-10 mx-auto  items-center flex-row text-[#7E649D] font-poiret font-bold mt-5">
+                <ul className="flex w-[40%] justify-center gap-10 mx-auto  items-center flex-row text-[#7E649D] font-poiret font-bold mt-5">
                     {categories.map((cat, index) => (
                         <li key={index}>
                             <button
@@ -93,7 +97,7 @@ export default function CategoriesNavbar({
                     ))}
                 </ul>
                 {catIndex !== -1 && categories[catIndex].name === "Enfant" &&
-                    <ul className="flex w-[50%] justify-center gap-20 mx-auto  items-center flex-row text-[#7E649D] font-poiret font-bold mt-5">
+                    <ul className="flex w-[70%] justify-center gap-20 mx-auto items-center flex-row text-[#7E649D] font-poiret font-bold mt-5">
                         {subCategorie.map((subCat, index) => (
                             <li key={index}>
                                 <button onClick={() => subCatHandleClick(index)} className={subCat.status ? "text-[#d3c0e9] underline" : ""}>
