@@ -2,9 +2,7 @@ import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { Article } from "../../utils/interfaces/articleInterfaces";
 import styles from './panierStyles.module.css';
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { LivraisonForm } from "../livraisonForm/livraisonForm";
 import { getDeliveryPrice } from "@frontboi/mondial-relay";
-import { ParcelShopID, ParcelShopSelected } from '@frontboi/mondial-relay/types';
 import { CheckoutForm } from "../payment/payment";
 import { GetPromotionCodeByCode } from "../../API/api";
 import MondialRelayPicker from "../../utils/mondialRelay/mondialRelay";
@@ -62,9 +60,8 @@ export function PanierScreen(
   const [parcelShop, setParcelShop] = useState<ParcelShop | undefined>();
   const [code, setCode] = useState<string>("");
   const [reduction, setReduction] = useState<number>(0);
-
-// const deliveryPrice: number = subtotal < 120 ? getDeliveryPrice(500, "FR") : 0;
-      console.log("item ! ", panier)
+  
+  console.log("item ! ", panier)
 
   useEffect(() => {
     const raw = localStorage.getItem(KEY);

@@ -454,6 +454,8 @@ const fabricsName = (type: string) => {
             return 'Double Gaze'
         case 'uni/NidDAbeille':
             return "Nid d'abeille"
+        case 'uni/epongeBambou':
+            return "Eponge Bambou"
         case 'uni/Polaire':
             return "Polaire"
         case 'uni/velour':
