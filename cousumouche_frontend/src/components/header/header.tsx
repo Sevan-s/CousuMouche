@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from '../../assets/images/CousuMoucheLogo.png';
 import { Link, useLocation } from "react-router-dom";
-import { Article } from "../../utils/interfaces/articleInterfaces";
 import France from '../../assets/images/france.png';
 
 const navItems = [
@@ -12,17 +11,30 @@ const navItems = [
   { path: "/panier", label: "Panier" },
 ];
 
-export function Header({ cartItems, setCartItems }: { cartItems: Article[], setCartItems: React.Dispatch<React.SetStateAction<Article[]>> }) {
+export function Header() {
   const location = useLocation();
+  const [cartCount, setCartCount] = useState(0);
 
+  // 🔄 Synchro automatique avec localStorage["cm_cart"]
   useEffect(() => {
-    const handleStorageChange = () => {
-      const panier = localStorage.getItem("Panier");
-      setCartItems(panier ? JSON.parse(panier) : []);
+    const updateCartSize = () => {
+      const raw = localStorage.getItem("cm_cart");
+      const parsed = raw ? JSON.parse(raw) : [];
+      setCartCount(parsed.length);
     };
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, [setCartItems]);
+
+    // Appel immédiat au montage
+    updateCartSize();
+
+    // Écoute les changements locaux/externes
+    window.addEventListener("storage", updateCartSize);
+    window.addEventListener("focus", updateCartSize); // utile si on revient sur l'onglet
+
+    return () => {
+      window.removeEventListener("storage", updateCartSize);
+      window.removeEventListener("focus", updateCartSize);
+    };
+  }, []);
 
   return (
     <header className="m-0 w-full">
@@ -32,29 +44,38 @@ export function Header({ cartItems, setCartItems }: { cartItems: Article[], setC
         </p>
       </div>
       <div className="flex flex-col items-center w-full">
-        <div className="grid grid-cols-3  w-full">
-            <img src={France} loading="lazy" className="my-2 ml-2 w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[100px] md:min-w-[40px] md:max-h-[100px] md:min-h-[40px]"
-            />
-
-          <img loading="lazy"
+        <div className="grid grid-cols-3 w-full">
+          <img
+            src={France}
+            loading="lazy"
+            className="my-2 ml-2 w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[100px] md:min-w-[40px] md:max-h-[100px] md:min-h-[40px]"
+          />
+          <img
+            loading="lazy"
             src={Logo}
-            className="mx-auto w-[40vw] max-w-[180px] min-w-[130px]  md:max-w-[200px] md:min-w-[120px]"
+            className="mx-auto w-[40vw] max-w-[180px] min-w-[130px] md:max-w-[200px] md:min-w-[120px]"
             alt="Logo"
           />
           <div></div>
         </div>
+
         <nav className="w-full">
-          <div className="
-            flex flex-wrap justify-center gap-2 md:gap-6
-            flex-col xs:flex-row sm:flex-row md:flex-row
-            items-center
-          ">
-            {navItems.map((item, i) => {
+          <div
+            className="
+              flex flex-wrap justify-center gap-2 md:gap-6
+              flex-col xs:flex-row sm:flex-row md:flex-row
+              items-center
+            "
+          >
+            {navItems.map((item) => {
               let text = item.label;
-              if (item.path === "/panier" && cartItems.length > 0) {
-                text += ` (${cartItems.length})`;
+              // ✅ Ajout du compteur panier dynamique
+              if (item.path === "/panier" && cartCount > 0) {
+                text += ` (${cartCount})`;
               }
+
               const isActive = location.pathname === item.path;
+
               return (
                 <Link key={item.path} to={item.path} className="w-full xs:w-auto sm:w-auto md:w-auto">
                   <button
@@ -63,7 +84,7 @@ export function Header({ cartItems, setCartItems }: { cartItems: Article[], setC
                       ${isActive ? "text-[#BDA9D4]" : "text-[#7E649D]"}
                       hover:underline focus:outline-none w-full xs:w-auto sm:w-auto
                     `}
-                    style={{ background: 'none', boxShadow: 'none' }}
+                    style={{ background: "none", boxShadow: "none" }}
                   >
                     {text}
                   </button>

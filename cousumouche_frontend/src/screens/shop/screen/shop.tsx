@@ -1,8 +1,8 @@
 import React, { SetStateAction, useEffect, useState } from "react";
-import { getAllItemsList } from "../../API/api";
-import { ProductCard } from "./components/productCard/productcard";
-import { Iproduct, productData } from "../../utils/interfaces/productInterface";
-import styles from './shopStyles.module.css'
+import { getAllItemsList } from "../../../API/api";
+import { ProductCard } from "../components/productCard/productcard";
+import { Iproduct, productData } from "../../../utils/interfaces/productInterface";
+import styles from '../shopStyles.module.css'
 
 interface shopCategory {
     category: string[],
@@ -30,7 +30,8 @@ export function ShopScreen() {
         "Repas",
         "Bain",
         "Accessoires",
-        "Mode"
+        "Mode",
+        "Décoration"
     ]
 
     const mumSubCategory = [
@@ -38,7 +39,8 @@ export function ShopScreen() {
         "Maternité",
         "Beauté",
         "Accessoires",
-        "Mode"
+        "Mode",
+        "Décoration"
     ]
 
     const [categoryIndex, setCategoryIndex] = useState<number>(0)

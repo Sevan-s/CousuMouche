@@ -49,3 +49,12 @@ button:hover {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.thumbs::-webkit-scrollbar { height: 8px; }
+.thumbs::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+.thumbs::-webkit-scrollbar-track { background: #f1f5f9; }
+.thumbs { scrollbar-width: thin; scrollbar-color: #cbd5e1 #f1f5f9; }
+
+.checkbox-custom {
+    accent-color: #7E649D;
+}

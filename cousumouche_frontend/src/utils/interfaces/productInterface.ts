@@ -3,11 +3,18 @@ export interface Iproduct {
   products: Product[]
 }
 
+export interface IWho {
+  name: string,
+  price: number
+}
+
 export interface Product {
   _id: string
   name: string
   price: number
   description: string
+  dimension: string
+  composition: string
   shortDescription: string
   maintenance: string
   stock: number
@@ -20,10 +27,17 @@ export interface Product {
   options?: string[]
   fabrics?: string[]
   fabricsQuantities: number
-  associateProduct?: string
-  who: string[]
+  associateProduct?: []
+  who: IWho[]
   lot: Lot[];
+  dimensions: Dimensions[]
 }
+
+export interface Dimensions {
+label: string
+price: number
+}
+
 export type Lot = {
   quantities: number;
   price: number;

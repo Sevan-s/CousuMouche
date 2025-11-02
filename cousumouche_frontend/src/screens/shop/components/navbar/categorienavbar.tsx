@@ -46,7 +46,6 @@ export default function CategoriesNavbar({
         { name: "Accessoires", status: false },
         { name: "Mode", status: false },
         { name: "Décoration", status: false },
-
     ]);
 
     const [momSubCategorie, setMomSubCategorie] = useState<subCategorie[]>([
@@ -55,7 +54,7 @@ export default function CategoriesNavbar({
         { name: "Beauté", status: false },
         { name: "Accessoires", status: false },
         { name: "Mode", status: false },
-
+        { name: "Décoration", status: false },
     ]);
 
     const handleClick = (index: number) => {

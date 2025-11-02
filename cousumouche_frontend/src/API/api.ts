@@ -25,30 +25,37 @@ export async function getColors() {
 }
 
 export async function relayPoint(country: string, city: string, cp: string) {
-
-    let data = `<?xml version="1.0" encoding="utf-8"?>\r\n<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">\r\n  <soap:Body>\r\n    <WSI2_RecherchePointRelais xmlns="http://www.mondialrelay.fr/webservice/">\r\n      <Enseigne>${process.env.REACT_APP_ENSEIGNE_MONDIAL_RELAY}</Enseigne>\r\n      <Pays>${country}</Pays>\r\n      <Ville>${city}</Ville>\r\n      <CP>${cp}</CP>\r\n      <Poids>2000</Poids>\r\n      <Action>SMA</Action>\r\n      <Security>${process.env.REACT_APP_SECRET_MONDIAL_RELAY}</Security>\r\n    </WSI2_RecherchePointRelais>\r\n  </soap:Body>\r\n</soap:Envelope>`;
-
-    const varenv = process.env.SECRET_MONDIAL_RELAY;
-    let config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: '/WebService.asmx',
-        headers: {
-            'Content-Type': 'text/xml; charset=utf-8',
-            'SOAPAction': 'http://www.mondialrelay.fr/webservice/WSI2_RecherchePointRelais',
-        },
-        data: data
-    };
+    const xml = `<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <WSI2_RecherchePointRelais xmlns="http://www.mondialrelay.fr/webservice/">
+      <Enseigne>${process.env.REACT_APP_ENSEIGNE_MONDIAL_RELAY}</Enseigne>
+      <Pays>${country}</Pays>
+      <Ville>${city}</Ville>
+      <CP>${cp}</CP>
+      <Poids>2000</Poids>
+      <Action>SMA</Action>
+      <Security>${process.env.REACT_APP_SECRET_MONDIAL_RELAY}</Security>
+    </WSI2_RecherchePointRelais>
+  </soap:Body>
+</soap:Envelope>`;
 
     try {
-        const response = await axios.request(config);
-        console.log(response.data);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-        throw error;
+        const res = await axios.post('/mr/WebService.asmx', xml, {
+            headers: {
+                'Content-Type': 'text/xml; charset=utf-8',
+                'SOAPAction': 'http://www.mondialrelay.fr/webservice/WSI2_RecherchePointRelais',
+            },
+            maxBodyLength: Infinity,
+        });
+
+        return res.data;
+    } catch (err) {
+        console.error(err);
+        throw err;
     }
 }
+
 
 export async function getAllItemsList() {
     console.log("apiUrl :", apiUrl);
@@ -84,7 +91,7 @@ export async function getStripeStatus(sessionId: string) {
             params: { session_id: sessionId },
         });
         console.log("stripe", response);
-        window.dispatchEvent(new Event("storage")); 
+        window.dispatchEvent(new Event("storage"));
         return response;
     } catch (error) {
         console.log("Erreur lors de la requête : ", error);
@@ -94,10 +101,20 @@ export async function getStripeStatus(sessionId: string) {
 
 export async function GetPromotionCodeByCode(code: string) {
     try {
-        const response = await axios.get(apiUrl +`/giftcards/${code}`)
+        const response = await axios.get(apiUrl + `/giftcards/${code}`)
         console.log("gift : ", response)
         return response
     } catch (error) {
         console.log(error);
+    }
+}
+
+export async function getAllOpinion() {
+    try {
+        const response = await axios.get(apiUrl + "/opinion")
+        console.log("response : ", response)
+        return response.data.Opinion;
+    } catch (error) {
+        console.error('Erreur lors de la requête : ', error);
     }
 }
