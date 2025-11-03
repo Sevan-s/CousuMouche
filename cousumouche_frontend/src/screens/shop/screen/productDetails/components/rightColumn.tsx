@@ -102,6 +102,9 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
         message: "",
     });
 
+    const hasUni = fabricSelected.some(fabric => fabric.name.toLowerCase().includes('uni'));
+
+
     const setGiftCardField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
         setForm(prev => ({ ...prev, [key]: value }));
     };
@@ -291,7 +294,7 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
                     name={product.name}
                 />
             }
-            {hasEmbroidery &&
+            {hasEmbroidery && hasUni &&
                 <Embroidery
                     embroidery={embroidery}
                     setEmbroidery={setEmbroidery}
@@ -893,7 +896,7 @@ function CustomBlanket({ setBlanketDimension }: { setBlanketDimension: Dispatch<
 
     return (
         <div className="mt-5">
-            <p className="mb-5 font-poiret font-bold text-2xl">Je défini la dimension de ma couverture</p>
+            <p className="mb-5 font-poiret font-bold text-xl">Je définis la dimension de ma couverture</p>
             <div className="flex flex-row items-center">
                 <IoIosWarning
                     color="red"
@@ -913,7 +916,7 @@ function CustomBlanket({ setBlanketDimension }: { setBlanketDimension: Dispatch<
                                 setWidth(value);
                             }
                         }
-                    }} className="border-2 border-[#7E649D] px-2"
+                    }} className="border-2 border-[#7E649D] px-2 italic"
                     type="text"
                     pattern="(?:0|[1-9]\d*)"
                     inputMode="numeric"
@@ -930,7 +933,7 @@ function CustomBlanket({ setBlanketDimension }: { setBlanketDimension: Dispatch<
                                 setLength(value);
                             }
                         }
-                    }} className="border-2 border-[#7E649D] px-2"
+                    }} className="border-2 border-[#7E649D] px-2 italic"
                     type="text"
                     pattern="(?:0|[1-9]\d*)"
                     inputMode="numeric"
