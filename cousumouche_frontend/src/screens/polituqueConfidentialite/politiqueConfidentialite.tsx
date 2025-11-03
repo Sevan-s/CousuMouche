@@ -1,9 +1,9 @@
 
 export function confidentiality() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-            <h1 style={{ fontFamily: 'Nickainley', fontWeight: 'normal' }}>Politique de confidentialité</h1>
-            <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginTop: '2%', marginBottom: 150 }}>
+            <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Politique de confidentialité</h1>
+            <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%', marginTop: '2%' }}>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
                     La présente politique de confidentialité a pour but d’exposer aux utilisateurs du site www.cousumouche.com la manière dont sont collectées et traitées leurs données à caractère personnel, conformément à la loi informatique et libertés du 6 janvier 1978.
                     <br /><br />

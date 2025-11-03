@@ -1,9 +1,9 @@
 
 export function Livraison() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginBottom: 50 }}>
-            <h1 style={{ fontFamily: 'Nickainley' }}>Livraison</h1>
-            <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginBottom: 150, marginTop:'2%' }}>
+            <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Livraison</h1>
+            <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%', marginTop: '2%' }}>
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Délais de livraison :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
                     Sur le site Cousu Mouche, les commandes concernent:

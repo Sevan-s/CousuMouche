@@ -748,7 +748,7 @@ function Embroidery({
         <div>
             <div className="border border-[#7E649D] mt-5">
             </div>
-            <p className="font-poiret font-bold text-lg text-left mt-5">Broder le prénom (+5€)</p>
+            <p className="font-poiret font-bold text-lg text-left mt-5">Je souhaite broder le prénom (+5€)</p>
             <div className="flex flex-row items-center">
                 <IoIosWarning
                     color="red"
@@ -761,7 +761,7 @@ function Embroidery({
                     placeholder="Prénom / Surnom"
                     value={embroidery}
                     onChange={handleChange}
-                    className="border-2 border-[#7E649D] px-2"
+                    className="border-2 border-[#7E649D] px-2 italic p-1"
                 />
             </div>
         </div>
@@ -786,7 +786,7 @@ function Gift({ gift, setGift, setMessage, priceFields, setField }: {
     //   };
 
     return (
-        <div className="border-4 p-4 border-[#8574A6] mt-5">
+        <div className="border-2 p-4 border-[#8574A6] mt-5">
             <div>
                 <input
                     type="checkbox"
@@ -795,13 +795,13 @@ function Gift({ gift, setGift, setMessage, priceFields, setField }: {
                     onChange={onToggleGiftMessage}
                 />
                 <label htmlFor="giftMsg" className="font-poiret font-bold">
-                    {" "}Je souhaite glisser un joli message (+1€)
+                    {" "}Je souhaite ajouter un joli message dans ma commande(+1€)
                 </label>
 
                 {isGiftMsg && (
                     <textarea
                         placeholder="Mon message"
-                        className="mt-2 border-2 w-full"
+                        className="mt-2 border-2 w-full italic"
                         onChange={(e) => setMessage(e.target.value)}
                     />
                 )}

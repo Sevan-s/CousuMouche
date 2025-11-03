@@ -1,9 +1,9 @@
 
 export function CgvScreen() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-            <h1 style={{ fontFamily: 'Nickainley', fontWeight: 'normal' }}>Conditions générales de vente</h1>
-            <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginTop: '2%', marginBottom: 150 }}>
+            <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Conditions générales de vente</h1>
+            <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%', marginTop: '2%' }}>
                 <p style={{fontFamily:'Poiret', fontWeight:'bold'}}>Les dispositions ci-après établissent les conditions générales de vente des produits vendus en ligne par Cousu Mouche sur le site : www.cousumouche.com<br /><br />
 
                     Elles détaillent les droits et les obligations de Cousu Mouche et de son client dans le cadre de la vente de marchandises. Les questions relatives aux CGV sont à adresser via le formulaire de contact du site ou par mail à l’adresse : contact@cousumouche.com<br /><br />
