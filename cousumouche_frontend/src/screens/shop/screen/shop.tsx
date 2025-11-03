@@ -146,7 +146,7 @@ function ShopNavbar(props: shopCategory) {
             <div className="flex flex-row gap-10 justify-center mt-6">
                 {props.category.map((value, index) => (
                     <button key={index} onClick={() => props.setCategoryIndex(index)} >
-                        <p className={props.categoryIndex !== index ? "text-[black] hover:text-[#7E649D] font-poiret font-bold" : "text-black font-poiret font-bold"}>
+                        <p className={props.categoryIndex !== index ? "text-[black] hover:text-[#7E649D] font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
                             {value}
                         </p>
                     </button>

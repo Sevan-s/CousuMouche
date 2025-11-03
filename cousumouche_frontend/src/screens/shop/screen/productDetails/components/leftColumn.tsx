@@ -176,7 +176,7 @@ function AssociateProduct({
 
     return (
         <div>
-            <p className="font-poiret font-bold text-xl text-start mt-5 mb-0">
+            <p className="font-nickainley font-bold text-xl text-start mt-5 mb-0">
                 Produits associés :
             </p>
 
@@ -218,21 +218,21 @@ type maintenanceAndDescription = {
 function MaintenanceAndDescription(props: maintenanceAndDescription) {
     return (
         <div className="mt-5">
-            <p className="font-poiret font-bold text-xl text-start mb-5">Description :</p>
+            <p className="font-nickainley font-bold text-xl text-start mb-5">Description :</p>
             <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.description}</p>
             <div className="border border-[#7E649D] mt-5 mb-5">
             </div>
             {!props.hasGiftCard &&
                 <div>
-                    <p className="font-poiret font-bold text-xl text-start mb-5">Dimension :</p>
+                    <p className="font-nickainley font-bold text-xl text-start mb-5">Dimension :</p>
                     <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.dimension}</p>
                     <div className="border border-[#7E649D] mt-5 mb-5">
                     </div>
-                    <p className="font-poiret font-bold text-xl text-start mb-5">Composition :</p>
+                    <p className="font-nickainley font-bold text-xl text-start mb-5">Composition :</p>
                     <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.composition}</p>
                     <div className="border border-[#7E649D] mt-5 mb-5">
                     </div>
-                    <p className="font-poiret font-bold text-xl text-start mt-5  mb-5">Entretien :</p>
+                    <p className="font-nickainley font-bold text-xl text-start mt-5  mb-5">Entretien :</p>
                     <p className="font-poiret font-bold text-lg text-start mb-5 whitespace-pre-line">{props.maintenance}</p>
                 </div>
             }
