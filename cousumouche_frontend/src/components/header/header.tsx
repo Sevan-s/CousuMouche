@@ -49,7 +49,6 @@ export function Header() {
               className="my-2 ml-2 w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[80px] md:max-h-[80px]"
               alt="Made in France"
             />
-            <p className="font-poiret font-bold text-[#7E649D] text-xs sm:text-lg">Fait main avec passion</p>
           </div>
 
           <img
