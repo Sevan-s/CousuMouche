@@ -35,25 +35,31 @@ export function Header() {
 
   return (
     <header className="m-0 w-full">
-      <div className="w-full font-poiret font-bold bg-[#7E649D] mt-0 pb-1 text-center text-xs sm:text-base">
+      <div className="w-full font-poiret font-bold bg-[#7E649D] mt-0 py-2 text-center text-xs sm:text-base">
         <p className="m-0 text-white">
           Délai de confection actuel 4 à 5 semaines, hors délai de livraison. Merci pour votre patience et votre compréhension.
         </p>
       </div>
       <div className="flex flex-col items-center w-full">
-        <div className="grid grid-cols-3 w-full">
-          <img
-            src={France}
-            loading="lazy"
-            className="my-2 ml-2 w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[100px] md:min-w-[40px] md:max-h-[100px] md:min-h-[40px]"
-          />
+        <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
+          <div className="flex items-start justify-center ml-2 flex-col">
+            <img
+              src={France}
+              loading="lazy"
+              className="my-2 ml-2 w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[80px] md:max-h-[80px]"
+              alt="Made in France"
+            />
+            <p className="font-poiret font-bold text-[#7E649D] text-xs sm:text-lg">Fait main avec passion</p>
+          </div>
+
           <img
             loading="lazy"
             src={Logo}
-            className="mx-auto w-[40vw] max-w-[180px] min-w-[130px] md:max-w-[200px] md:min-w-[120px]"
+            className="justify-self-center w-[40vw] max-w-[180px] min-w-[130px] md:max-w-[200px] md:min-w-[120px]"
             alt="Logo"
           />
           <div></div>
+          <div />
         </div>
 
         <nav className="w-full">
@@ -66,7 +72,6 @@ export function Header() {
           >
             {navItems.map((item) => {
               let text = item.label;
-              // ✅ Ajout du compteur panier dynamique
               if (item.path === "/panier" && cartCount > 0) {
                 text += ` (${cartCount})`;
               }

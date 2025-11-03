@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react"
+import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Iproduct, Product } from "../../../../../utils/interfaces/productInterface"
 import { ProductCard } from "../../../components/productCard/productcard"
 import { PriceField, PriceObjectType } from "../productDetails"
@@ -10,8 +10,8 @@ type leftColumn = {
     setProductImageIndex: Dispatch<SetStateAction<number>>
     price: number
     setPrice: Dispatch<SetStateAction<number>>
-    selectedName: string,
-    setSelectedName: Dispatch<SetStateAction<string>>,
+    selectedNames: string[],
+    setSelectedNames: Dispatch<SetStateAction<string[]>>,
     priceFields: PriceObjectType,
     setField: (key: keyof PriceObjectType, value: PriceField) => void;
 }
@@ -27,6 +27,7 @@ type AssocItem = { name: string; price: number };
 
 export function LeftColumn(props: leftColumn) {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const hasGiftCard = props.product?.name === 'Carte cadeau'
 
     useEffect(() => {
         const el = scrollRef.current;
@@ -54,8 +55,8 @@ export function LeftColumn(props: leftColumn) {
             <AssociateProduct
                 associateProducts={props.product.associateProduct}
                 productList={props.productlist}
-                selectedName={props.selectedName}
-                setSelectedName={props.setSelectedName}
+                selectedNames={props.selectedNames}
+                setSelectedNames={props.setSelectedNames}
                 priceFields={props.priceFields}
                 setField={props.setField}
             />
@@ -66,6 +67,7 @@ export function LeftColumn(props: leftColumn) {
                 dimension={props.product.dimension}
                 composition={props.product.composition}
                 description={props.product.description}
+                hasGiftCard={hasGiftCard}
             />
         </div>
     );
@@ -73,6 +75,7 @@ export function LeftColumn(props: leftColumn) {
 
 function ScrollPictureComponent(props: PictureComponent) {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const hasGiftCard = props.product?.name === 'Carte cadeau'
 
     useEffect(() => {
         const el = scrollRef.current;
@@ -93,7 +96,7 @@ function ScrollPictureComponent(props: PictureComponent) {
         <div className="flex flex-col min-w-0">
             <div className="flex justify-center">
                 {props.product.imageUrls && (
-                    <img className=" aspect-square object-cover" src={props.product.imageUrls[props.productImageIndex]} />
+                    <img className={!hasGiftCard ? " aspect-square object-cover" : ""} src={props.product.imageUrls[props.productImageIndex]} />
                 )}
             </div>
 
@@ -115,8 +118,8 @@ function ScrollPictureComponent(props: PictureComponent) {
 type AssociateProductProps = {
     associateProducts?: AssocItem[];
     productList: Iproduct;
-    selectedName: string;
-    setSelectedName: Dispatch<SetStateAction<string>>;
+    selectedNames: string[];
+    setSelectedNames: Dispatch<SetStateAction<string[]>>;
     priceFields: PriceObjectType;
     setField: (key: keyof PriceObjectType, value: PriceField) => void;
 };
@@ -124,8 +127,8 @@ type AssociateProductProps = {
 function AssociateProduct({
     associateProducts = [],
     productList,
-    selectedName,
-    setSelectedName,
+    selectedNames,
+    setSelectedNames,
     priceFields,
     setField,
 }: AssociateProductProps) {
@@ -134,76 +137,72 @@ function AssociateProduct({
         return (productList?.products ?? []).filter(p => names.has(p.name));
     }, [associateProducts, productList]);
 
-    const selectedProduct = useMemo(
-        () => matchedProducts.find(p => p.name === selectedName) ?? matchedProducts[0],
-        [matchedProducts, selectedName]
+    const priceFor = useCallback(
+        (p: typeof matchedProducts[number]) => {
+            const assoc = associateProducts.find(a => a.name === p.name);
+            return Number(assoc?.price ?? p.price ?? 0);
+        },
+        [associateProducts]
     );
 
-    const addonPrice = useMemo(() => {
-        if (!selectedProduct) return 0;
-        const assoc = associateProducts.find(a => a.name === selectedProduct.name);
-        return Number(assoc?.price ?? selectedProduct.price ?? 0);
-    }, [associateProducts, selectedProduct]);
+    const selectedProducts = useMemo(
+        () => matchedProducts.filter(p => selectedNames.includes(p.name)),
+        [matchedProducts, selectedNames]
+    );
 
-    const isChecked = priceFields.AssociateProductPrice.active;
-
-    const onToggle = (checked: boolean, name?: string) => {
-        if (checked) {
-            if (name) setSelectedName(name);
-            setField("AssociateProductPrice", { active: true, price: addonPrice });
-        } else {
-            setField("AssociateProductPrice", { active: false, price: 0 });
-            setSelectedName("");
-        }
-    };
+    const totalAddonPrice = useMemo(
+        () => selectedProducts.reduce((sum, p) => sum + priceFor(p), 0),
+        [selectedProducts, priceFor]
+    );
 
     useEffect(() => {
-        if (!isChecked || !selectedProduct) return;
+        const active = selectedNames.length > 0;
         const curr = priceFields.AssociateProductPrice;
-        if (!curr.active || curr.price !== addonPrice) {
-            setField("AssociateProductPrice", { active: true, price: addonPrice });
+        const next = { active, price: active ? totalAddonPrice : 0 };
+        if (curr.active !== next.active || curr.price !== next.price) {
+            setField("AssociateProductPrice", next);
         }
-    }, [
-        isChecked,
-        selectedProduct,
-        addonPrice,
-        priceFields.AssociateProductPrice,
-        setField,
-    ]);
+    }, [selectedNames, totalAddonPrice, priceFields.AssociateProductPrice, setField]);
 
-    if (!matchedProducts.length || !selectedProduct) {
+    if (!matchedProducts.length) {
         return <div className="w-40" />;
     }
 
-    const priceFor = (p: typeof matchedProducts[number]) => {
-        const assoc = associateProducts.find(a => a.name === p.name);
-        return Number(assoc?.price ?? p.price ?? 0);
+    const toggle = (name: string, checked: boolean) => {
+        setSelectedNames(prev =>
+            checked ? Array.from(new Set([...prev, name])) : prev.filter(n => n !== name)
+        );
     };
 
     return (
-        <div className="w-40">
+        <div>
             <p className="font-poiret font-bold text-xl text-start mt-5 mb-0">
-                Produit associé :
+                Produits associés :
             </p>
 
-            <ProductCard product={selectedProduct} productlist={productList} />
-
-            {matchedProducts.map(p => {
-                const checked = isChecked && selectedName === p.name;
-                return (
-                    <label key={p.name} className="flex flex-row items-center gap-2 mt-2">
-                        <input
-                            type="checkbox"
-                            className="w-5 h-5 accent-[#7E649D] border-2 border-[#7E649D] rounded-md"
-                            checked={checked}
-                            onChange={e => onToggle(e.target.checked, p.name)}
-                        />
-                        <span className="font-poiret text-sm font-bold">
-                            J'ajoute ce produit à ma commande pour {priceFor(p)}€
-                        </span>
-                    </label>
-                );
-            })}
+            <div className="flex flex-row gap-4 flex-wrap">
+                {matchedProducts.map(p => {
+                    const checked = selectedNames.includes(p.name);
+                    return (
+                        <div key={p.name} className="w-40">
+                            <ProductCard product={p} productlist={productList} />
+                            <label className="flex flex-row items-center mt-2 gap-2">
+                                <input
+                                    type="checkbox"
+                                    name={`assoc-${p.name}`}
+                                    className="w-5 h-5 accent-[#7E649D] border-2 border-[#7E649D] rounded-md"
+                                    checked={checked}
+                                    onChange={e => toggle(p.name, e.target.checked)}
+                                />
+                                <span className="font-poiret text-sm font-bold mt-1 text-left">
+                                    J'ajoute ce produit pour
+                                    + {priceFor(p)}€
+                                </span>
+                            </label>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }
@@ -213,6 +212,7 @@ type maintenanceAndDescription = {
     description: string
     dimension: string
     composition: string
+    hasGiftCard: boolean
 }
 
 function MaintenanceAndDescription(props: maintenanceAndDescription) {
@@ -222,16 +222,20 @@ function MaintenanceAndDescription(props: maintenanceAndDescription) {
             <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.description}</p>
             <div className="border border-[#7E649D] mt-5 mb-5">
             </div>
-            <p className="font-poiret font-bold text-xl text-start mb-5">Dimension :</p>
-            <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.dimension}</p>
-            <div className="border border-[#7E649D] mt-5 mb-5">
-            </div>
-            <p className="font-poiret font-bold text-xl text-start mb-5">Composition :</p>
-            <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.composition}</p>
-            <div className="border border-[#7E649D] mt-5 mb-5">
-            </div>
-            <p className="font-poiret font-bold text-xl text-start mt-5  mb-5">Entretien :</p>
-            <p className="font-poiret font-bold text-lg text-start mb-5 whitespace-pre-line">{props.maintenance}</p>
+            {!props.hasGiftCard &&
+                <div>
+                    <p className="font-poiret font-bold text-xl text-start mb-5">Dimension :</p>
+                    <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.dimension}</p>
+                    <div className="border border-[#7E649D] mt-5 mb-5">
+                    </div>
+                    <p className="font-poiret font-bold text-xl text-start mb-5">Composition :</p>
+                    <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.composition}</p>
+                    <div className="border border-[#7E649D] mt-5 mb-5">
+                    </div>
+                    <p className="font-poiret font-bold text-xl text-start mt-5  mb-5">Entretien :</p>
+                    <p className="font-poiret font-bold text-lg text-start mb-5 whitespace-pre-line">{props.maintenance}</p>
+                </div>
+            }
         </div>
     )
 }

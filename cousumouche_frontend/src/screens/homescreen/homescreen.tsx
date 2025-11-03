@@ -47,19 +47,27 @@ export function HomeScreen() {
 
     return (
         <div style={{ marginBottom: 50 }}>
-            <section
-                className="2xl:h-[calc(100svh-310px)] lg:h-[calc(100svh-500px)] md:h-[calc(100svh-600px)] sm:h-[calc(100svh-700px)] h-[calc(100svh-750px)]"
-            >
+            <section className="
+                h-[calc(100dvh-750px)]
+                sm:h-[calc(100dvh-500px)]
+                md:h-[calc(100dvh-500px)]
+                lg:h-[calc(100dvh-700px)]
+                2xl:h-[calc(100dvh-310px)]
+                min-h-[400px]          
+            ">
                 <div className="mx-auto flex h-full w-full flex-col items-center">
-                    <div className="shrink-0 pb-2 text-center">
-                        <h1 className="text-black font-nickainley font-normal text-4xl mb-4">
+                    <div className="shrink-0 pb-2 text-center w-full"
+                    >
+                        <h1 className="text-black font-nickainley font-normal text-4xl mb-2 mt-8">
                             Création couture pour enfants et parents
                         </h1>
-                        <h2 className="font-poiret text-black font-bold text-xl">
+                        <h2 className="font-poiret text-black font-bold text-xl mb-4">
                             AUTHENTIQUE, PERSONNALISÉ ET ÉCO-RESPONSABLE
                         </h2>
                     </div>
-                    <div className="flex-1 w-full 2xl:w-9/12 3xl:w-8/12 xl:w-9/12 h-full ">
+                    <div className=" w-full h-full bg-cover bg-center flex"
+                        style={{ backgroundImage: `url(${fondLavande})` }}
+                    >
                         <WelcomeBanner />
                     </div>
                 </div>

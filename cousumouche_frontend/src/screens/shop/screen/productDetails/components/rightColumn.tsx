@@ -47,9 +47,11 @@ export type Shopping = {
     anneauOption: string | null;
     product: Product;
     closingSystem: string | null;
+    giftCardSended: string | null;
+    giftCardData: FormData | null
 };
 
-export function RightColumn({ product, price, setPrice, selectedName, priceFields, setField }: { product: Product, price: number, setPrice: Dispatch<SetStateAction<number>>, selectedName: string, priceFields: PriceObjectType, setField: (key: keyof PriceObjectType, value: PriceField) => void; }) {
+export function RightColumn({ product, price, setPrice, selectedNames, priceFields, setField }: { product: Product, price: number, setPrice: Dispatch<SetStateAction<number>>, selectedNames: string[], priceFields: PriceObjectType, setField: (key: keyof PriceObjectType, value: PriceField) => void; }) {
 
     const hasSangles = !!product?.options?.includes("sangles");
     const hasEmbroidery = !!product?.options?.includes("broderie");
@@ -62,7 +64,7 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
     const hasDoudou = product?.name === 'Doudou';
     const haslaces = product?.name === 'Lacets personnalisés';
     const hasChangingMat = product?.name === 'Tapis à langer nomade';
-
+    const hasGiftCard = product?.name === 'Carte cadeau'
 
 
     const dentisionPrice: number = 3
@@ -92,8 +94,19 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
 
     const [anneauOption, setAnneauOption] = useState<"oui" | "non" | null>(null);
     const [closingSystem, setClosingSystem] = useState<string | null>(null)
+    const [giftCardSended, setGiftCardSended] = useState<string | null>(null)
+    const [form, setForm] = useState<FormData>({
+        pour: "",
+        deLaPartDe: "",
+        montant: 0,
+        message: "",
+    });
 
-    const basePrice = product.price;
+    const setGiftCardField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
+        setForm(prev => ({ ...prev, [key]: value }));
+    };
+
+    const basePrice = !hasGiftCard ? product.price : 0;
 
     const computedPrice = useMemo(() => {
         return basePrice +
@@ -152,7 +165,7 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
     }, []);
 
     const productDetails: Shopping = {
-        name: !selectedName ? product.name : product.name + ' / ' + selectedName,
+        name: !selectedNames ? product.name : product.name + ' / ' + selectedNames,
         price: price,
         quantity: 1,
         dimension: dimensionIndex != null && product.dimensions[dimensionIndex]
@@ -172,7 +185,9 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
         strap: selectedStrap?.name,
         anneauOption,
         product,
-        closingSystem
+        closingSystem,
+        giftCardSended,
+        giftCardData: form
     };
 
     console.log("productDetails : ", productDetails)
@@ -182,7 +197,16 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
                 product={product}
                 price={price}
             />
-
+            {hasGiftCard &&
+                <GiftCard
+                    giftCardSended={giftCardSended}
+                    setGiftCardSended={setGiftCardSended}
+                    setGiftCardField={setGiftCardField}
+                    form={form}
+                    setForm={setForm}
+                    setField={setField}
+                />
+            }
             {hasbathroom &&
                 <Bath
                     setBearEar={setBearEar}
@@ -290,13 +314,15 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
                     setSelectedLabel={setSelectedLabel}
                 />
             }
-            <Gift
-                gift={gift}
-                setGift={setGift}
-                setMessage={setMessage}
-                priceFields={priceFields}
-                setField={setField}
-            />
+            {!hasGiftCard &&
+                <Gift
+                    gift={gift}
+                    setGift={setGift}
+                    setMessage={setMessage}
+                    priceFields={priceFields}
+                    setField={setField}
+                />
+            }
             <ConditionChecker
                 productDetails={productDetails}
             />
@@ -373,9 +399,9 @@ function ChoiceLotQuantities({
                             <button
                                 key={index}
                                 onClick={() => DefineQuantities(index)}
-                                className={index === lotIndexSelected ? "border-[#7E649D] bg-[#7E649D] text-white border-2 p-2" : "border-2 p-2 border-[#7E649D] text-lg"}
+                                className={index === lotIndexSelected ? "border-[#7E649D] bg-[#7E649D] text-white border-2 p-1" : "border-2 p-1 border-[#7E649D] font-poiret font-bold "}
                             >
-                                lot de {lot.quantities}
+                                Lot de {lot.quantities}
                             </button> :
                             <button
                                 key={index}
@@ -478,6 +504,8 @@ const fabricsName = (type: string) => {
             return "Double Gaze"
         case 'motif/jersey':
             return "Jersey"
+        case 'motif/Noel':
+            return "Noël"
         default:
             return type;
     }
@@ -533,7 +561,7 @@ function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricS
             <p className="font-poiret font-bold text-gray-500 mb-2" >Nombre de tissus séléctionnés : {quantities} / {fabricsQuantitiesSelected}</p>
             <div className="flex flex-row gap-2 mb-2">
                 {typeSelected.map((model, index) => (
-                    <button key={index} onClick={() => handleClick(model, index)} className={FabricTypeIndex === index ? "border-2 bg-[#7E649D] text-white w-1/2" : "border w-1/2"}>
+                    <button key={index} onClick={() => handleClick(model, index)} className={FabricTypeIndex === index ? "border-2 bg-[#7E649D] border-[#7E649D] text-white w-1/2" : "border-2 w-1/2 border-[#7E649D] text-lg"}>
                         <p>{model}</p>
                     </button>
                 ))}
@@ -824,13 +852,13 @@ function ConditionChecker({ productDetails }: { productDetails: Shopping }) {
 
     return (
         <div>
-            <div className="flex items-start gap-2 mt-4 pl-5">
+            <div className="flex items-start gap-2 mt-6">
                 <input
                     type="checkbox"
                     id="conditionCheckBox"
                     checked={conditionIsChecked}
                     onChange={conditionCheckHandler}
-                    className="mt-1"
+                    className="mt-1 border-[#8574A6]"
                 />
                 <label htmlFor="conditionCheckBox" className="font-poiret font-bold leading-5">
                     J'ai lu la description complète du produit et les conditions générales de vente.
@@ -955,23 +983,8 @@ function ForWho({ who, setWho, setPrice, setField }: {
     )
 }
 
-function ChangingMat({closingSystem, setClosingSystem}: {closingSystem: string | null, setClosingSystem: Dispatch<SetStateAction<string | null>>}) {
-    
-
-    // const handleClick = (value: "Élastique" | "Lien à nouer") => {
-    //     setClosingSystem(value);
-    //     if (value === "Élastique") {
-    //         if (priceFields.lotPrice.active) {
-    //             setField("anneauDeDentision", { active: true, price: dentisionPrice * product.lot[0].quantities })
-    //         }
-    //         else
-    //             setField("anneauDeDentision", { active: true, price: dentisionPrice })
-    //     }
-    //     else
-    //         setField("anneauDeDentision", { active: false, price: 0 })
-    // };
-    
-    const response = ["Élastique", "Lien à nouer"]
+function ChangingMat({ closingSystem, setClosingSystem }: { closingSystem: string | null, setClosingSystem: Dispatch<SetStateAction<string | null>> }) {
+    const response = ["Élastique", "Liens à nouer"]
     const [buttonIndex, setButtonIndex] = useState<number>(1)
 
     const handleClick = (index: number) => {
@@ -982,6 +995,89 @@ function ChangingMat({closingSystem, setClosingSystem}: {closingSystem: string |
     return (
         <div>
             <p className="font-poiret font-bold text-xl mt-5 mb-2">Type de fermeture :</p>
+            <div className="flex gap-5 ">
+                {response.map((value, index) => (
+                    <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>{value}</button>
+                ))}
+            </div>
+        </div>
+    )
+}
+type FormData = {
+    pour: string;
+    deLaPartDe: string;
+    montant: number | "";
+    message: string;
+};
+
+function GiftCard({ giftCardSended, setGiftCardSended, setGiftCardField, form, setForm, setField }: { giftCardSended: string | null, setGiftCardSended: Dispatch<SetStateAction<string | null>>, setGiftCardField: any, form: FormData, setForm: Dispatch<SetStateAction<FormData>>, setField: (key: keyof PriceObjectType, value: PriceField) => void; }) {
+    const price = [1, 20, 50, 100, 150, 200]
+    const response = ["Voie éléctronique", "Lettre suivie"]
+    const [buttonIndex, setButtonIndex] = useState<number>(0)
+    const [priceButtonIndex, setPriceButtonIndex] = useState<number>(0)
+
+    const handleClick = (index: number) => {
+        setButtonIndex(index)
+        setGiftCardSended(response[index])
+    }
+
+    const handlePriceButtonClick = (index: number) => {
+        setPriceButtonIndex(index)
+        setGiftCardField("montant", price[index]);
+        setField("giftCard", { active: true, price: price[index] });
+    }
+
+    useEffect(() => {
+        setField("giftCard", { active: true, price: price[priceButtonIndex] });
+    }, [])
+
+    return (
+        <div>
+            <div className="flex flex-col mt-4 gap-4 ">
+                <label className="font-poiret font-bold text-lg">
+                    Pour :
+                </label>
+                <input
+                    name="pour"
+                    value={form.pour}
+                    onChange={e => setGiftCardField("pour", e.target.value)}
+                    placeholder="Nom du destinataire"
+                    className="font-poiret font-bold text-md border-2 border-[#7E649D] w-1/2 p-2 italic"
+                />
+
+                <label className="font-poiret font-bold text-lg">
+                    De la part de :
+                </label>
+                <input
+                    name="deLaPartDe"
+                    value={form.deLaPartDe}
+                    onChange={e => setGiftCardField("deLaPartDe", e.target.value)}
+                    placeholder="Ton nom"
+                    className="font-poiret font-bold text-md border-2 border-[#7E649D] w-1/2 p-2 italic"
+                />
+
+                <label className="font-poiret font-bold text-lg">
+                    Montant :
+                </label>
+                <div className="flex flex-row gap-2 flex-wrap">
+                    {price.map((p, index) => (
+                        <button onClick={() => handlePriceButtonClick(index)} className={priceButtonIndex === index ? "font-poiret font-bold text-md text-white bg-[#7E649D] border-[#7E649D] border-2 px-2" : "font-poiret font-bold text-md border-[#7E649D] border-2 px-2"} key={index}>{p}€</button>
+                    ))}
+                </div>
+                <label className="font-poiret font-bold text-lg">
+                    Message :
+                </label>
+                <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={e => setGiftCardField("message", e.target.value)}
+                    rows={4}
+                    placeholder="Ton petit mot…"
+                    className="font-poiret font-bold text-md border-2 border-[#7E649D] italic "
+                />
+
+            </div>
+            <p className="font-poiret font-bold text-xl mt-5 mb-2">Type d'envoi : </p>
             <div className="flex gap-5 ">
                 {response.map((value, index) => (
                     <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>{value}</button>

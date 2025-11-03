@@ -23,6 +23,7 @@ export type PriceObjectType = {
     giftWrapPrice: PriceField;
     whoPrice: PriceField;
     anneauDeDentision: PriceField;
+    giftCard: PriceField;
 }
 
 export function usePriceHook(initialValue: PriceObjectType) {
@@ -48,7 +49,7 @@ export function ProductInformation() {
     const [imagesSangles, setImagesSangles] = useState<string[]>([])
     const [imagesEtiquettes, setImagesEtiquettes] = useState<string[]>([])
     const [productImageIndex, setProductImageIndex] = useState<number>(0)
-    const [selectedName, setSelectedName] = useState<string>("");
+    const [selectedNames, setSelectedNames] = useState<string[]>([]);
 
     const { priceFields, setPriceFields, setField } = usePriceHook({
         dimensionPrice: { active: false, price: 0 },
@@ -59,6 +60,7 @@ export function ProductInformation() {
         giftWrapPrice: { active: false, price: 0 },
         whoPrice: { active: false, price: 0 },
         anneauDeDentision: { active: false, price: 0 },
+        giftCard: {active: false, price: 0},
     })
 
     console.log("this field : ", priceFields)
@@ -100,8 +102,8 @@ export function ProductInformation() {
                     setProductImageIndex={setProductImageIndex}
                     price={price}
                     setPrice={setPrice}
-                    selectedName={selectedName}
-                    setSelectedName={setSelectedName}
+                    selectedNames={selectedNames}
+                    setSelectedNames={setSelectedNames}
                     priceFields={priceFields}
                     setField={setField}
                 />
@@ -110,7 +112,7 @@ export function ProductInformation() {
                         product={product}
                         price={price}
                         setPrice={setPrice}
-                        selectedName={selectedName}
+                        selectedNames={selectedNames}
                         priceFields={priceFields}
                         setField={setField}
                     />
