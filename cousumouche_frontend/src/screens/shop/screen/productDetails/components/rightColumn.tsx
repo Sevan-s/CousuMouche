@@ -1015,7 +1015,7 @@ type FormData = {
 };
 
 function GiftCard({ giftCardSended, setGiftCardSended, setGiftCardField, form, setForm, setField }: { giftCardSended: string | null, setGiftCardSended: Dispatch<SetStateAction<string | null>>, setGiftCardField: any, form: FormData, setForm: Dispatch<SetStateAction<FormData>>, setField: (key: keyof PriceObjectType, value: PriceField) => void; }) {
-    const price = [1, 20, 50, 100, 150, 200]
+    const price = [1, 20, 50, 70, 80, 100, 120, 150, 200]
     const response = ["Voie éléctronique", "Lettre suivie"]
     const [buttonIndex, setButtonIndex] = useState<number>(0)
     const [priceButtonIndex, setPriceButtonIndex] = useState<number>(0)

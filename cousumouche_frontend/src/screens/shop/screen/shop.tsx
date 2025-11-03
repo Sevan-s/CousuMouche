@@ -145,8 +145,8 @@ function ShopNavbar(props: shopCategory) {
         <div >
             <div className="flex flex-row gap-10 justify-center mt-6">
                 {props.category.map((value, index) => (
-                    <button key={index} onClick={() => props.setCategoryIndex(index)}>
-                        <p className={props.categoryIndex !== index ? "text-[black] font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
+                    <button key={index} onClick={() => props.setCategoryIndex(index)} >
+                        <p className={props.categoryIndex !== index ? "text-[black] hover:text-[#7E649D] font-poiret font-bold" : "text-black font-poiret font-bold"}>
                             {value}
                         </p>
                     </button>
@@ -155,13 +155,13 @@ function ShopNavbar(props: shopCategory) {
             <div className="flex flex-row gap-10 justify-center mt-4">
                 {props.category[props.categoryIndex] === "Enfant" ? props.childrenSubCategory.map((childrenCat, index) => (
                     <button key={index} onClick={() => props.setChildrenCategoryIndex(index)}>
-                        <p className={props.childrenCategoryIndex !== index ? "text-[black] font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
+                        <p className={props.childrenCategoryIndex !== index ? "text-[black] hover:text-[#7E649D]  font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
                             {childrenCat}
                         </p>
                     </button>
                 )) : props.category[props.categoryIndex] === "Maman" ? props.mumSubCategory.map((mumCat, index) => (
                     <button key={index} onClick={() => props.setMumCategoryIndex(index)}>
-                        <p className={props.MumCategoryIndex !== index ? "text-[black] font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
+                        <p className={props.MumCategoryIndex !== index ? "text-[black] hover:text-[#7E649D]  font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
                             {mumCat}
                         </p>
                     </button>
