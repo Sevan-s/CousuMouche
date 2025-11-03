@@ -86,7 +86,10 @@ export function HomeScreen() {
                             Créations uniques et personnalisées
                         </p>
                         <p className="text-left font-poiret font-bold ">
-                            Cousu Mouche accorde une attention particulière à vos envies et vos goûts. Ici, découvrez les incontournables du moucheron. Des créations personnalisées, uniques, et pensées par vous, dans mon petit atelier Sud de France.
+                            Cousu Mouche accorde une attention particulière à vos envies et vos goûts.
+                        </p>
+                        <p className="text-left font-poiret font-bold ">
+                            Ici, découvrez les incontournables du moucheron. Des créations personnalisées, uniques, et pensées par vous, dans mon petit atelier Sud de France.
                         </p>
                     </div>
                     <div className="flex flex-row gap-5 w-full custom:w-auto justify-center">
@@ -123,7 +126,10 @@ export function HomeScreen() {
                             Tissus éco-responsables
                         </p>
                         <p className="text-left font-poiret font-bold">
-                            Cousu Mouche privilégie l’authenticité et la qualité des finitions. Les tissus sont sélectionnés sur base de leurs procédés de fabrication et de leurs compositions afin qu’ils soient confortables et durables.
+                            Cousu Mouche privilégie l’authenticité et la qualité des finitions.
+                        </p>
+                        <p className="text-left font-poiret font-bold">
+                            Les tissus sont sélectionnés sur base de leurs procédés de fabrication et de leurs compositions afin qu’ils soient confortables et durables.
                         </p>
                     </div>
                 </div>
@@ -137,19 +143,28 @@ export function HomeScreen() {
                             Broderie à la main</p>
                         <img loading="lazy" src={Broderie} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
                         <p className="text-left font-poiret font-bold">Cousu Mouche vous offre la possibilité d’ajouter votre touche personnelle et authentique grâce à une broderie réalisée à la main, avec soin et précision.
+                        </p>
+                        <p className="text-left font-poiret font-bold">
                             Initiales ou prénoms, chaque détail est travaillé avec passion.
+
                         </p>
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Packaging soigné</p>
                         <img loading="lazy" src={Packaging} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
-                        <p className="text-left font-poiret font-bold">Invitez-vous au voyage ! Vos commandes sont soigneusement emballées et embaumées aux senteurs du Sud. Et si c’est à offrir, comblez les heureux parents en y glissant votre doux message.</p>
+                        <p className="text-left font-poiret font-bold">Invitez-vous au voyage.</p>
+                        <p className="text-left font-poiret font-bold">
+                            Vos commandes sont soigneusement emballées et embaumées aux senteurs du Sud.
+                        </p>
+                        <p className="text-left font-poiret font-bold">
+                            Et si c’est à offrir, comblez les heureux parents en y glissant votre doux message.
+                        </p>
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Prêt à porter</p>
                         <img loading="lazy" src={Fou} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
-                        <p className="text-left font-poiret font-bold">De la douceur, rien que de la douceur !
-                            Entretenues préalablement avec de la lessive hypoallergénique testée dermatologiquement sans phosphates, ne craignez pas de soucis de décoloration et de rétrécissement des textiles ni d’effets néfastes pour la peau de vos précieux !
+                        <p className="text-left font-poiret font-bold">De la douceur, rien que de la douceur .
+                            Entretenues préalablement avec de la lessive hypoallergénique testée dermatologiquement sans phosphates, ne craignez pas de soucis de décoloration et de rétrécissement des textiles ni d’effets néfastes pour la peau de vos précieux.
                         </p>
                     </div>
                 </div>

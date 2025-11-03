@@ -498,6 +498,8 @@ const fabricsName = (type: string) => {
             return "Polaire"
         case 'uni/velour':
             return "Velour"
+        case 'uni/satin':
+            return "Satin"
         case 'motif/Coton':
             return "Coton"
         case 'motif/doubleGaz':
@@ -506,6 +508,8 @@ const fabricsName = (type: string) => {
             return "Jersey"
         case 'motif/Noel':
             return "Noël"
+        case 'motif/cuisine':
+            return "Cuisine"
         default:
             return type;
     }
