@@ -24,6 +24,7 @@ export type PriceObjectType = {
     whoPrice: PriceField;
     anneauDeDentision: PriceField;
     giftCard: PriceField;
+    giftCardMail: PriceField
 }
 
 export function usePriceHook(initialValue: PriceObjectType) {
@@ -61,6 +62,7 @@ export function ProductInformation() {
         whoPrice: { active: false, price: 0 },
         anneauDeDentision: { active: false, price: 0 },
         giftCard: {active: false, price: 0},
+        giftCardMail:{active: false, price:0},
     })
 
     console.log("this field : ", priceFields)

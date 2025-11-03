@@ -29,15 +29,14 @@ export function ContactScreen() {
 
   return (
     <div
-      className="w-screen h-screen bg-cover bg-no-repeat bg-center mb-8 aspect-square mt-12"
-      // style={{ backgroundImage: `url(${Lavande})`, }}
+      className="w-screen h-screen bg-cover bg-no-repeat bg-center mb-32 aspect-square mt-12"
     >
       <div className="flex justify-center">
         <div className="w-full max-w-[70%] text-[#4a3964] mb-8 py-4 text-center font-poiret font-bold text-lg">
           Besoin d’un renseignement sur une création, une commande en cours ou l'envie de personnaliser votre commande?<br />
           Laissez-moi un message via ce formulaire de contact ou par message privé via les réseaux sociaux.<br /><br />
           Je réponds à vos demandes dans un délai de 72h.<br />
-          Merci de votre compréhension !
+          Merci pour votre compréhension.
         </div>
       </div>
 

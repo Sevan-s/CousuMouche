@@ -1019,10 +1019,17 @@ function GiftCard({ giftCardSended, setGiftCardSended, setGiftCardField, form, s
     const response = ["Voie éléctronique", "Lettre suivie"]
     const [buttonIndex, setButtonIndex] = useState<number>(0)
     const [priceButtonIndex, setPriceButtonIndex] = useState<number>(0)
+    const MailCardPrice = 3;
 
     const handleClick = (index: number) => {
         setButtonIndex(index)
         setGiftCardSended(response[index])
+        const selected = response[index];
+        if (selected === "Lettre suivie") {
+            setField("giftCardMail", { active: true, price: MailCardPrice });
+        } else {
+            setField("giftCardMail", { active: false, price: 0 });
+        }
     }
 
     const handlePriceButtonClick = (index: number) => {
