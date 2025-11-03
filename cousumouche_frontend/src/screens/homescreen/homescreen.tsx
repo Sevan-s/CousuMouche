@@ -51,15 +51,15 @@ export function HomeScreen() {
                 className="2xl:h-[calc(100svh-310px)] lg:h-[calc(100svh-500px)] md:h-[calc(100svh-600px)] sm:h-[calc(100svh-700px)] h-[calc(100svh-750px)]"
             >
                 <div className="mx-auto flex h-full w-full flex-col items-center">
-                    <div className="shrink-0 pt-10 pb-2 text-center">
-                        <h1 className="text-black font-nickainley font-normal text-4xl mb-2">
+                    <div className="shrink-0 pb-2 text-center">
+                        <h1 className="text-black font-nickainley font-normal text-4xl mb-4">
                             Création couture pour enfants et parents
                         </h1>
                         <h2 className="font-poiret text-black font-bold text-xl">
                             AUTHENTIQUE, PERSONNALISÉ ET ÉCO-RESPONSABLE
                         </h2>
                     </div>
-                    <div className="flex-1 w-11/12 2xl:w-9/12 3xl:w-8/12 xl:w-9/12h-full">
+                    <div className="flex-1 w-full 2xl:w-9/12 3xl:w-8/12 xl:w-9/12 h-full ">
                         <WelcomeBanner />
                     </div>
                 </div>

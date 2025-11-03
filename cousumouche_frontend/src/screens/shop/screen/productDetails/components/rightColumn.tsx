@@ -46,6 +46,7 @@ export type Shopping = {
     strap: string | undefined;
     anneauOption: string | null;
     product: Product;
+    closingSystem: string | null;
 };
 
 export function RightColumn({ product, price, setPrice, selectedName, priceFields, setField }: { product: Product, price: number, setPrice: Dispatch<SetStateAction<number>>, selectedName: string, priceFields: PriceObjectType, setField: (key: keyof PriceObjectType, value: PriceField) => void; }) {
@@ -60,6 +61,8 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
     const hasWho = product?.who.length > 0;
     const hasDoudou = product?.name === 'Doudou';
     const haslaces = product?.name === 'Lacets personnalisés';
+    const hasChangingMat = product?.name === 'Tapis à langer nomade';
+
 
 
     const dentisionPrice: number = 3
@@ -88,6 +91,7 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
     const [message, setMessage] = useState<string>('');
 
     const [anneauOption, setAnneauOption] = useState<"oui" | "non" | null>(null);
+    const [closingSystem, setClosingSystem] = useState<string | null>(null)
 
     const basePrice = product.price;
 
@@ -167,9 +171,11 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
         label: selectedLabel?.name,
         strap: selectedStrap?.name,
         anneauOption,
-        product
+        product,
+        closingSystem
     };
 
+    console.log("productDetails : ", productDetails)
     return (
         <div className="text-left">
             <PriceNameAndDescription
@@ -205,6 +211,12 @@ export function RightColumn({ product, price, setPrice, selectedName, priceField
                     priceFields={priceFields}
                 />
             ) : null}
+            {hasChangingMat && (
+                <ChangingMat
+                    closingSystem={closingSystem}
+                    setClosingSystem={setClosingSystem}
+                />
+            )}
             {hasDoudou && (
                 <div className="mt-5">
                     <p className="font-poiret font-bold text-xl">
@@ -908,7 +920,7 @@ function Bath({ setBearEar }: { setBearEar: Dispatch<SetStateAction<string>> }) 
 
     return (
         <div>
-            <p className="font-poiret font-bold text-2xl mt-5 mb-2">Je veux les oreilles d'ours</p>
+            <p className="font-poiret font-bold text-xl mt-5 mb-2">Je veux les oreilles d'ours</p>
             <div className="flex gap-5 ">
                 {response.map((value, index) => (
                     <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>{value}</button>
@@ -937,6 +949,42 @@ function ForWho({ who, setWho, setPrice, setField }: {
                     <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>
                         {w.name}
                     </button>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+function ChangingMat({closingSystem, setClosingSystem}: {closingSystem: string | null, setClosingSystem: Dispatch<SetStateAction<string | null>>}) {
+    
+
+    // const handleClick = (value: "Élastique" | "Lien à nouer") => {
+    //     setClosingSystem(value);
+    //     if (value === "Élastique") {
+    //         if (priceFields.lotPrice.active) {
+    //             setField("anneauDeDentision", { active: true, price: dentisionPrice * product.lot[0].quantities })
+    //         }
+    //         else
+    //             setField("anneauDeDentision", { active: true, price: dentisionPrice })
+    //     }
+    //     else
+    //         setField("anneauDeDentision", { active: false, price: 0 })
+    // };
+    
+    const response = ["Élastique", "Lien à nouer"]
+    const [buttonIndex, setButtonIndex] = useState<number>(1)
+
+    const handleClick = (index: number) => {
+        setButtonIndex(index)
+        setClosingSystem(response[index])
+    }
+
+    return (
+        <div>
+            <p className="font-poiret font-bold text-xl mt-5 mb-2">Type de fermeture :</p>
+            <div className="flex gap-5 ">
+                {response.map((value, index) => (
+                    <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>{value}</button>
                 ))}
             </div>
         </div>
