@@ -248,25 +248,15 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
             )}
             {hasDoudou && (
                 <div className="mt-5">
-                    <p className="font-poiret font-bold text-xl">
-                        Je souhaiterais ajouter un anneau de dentision en bois (+3€)
-                    </p>
-                    <div className="flex gap-2">
-                        <button
-                            className={`border-2 p-2 ${anneauOption === "oui" ? "border-2 p-2 mt-5 bg-[#8574A6] min-w-10 text-white" : "border-2 p-2 mt-5 min-w-10"
-                                }`}
-                            onClick={() => handleClick("oui")}
-                        >
-                            Oui
-                        </button>
-                        <button
-                            className={`border-2 p-2 ${anneauOption === "non" ? "border-2 p-2 mt-5 bg-[#8574A6] min-w-10 text-white" : "border-2 p-2 mt-5 min-w-10"
-                                }`}
-                            onClick={() => handleClick("non")}
-                        >
-                            Non
-                        </button>
-                    </div>
+                    <label className="font-poiret font-bold text-xl flex items-center gap-3">
+                        <input
+                            type="checkbox"
+                            checked={anneauOption === "oui"}
+                            onChange={(e) => handleClick(e.target.checked ? "oui" : "non")}
+                            className="w-5 h-5 accent-[#8574A6] border-[#7E649D]"
+                        />
+                        Je souhaiterais ajouter un anneau de dentition en bois (+3€)
+                    </label>
                 </div>
             )}
             {product.lot.length > 0 &&
@@ -411,7 +401,7 @@ function ChoiceLotQuantities({
                             <button
                                 key={index}
                                 onClick={() => DefineQuantities(index)}
-                                className={index === lotIndexSelected ? "border-[#7E649D] bg-[#7E649D] text-white border-2 w-10" : "border-2 w-10 border-[#7E649D] text-lg"}
+                                className={index === lotIndexSelected ? "border-[#7E649D] bg-[#7E649D] text-white border-2 w-10 text-lg" : "border-2 w-10 border-[#7E649D] text-lg"}
                             >
                                 {lot.quantities}
                             </button>
