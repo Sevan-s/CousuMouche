@@ -155,7 +155,7 @@ function ShopNavbar(props: shopCategory) {
                     </button>
                 ))}
             </div>
-            <div className="flex flex-row justify-center mt-4 gap-4 sm:gap-10 text-sm sm:text-lg">
+            <div className="flex flex-row flex-wrap justify-center mt-4 gap-4 sm:gap-10 text-sm sm:text-lg mx-4">
                 {props.category[props.categoryIndex] === "Enfant" ? props.childrenSubCategory.map((childrenCat, index) => (
                     <button key={index} onClick={() => props.setChildrenCategoryIndex(index)}>
                         <p className={props.childrenCategoryIndex !== index ? "text-[black] hover:text-[#7E649D]  font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
