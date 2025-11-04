@@ -4,7 +4,7 @@ export function CgvScreen() {
         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginTop: '2%', marginBottom: 150 }}>
             <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Conditions générales de vente</h1>
             <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%', marginTop: '2%' }}>
-                <p style={{fontFamily:'Poiret', fontWeight:'bold'}}>Les dispositions ci-après établissent les conditions générales de vente des produits vendus en ligne par Cousu Mouche sur le site : www.cousumouche.fr<br /><br />
+                <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>Les dispositions ci-après établissent les conditions générales de vente des produits vendus en ligne par Cousu Mouche sur le site : www.cousumouche.fr<br /><br />
 
                     Elles détaillent les droits et les obligations de Cousu Mouche et de son client dans le cadre de la vente de marchandises. Les questions relatives aux CGV sont à adresser via le formulaire de contact du site ou par mail à l’adresse : contact@cousumouche.fr<br /><br />
 
@@ -73,7 +73,7 @@ export function CgvScreen() {
                 </p><br />
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Modes d’expédition :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
-                    Cousu Mouche livre la France métropolitaine, outre mer, Andorre, Monaco, l’UE, la Suisse et la Royaume Uni, Luxembourg, Canada, …
+                    Cousu Mouche livre la France métropolitaine, la Belgique, l'Espagne, le Portugal, le Luxembourg, l'Italie, la Pologne et les Pays-Bas
 
                     La livraison est effectuée en France métropolitaine :
 
@@ -89,15 +89,15 @@ export function CgvScreen() {
 
                         Il est possible de contacter la créatrice via le formulaire de contact ou par mail à l’adresse contact@cousumouche.fr pour connaître ces dates et les modalités de livraison. Il est impératif de contacter la créatrice pour qu’elle vous communique la date, le lieu et l’heure de retrait de votre commande. Il revient au client de s’assurer de la bonne logistique de cette offre de livraison.<br /><br /> */}
 
-                        Cousu Mouche décline toute responsabilité en cas de retard ou d’absence de livraison due à une adresse erronée ainsi qu’en cas de perte et de vol. Cousu Mouche ne sera pas tenu responsable des conséquences dues au dépassement des délais de livraison si ceux-ci ne sont pas de son fait : grèves, restrictions gouvernementales, blocages des transports, etc.<br /><br />
+                    Cousu Mouche décline toute responsabilité en cas de retard ou d’absence de livraison due à une adresse erronée ainsi qu’en cas de perte et de vol. Cousu Mouche ne sera pas tenu responsable des conséquences dues au dépassement des délais de livraison si ceux-ci ne sont pas de son fait : grèves, restrictions gouvernementales, blocages des transports, etc.<br /><br />
 
-                        Le risque du transport est supporté en totalité par l’acheteur et ne fera pas l’objet d’un remboursement des frais engagés. Néanmoins, Cousu Mouche s’engage à restituer l’intégralité des dédommagements reçues à l’acheteur si un colis vient à se perdre et que le livreur se reconnaît être en tord.<br /><br />
+                    Le risque du transport est supporté en totalité par l’acheteur et ne fera pas l’objet d’un remboursement des frais engagés. Néanmoins, Cousu Mouche s’engage à restituer l’intégralité des dédommagements reçues à l’acheteur si un colis vient à se perdre et que le livreur se reconnaît être en tord.<br /><br />
 
-                        Si pour une raison quelconque, le colis est retourné chez l’expéditeur (Cousu Mouche), les frais de port pour un nouvel envoi, seront à la charge exclusive et intégrale de l’acheteur et ce quelqu’en soit le montant.<br /><br />
+                    Si pour une raison quelconque, le colis est retourné chez l’expéditeur (Cousu Mouche), les frais de port pour un nouvel envoi, seront à la charge exclusive et intégrale de l’acheteur et ce quelqu’en soit le montant.<br /><br />
 
-                        L’acheteur s’engage à contrôler l’état de sa commande devant le transporteur. En cas de marchandises manquantes ou détériorées, l’acheteur s’engage à poser une réclamation auprès du transporteur et du vendeur par lettre recommandée AR dans un délai de 3 jours suivant la livraison. En cas d’anomalies avec les articles (qualité, quantité, référence) l’acheteur est tenu d’en informer expressément la créatrice via le formulaire de contact dans un délai de 3 jours. Aucune réclamation ne sera traitée au-delà de ce délai.<br /><br />
+                    L’acheteur s’engage à contrôler l’état de sa commande devant le transporteur. En cas de marchandises manquantes ou détériorées, l’acheteur s’engage à poser une réclamation auprès du transporteur et du vendeur par lettre recommandée AR dans un délai de 3 jours suivant la livraison. En cas d’anomalies avec les articles (qualité, quantité, référence) l’acheteur est tenu d’en informer expressément la créatrice via le formulaire de contact dans un délai de 3 jours. Aucune réclamation ne sera traitée au-delà de ce délai.<br /><br />
 
-                        Toutes commandes passées à Cousu Mouche sont destinées à l’usage personnel des clients. Toute revente partielle ou totale des produits est interdite.<br /><br />
+                    Toutes commandes passées à Cousu Mouche sont destinées à l’usage personnel des clients. Toute revente partielle ou totale des produits est interdite.<br /><br />
                 </p>
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Droit de rétractation :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
@@ -111,11 +111,11 @@ export function CgvScreen() {
 
                     Les articles devront être restitués dans leur emballage d’origine avec l’ensemble des éléments représentant la marque (étiquette, carte de visite, etc.) pour permettre leur commercialisation ultérieure, à l’adresse : 9, Avenue du Mauzac, 11300 Saint-Polycarpe.<br /><br />
 
-                        Le paiement des frais de port retour étant à la charge de l’acheteur. Seul, le montant de la commande à proprement dite sera remboursé, les frais de livraison de la commande initiale ne feront pas l’objet d’un remboursement. Cousu Mouche conseille de choisir un envoie retour avec suivi, sans quoi aucune réclamation ne sera acceptée si votre colis n’est pas réceptionné.
+                    Le paiement des frais de port retour étant à la charge de l’acheteur. Seul, le montant de la commande à proprement dite sera remboursé, les frais de livraison de la commande initiale ne feront pas l’objet d’un remboursement. Cousu Mouche conseille de choisir un envoie retour avec suivi, sans quoi aucune réclamation ne sera acceptée si votre colis n’est pas réceptionné.
 
-                        Sous réserve que les conditions soient respectées, Cousu Mouche procèdera au remboursement dans un délai de 30 jours à compter de la réception retour de la marchandise.
+                    Sous réserve que les conditions soient respectées, Cousu Mouche procèdera au remboursement dans un délai de 30 jours à compter de la réception retour de la marchandise.
 
-                        Le remboursement s’opèrera par le même mode de règlement que celui utilisé lors de la commande, soit par Paypal, soit par carte bancaire.
+                    Le remboursement s’opèrera par le même mode de règlement que celui utilisé lors de la commande, soit par Paypal, soit par carte bancaire.
                 </p><br />
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Litiges :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>

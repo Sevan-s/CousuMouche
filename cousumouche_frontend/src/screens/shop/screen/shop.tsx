@@ -146,7 +146,7 @@ export function ShopScreen() {
 function ShopNavbar(props: shopCategory) {
     return (
         <div >
-            <div className="flex flex-row gap-10 justify-center mt-6">
+            <div className="flex flex-row text-sm sm:text-xl gap-4 sm:gap-10 justify-center mt-6">
                 {props.category.map((value, index) => (
                     <button key={index} onClick={() => props.setCategoryIndex(index)} >
                         <p className={props.categoryIndex !== index ? "text-[black] hover:text-[#7E649D] font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
@@ -155,7 +155,7 @@ function ShopNavbar(props: shopCategory) {
                     </button>
                 ))}
             </div>
-            <div className="flex flex-row gap-10 justify-center mt-4">
+            <div className="flex flex-row justify-center mt-4 gap-4 sm:gap-10 text-sm sm:text-xl">
                 {props.category[props.categoryIndex] === "Enfant" ? props.childrenSubCategory.map((childrenCat, index) => (
                     <button key={index} onClick={() => props.setChildrenCategoryIndex(index)}>
                         <p className={props.childrenCategoryIndex !== index ? "text-[black] hover:text-[#7E649D]  font-poiret font-bold" : "text-[#7E649D] font-poiret font-bold"}>
