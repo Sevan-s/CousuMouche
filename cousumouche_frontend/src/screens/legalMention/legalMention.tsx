@@ -2,7 +2,7 @@
 
 export function LegalMention() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '60.6vh', marginBottom: 150}}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginBottom: 150}}>
             <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px', marginTop: '2%' }}>Mentions légales</h1>
             <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%', marginTop: '2%' }}>
                 <p style={{fontFamily:'Poiret', fontWeight:'bold'}}>

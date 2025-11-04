@@ -26,10 +26,9 @@ export function ContactScreen() {
     }
   };
 
-
   return (
     <div
-      className="w-screen h-screen bg-cover bg-no-repeat bg-center mb-32 aspect-square mt-12"
+      className="w-screen mb-32 mt-12"
     >
       <div className="flex justify-center">
         <div className="w-full max-w-[70%] text-[#4a3964] mb-8 py-4 text-center font-poiret font-bold text-lg">

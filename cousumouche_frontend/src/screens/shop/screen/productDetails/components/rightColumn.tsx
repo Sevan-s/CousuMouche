@@ -102,8 +102,10 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
         message: "",
     });
 
-    const hasUni = fabricSelected.some(fabric => fabric.name.toLowerCase().includes('uni'));
-
+    const hasUni = fabricSelected.some(fabric => {
+        const name = fabric.name.toLowerCase();
+        return name.includes('uni/coton') || name.includes('uni/doublegaz');
+    });
 
     const setGiftCardField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
         setForm(prev => ({ ...prev, [key]: value }));
@@ -394,7 +396,7 @@ function ChoiceLotQuantities({
 
     return (
         <div className="flex mt-5 flex-col">
-            <p className="font-poiret font-bold text-xl">{name === "Housse matelas à langer" ? `Je souhaiterais ajouter un lot de serviette bambou à ${lotQuantities[0].price} €` : "Cet article est disponible en lot de :"}</p>
+            <p className="font-poiret font-bold text-xl">{name === "Housse matelas à langer" ? `Je souhaiterais ajouter un lot de serviette bambou à ${lotQuantities[0].price} €` : "Je choisis un lot de :"}</p>
             <div className="flex flex-row flex-wrap justify-start gap-2 text-center mt-5">
                 {lotQuantities.map((lot, index) => (
                     <div>
@@ -467,7 +469,7 @@ function Dimension({
 
     return (
         <div>
-            <p className="font-poiret font-bold text-xl mt-5">Choisissez la taille :</p>
+            <p className="font-poiret font-bold text-xl mt-5">Je choisis la taille :</p>
             <div className="flex flex-row gap-2">
                 {dimensions.map((dim, index) => (
                     <button
@@ -564,7 +566,7 @@ function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricS
 
     return (
         <div className="flex flex-col flex-wrap mt-5 gap-2 text-start">
-            <p className="font-poiret font-bold text-xl">Choisissez le(s) tissu(s)</p>
+            <p className="font-poiret font-bold text-xl">Je choisis le(s) tissu(s)</p>
             <p className="font-poiret font-bold text-gray-500 mb-2" >Nombre de tissus séléctionnés : {quantities} / {fabricsQuantitiesSelected}</p>
             <div className="flex flex-row gap-2 mb-2">
                 {typeSelected.map((model, index) => (
@@ -798,7 +800,7 @@ function Gift({ gift, setGift, setMessage, priceFields, setField }: {
                     onChange={onToggleGiftMessage}
                 />
                 <label htmlFor="giftMsg" className="font-poiret font-bold">
-                    {" "}Je souhaite ajouter un joli message dans ma commande(+1€)
+                    {" "}J'ajoute un joli message à ma commande (+1€)
                 </label>
 
                 {isGiftMsg && (
@@ -978,7 +980,7 @@ function ForWho({ who, setWho, setPrice, setField }: {
     }
     return (
         <div className="mt-5">
-            <p className="mb-5 font-poiret font-bold text-xl">Choisissez le modèle :</p>
+            <p className="mb-5 font-poiret font-bold text-xl">Je choisis le modèle :</p>
             <div className="flex gap-5">
                 {who.map((w, index) => (
                     <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>
@@ -1001,7 +1003,7 @@ function ChangingMat({ closingSystem, setClosingSystem }: { closingSystem: strin
 
     return (
         <div>
-            <p className="font-poiret font-bold text-xl mt-5 mb-2">Type de fermeture :</p>
+            <p className="font-poiret font-bold text-xl mt-5 mb-2">Je choisis une fermeture :</p>
             <div className="flex gap-5 ">
                 {response.map((value, index) => (
                     <button key={index} onClick={() => handleClick(index)} className={buttonIndex === index ? "font-poiret font-bold text-lg text-white bg-[#7E649D] border-[#7E649D] border-2 p-1" : "font-poiret font-bold text-lg border-[#7E649D] border-2 p-1"}>{value}</button>

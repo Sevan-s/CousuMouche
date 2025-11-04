@@ -4,16 +4,16 @@ export function CgvScreen() {
         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginTop: '2%', marginBottom: 150 }}>
             <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Conditions générales de vente</h1>
             <div style={{ width: '50%', textAlign: 'left', marginLeft: '25%', marginTop: '2%' }}>
-                <p style={{fontFamily:'Poiret', fontWeight:'bold'}}>Les dispositions ci-après établissent les conditions générales de vente des produits vendus en ligne par Cousu Mouche sur le site : www.cousumouche.com<br /><br />
+                <p style={{fontFamily:'Poiret', fontWeight:'bold'}}>Les dispositions ci-après établissent les conditions générales de vente des produits vendus en ligne par Cousu Mouche sur le site : www.cousumouche.fr<br /><br />
 
-                    Elles détaillent les droits et les obligations de Cousu Mouche et de son client dans le cadre de la vente de marchandises. Les questions relatives aux CGV sont à adresser via le formulaire de contact du site ou par mail à l’adresse : contact@cousumouche.com<br /><br />
+                    Elles détaillent les droits et les obligations de Cousu Mouche et de son client dans le cadre de la vente de marchandises. Les questions relatives aux CGV sont à adresser via le formulaire de contact du site ou par mail à l’adresse : contact@cousumouche.fr<br /><br />
 
                     Le client qui passe commande sur ce site reconnaît avoir pris connaissance des présentes conditions, de les avoir comprises et déclare les accepter sans réserve.<br /><br />
 
-                    Cousu Mouche se réserve le droit d’apporter des modifications à ces conditions. Les conditions applicables à toute commande sont celles en vigueur au moment de la passation de la commande.</p>
+                    Cousu Mouche se réserve le droit d’apporter des modifications à ces conditions. Les conditions applicables à toute commande sont celles en vigueur au moment de la passation de la commande.</p><br />
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Articles et propiété intelectuelle :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
-                    Le site www.cousumouche.com propose des articles textiles et accessoires destinés aux bébés et à leurs parents.<br /><br />
+                    Le site www.cousumouche.fr propose des articles textiles et accessoires destinés aux bébés et à leurs parents.<br /><br />
 
                     L’ensemble des créations, des descriptions et des photos sont la propriété de la créatrice de la marque : Perrine SARIKAYA DONFUT. Elles sont protégées au titre des droits d’auteur et de la propriété intellectuelle. Toute contrefaçon ou reproduction même partielle est passible de poursuites judiciaires selon l’article L.122-4 du code de la propriété intellectuelle.<br /><br />
 
@@ -58,38 +58,36 @@ export function CgvScreen() {
                     Cousu Mouche décline toute responsabilité en cas de perte de données de la société Paypal et ne peut être engagée dans un processus de dédommagement qui serait dû par la société Paypal.<br /><br />
 
                     Confection et livraison
-                </p>
+                </p><br />
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Délais de livraison :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
                     Sur le site Cousu Mouche, les commandes concernent:<br /><br />
 
                     • des articles en stock, déjà confectionnés et livrés dans un délai habituellement compris entre 3 et 5 jours et à compter de la réception du paiement.<br /><br />
 
-                    • des articles sur commande, confectionnés et  livrés dans un délai compris entre 15 et 30 jours suivant la quantité et le type d’articles commandés et à compter de la réception du paiement.<br /><br />
+                    • des articles sur commande, confectionnés et  livrés dans un délai compris entre 15 et 40 jours suivant la quantité et le type d’articles commandés et à compter de la réception du paiement.<br /><br />
 
                     Sur la fiche produits de chaque article présent sur le site, l’indication « en stock » ou « sur commande » figure. Même si le site est régulièrement maintenu à jour, en cas de commande d’articles devenus indisponibles, le client en sera informé par e-mail.<br /><br />
 
                     Les délais de livraison sont donnés à titre indicatif et n’est aucunement garanti. Ils ne peuvent en aucun cas donner lieu à une annulation de la commande.
-                </p>
+                </p><br />
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Modes d’expédition :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
                     Cousu Mouche livre la France métropolitaine, outre mer, Andorre, Monaco, l’UE, la Suisse et la Royaume Uni, Luxembourg, Canada, …
 
                     La livraison est effectuée en France métropolitaine :
 
-                    • soit par la remise directe en main propre de la commande à l’acheteur sur Limoux (11), sans conditions d’achats. Via le formulaire de contact ou l’adresse mail contact@cousumouche.fr, il convient de contacter la créatrice afin de convenir d’un rendez-vous.<br /><br />
+                    {/* • soit par la remise directe en main propre de la commande à l’acheteur sur Limoux (11), sans conditions d’achats. Via le formulaire de contact ou l’adresse mail contact@cousumouche.fr, il convient de contacter la créatrice afin de convenir d’un rendez-vous.<br /><br /> */}
 
-                    • soit par la Poste sous forme de colissimo à votre domicile dans votre boîte aux lettres si celle-ci respecte les dimensions des boîtes aux lettres normalisées. Le cas échéant, le facteur déposera un avis de passage dans votre boîte aux lettres vous invitant à récupérer votre colis dans un bureau de poste.<br /><br />
+                    {/* • soit par la Poste sous forme de colissimo à votre domicile dans votre boîte aux lettres si celle-ci respecte les dimensions des boîtes aux lettres normalisées. Le cas échéant, le facteur déposera un avis de passage dans votre boîte aux lettres vous invitant à récupérer votre colis dans un bureau de poste.<br /><br /> */}
 
-                    • soit par la Poste sous forme de lettre suivie pour les petits articles. Ce mode de livraison ne s’offre que pour les colis de moins de 100 grammes, en France uniquement.<br /><br />
+                    {/* • soit par la Poste sous forme de lettre suivie pour les petits articles. Ce mode de livraison ne s’offre que pour les colis de moins de 100 grammes, en France uniquement.<br /><br /> */}
 
-                    • soit par Mondial relais. Vous choisirez au moment de la validation de votre commande votre point relais parmi les points relais proposés dans un rayon proche de votre domicile.<br /><br />
+                    Par Mondial relay. Vous choisirez au moment de la validation de votre commande votre point relais parmi les points relais proposés dans un rayon proche de votre domicile.<br /><br />
 
-                    Les colis sont également envoyés vers l’UE, la Suisse et le Royaume-uni par lettre suivie internationale ou colissimo internationale.<br /><br />
+                    {/* Pour les commandes en Belgique, notez que Cousu Mouche communique par l’intermédiaire des réseaux sociaux plusieurs dates annuelles auxquelles vous pouvez retirer vos commandes à titre gracieux sur les communes de Braine-l’Alleud et Waterloo uniquement.<br /><br />
 
-                    Pour les commandes en Belgique, notez que Cousu Mouche communique par l’intermédiaire des réseaux sociaux plusieurs dates annuelles auxquelles vous pouvez retirer vos commandes à titre gracieux sur les communes de Braine-l’Alleud et Waterloo uniquement.<br /><br />
-
-                        Il est possible de contacter la créatrice via le formulaire de contact ou par mail à l’adresse contact@cousumouche.fr pour connaître ces dates et les modalités de livraison. Il est impératif de contacter la créatrice pour qu’elle vous communique la date, le lieu et l’heure de retrait de votre commande. Il revient au client de s’assurer de la bonne logistique de cette offre de livraison.<br /><br />
+                        Il est possible de contacter la créatrice via le formulaire de contact ou par mail à l’adresse contact@cousumouche.fr pour connaître ces dates et les modalités de livraison. Il est impératif de contacter la créatrice pour qu’elle vous communique la date, le lieu et l’heure de retrait de votre commande. Il revient au client de s’assurer de la bonne logistique de cette offre de livraison.<br /><br /> */}
 
                         Cousu Mouche décline toute responsabilité en cas de retard ou d’absence de livraison due à une adresse erronée ainsi qu’en cas de perte et de vol. Cousu Mouche ne sera pas tenu responsable des conséquences dues au dépassement des délais de livraison si ceux-ci ne sont pas de son fait : grèves, restrictions gouvernementales, blocages des transports, etc.<br /><br />
 
@@ -105,9 +103,9 @@ export function CgvScreen() {
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
                     Conformément à l’article L120-20 du code la consommation, l’acheteur dispose de 14 jours à compter de la réception des articles pour exercer son droit de rétraction.
 
-                    Attention, cette disposition ne s’applique qu’aux produits en stock, non personnalisés vendus sur le site www.cousumouche.com<br /><br />
+                    Attention, cette disposition ne s’applique qu’aux produits en stock, non personnalisés vendus sur le site www.cousumouche.fr<br /><br />
 
-                    Avant tout retour, l’acheteur informera la créatrice de son intention de rétractation via l’adresse de contact :  contact@cousumouche.com<br /><br />
+                    Avant tout retour, l’acheteur informera la créatrice de son intention de rétractation via l’adresse de contact :  contact@cousumouche.fr<br /><br />
 
                     L’échange ou le remboursement des articles ne peut avoir lieu qu’à la condition que les articles n’aient pas été utilisés même à titre d’essai. Les articles ne doivent pas être endommagés ou salis. Le client dispose de 14 jours à compter de la date de déclaration de rétractation pour renvoyer les articles.
 
@@ -118,20 +116,20 @@ export function CgvScreen() {
                         Sous réserve que les conditions soient respectées, Cousu Mouche procèdera au remboursement dans un délai de 30 jours à compter de la réception retour de la marchandise.
 
                         Le remboursement s’opèrera par le même mode de règlement que celui utilisé lors de la commande, soit par Paypal, soit par carte bancaire.
-                </p>
+                </p><br />
                 <h2 style={{ fontFamily: 'Nickainley', fontWeight: 'bold' }}>Litiges :</h2>
                 <p style={{ fontFamily: 'Poiret', fontWeight: 'bold' }}>
                     Les présentes conditions générales de vente en langue française sont soumises à la loi française. Elles sont exécutées et interprétées conformément au droit français.<br /><br />
 
-                    En cas de litige, le client s’adressera en priorité à la dirigeante de l’entreprise pour obtenir une solution amiable, à l’adresse : contact@cousumouche.com ou par courrier postale, à l’adresse : 9, Avenue du Mauzac, 11300 Saint-Polycarpe. France<br /><br />
+                    En cas de litige, le client s’adressera en priorité à la dirigeante de l’entreprise pour obtenir une solution amiable, à l’adresse : contact@cousumouche.fr ou par courrier postale, à l’adresse : 9, Avenue du Mauzac, 11300 Saint-Polycarpe. France<br /><br />
 
                     En outre, conformément à l’article 14.1 du règlement (UE) n°524/2013 du parlement européen et du conseil du 21 mai 2013, la Commission Européenne a mis en place une plateforme de Règlement en ligne des litiges, facilitant le règlement indépendant par voie extra-judiciaire des litiges en ligne entre consommateurs et professionnels de l’Union Européenne. L’acheteur peut se rendre sur la plateforme de règlement en ligne des litiges (RLL) via le lien électronique suivant : ec.europa.eu/consumers/odr<br /><br />
 
                     A défaut d’une issue à l’amiable et quelle qu’en soit l’origine du conflit, l’acheteur peut recourir à un médiateur de la consommation (adresse, etc.)<br /><br />
 
                     À défaut de solution amiable, les tribunaux français sont les seuls compétents.
-                </p>
-                <p>Dernière actualisation : le 29/06/2023</p>
+                </p><br />
+                <p className="font-poiret font-bold">Dernière actualisation : le 04/11/2025</p>
             </div>
         </div>
     )
