@@ -197,11 +197,17 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
 
     console.log("productDetails : ", productDetails)
     return (
-        <div className="text-left">
-            <PriceNameAndDescription
-                product={product}
-                price={price}
-            />
+        <div className="text-left w-[90%] flex-col ">
+            <div className="hidden sm:block">
+                <PriceName
+                    product={product}
+                    price={price}
+                />
+                <Description
+                    product={product}
+                    price={price}
+                />
+            </div>
             {hasGiftCard &&
                 <GiftCard
                     giftCardSended={giftCardSended}
@@ -415,19 +421,27 @@ function ChoiceLotQuantities({
     );
 }
 
-function PriceNameAndDescription({ product, price }: { product: Product, price: number }) {
+export function Description({ product, price }: { product: Product, price: number }) {
     return (
         <div className="text-start">
-            <div>
-                <h1 className="font-nickainley text-3xl text-start">{product.name}</h1>
-                <p className="font-poiret font-bold text-lg mt-2">{price} €</p>
-            </div>
             <div>
                 <p className="font-poiret font-bold text-lg mt-5 whitespace-pre-line">{product.shortDescription}</p>
             </div>
             <div className="border border-[#7E649D] mt-2">
             </div>
+        </div>
+    )
+}
 
+export function PriceName({ product, price }: { product: Product, price: number }) {
+    return (
+        <div className="text-start">
+            <div>
+                <h1 className="font-nickainley text-2xl sm:text-3xl text-start">{product.name}</h1>
+                <p className="font-poiret font-bold text-lg mt-2">{price} €</p>
+            </div>
+            <div className="border border-[#7E649D] mt-2">
+            </div>
         </div>
     )
 }
@@ -558,7 +572,7 @@ function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricS
         <div className="flex flex-col flex-wrap mt-5 gap-2 text-start">
             <p className="font-poiret font-bold text-xl">Je choisis le(s) tissu(s)</p>
             <p className="font-poiret font-bold text-gray-500 mb-2" >Nombre de tissus séléctionnés : {quantities} / {fabricsQuantitiesSelected}</p>
-            <div className="flex flex-row gap-2 mb-2">
+            <div className="flex flex-row gap-2 mb-2 mx-4 sm:mx-0">
                 {typeSelected.map((model, index) => (
                     <button key={index} onClick={() => handleClick(model, index)} className={FabricTypeIndex === index ? "border-2 bg-[#7E649D] border-[#7E649D] text-white w-1/2" : "border-2 w-1/2 border-[#7E649D] text-lg"}>
                         <p>{model}</p>
@@ -573,7 +587,7 @@ function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricS
                                 {fabricsName(type)}
                             </p>
 
-                            <div className="flex flex-row flex-wrap mt-2 gap-2">
+                            <div className="flex flex-row flex-wrap mt-2 gap-2 ">
                                 {simpleFabrics
                                     .filter((img) => img.name.startsWith(type))
                                     .map((image) => {

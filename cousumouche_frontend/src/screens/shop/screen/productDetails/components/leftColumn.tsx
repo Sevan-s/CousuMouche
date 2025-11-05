@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useS
 import { Iproduct, Product } from "../../../../../utils/interfaces/productInterface"
 import { ProductCard } from "../../../components/productCard/productcard"
 import { PriceField, PriceObjectType } from "../productDetails"
+import { Description, PriceName } from "./rightColumn"
 
 type leftColumn = {
     product: Product
@@ -45,13 +46,25 @@ export function LeftColumn(props: leftColumn) {
     }, []);
 
     return (
-        <div className="flex flex-col w-1/2 min-w-0">
+        <div className="flex flex-col w-3/4 sm:w-1/2 min-w-0">
+            <div className="sm:hidden">
+                <PriceName
+                    product={props.product}
+                    price={props.price}
+                />
+            </div>
             <ScrollPictureComponent
                 product={props.product}
                 productlist={props.productlist}
                 productImageIndex={props.productImageIndex}
                 setProductImageIndex={props.setProductImageIndex}
             />
+            <div>
+                <Description
+                    product={props.product}
+                    price={props.price}
+                />
+            </div>
             <AssociateProduct
                 associateProducts={props.product.associateProduct}
                 productList={props.productlist}
@@ -105,8 +118,8 @@ function ScrollPictureComponent(props: PictureComponent) {
             >
                 <div className="flex flex-row flex-nowrap gap-2 ">
                     {props.product.imageUrls?.map((image, index) => (
-                        <button key={index} onClick={() => props.setProductImageIndex(index)} className={index === props.productImageIndex ? "w-28 h-28 shrink-0 object-cover rounded mt-2 border-4 border-[#c3a2df] " : "w-28 h-28 shrink-0 object-cover rounded mt-2 "}>
-                            <img src={image} />
+                        <button key={index} onClick={() => props.setProductImageIndex(index)} className={index === props.productImageIndex ? "sm:w-28 sm:h-28 w-20 h-20 shrink-0 rounded mt-2 border-4 border-[#c3a2df] " : "sm:w-28 sm:h-28 w-20 h-20 shrink-0 rounded mt-2 "}>
+                            <img src={image}     className="w-full h-full object-cover block"/>
                         </button>
                     ))}
                 </div>
@@ -180,11 +193,11 @@ function AssociateProduct({
                 Produits associés :
             </p>
 
-            <div className="flex flex-row gap-4 flex-wrap">
+            <div className="flex flex-row sm:gap-4 gap-2 flex-wrap sm:justify-start justify-center">
                 {matchedProducts.map(p => {
                     const checked = selectedNames.includes(p.name);
                     return (
-                        <div key={p.name} className="w-40">
+                        <div key={p.name} className="sm:w-40 w-28">
                             <ProductCard product={p} productlist={productList} />
                             <label className="flex flex-row items-center mt-2 gap-2">
                                 <input

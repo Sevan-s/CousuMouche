@@ -95,8 +95,8 @@ export function ProductInformation() {
     }, []);
 
     return (
-        <div className="flex mb-20 mt-10 justify-center">
-            <div className="flex flex-row w-[60%] min-w-0 mr-4">
+        <div className="flex sm:mb-20 mb-40 mt-10 justify-center">
+            <div className="flex sm:flex-row sm:w-[80%] xl:w-[60%] min-w-0 sm:mr-4 flex-col w-[100%] justify-center sm:items-start items-center">
                 <LeftColumn
                     product={product}
                     productlist={productlist}
@@ -109,7 +109,7 @@ export function ProductInformation() {
                     priceFields={priceFields}
                     setField={setField}
                 />
-                <div className="w-1/2 ml-12">
+                <div className="flex sm:w-1/2 w-full sm:ml-12 justify-center sm:justify-start">
                     <RightColumn
                         product={product}
                         price={price}
