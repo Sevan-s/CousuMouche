@@ -59,7 +59,7 @@ export function LeftColumn(props: leftColumn) {
                 productImageIndex={props.productImageIndex}
                 setProductImageIndex={props.setProductImageIndex}
             />
-            <div>
+            <div className="sm:hidden">
                 <Description
                     product={props.product}
                     price={props.price}
