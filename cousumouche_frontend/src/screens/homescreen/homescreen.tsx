@@ -24,7 +24,6 @@ type Opinion = {
 }
 
 export function HomeScreen() {
-    const NAVBAR_PX = 310;
     const [allOpinion, setAllOpinion] = useState<Opinion[]>([])
 
     const getOpinion = async () => {
@@ -132,7 +131,7 @@ export function HomeScreen() {
                             className="font-nickainley font-normal text-[#7E649D] text-2xl"
                         >
                             Broderie à la main</p>
-                        <img loading="lazy" src={Broderie} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
+                        <img loading="lazy" alt="Borderie" src={Broderie} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
                         <p className="text-left font-poiret font-bold">Cousu Mouche vous offre la possibilité d’ajouter votre touche personnelle et authentique grâce à une broderie réalisée à la main avec soin et précision.
                         </p>
                         <p className="text-left font-poiret font-bold">
@@ -142,7 +141,7 @@ export function HomeScreen() {
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Packaging soigné</p>
-                        <img loading="lazy" src={Packaging} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
+                        <img loading="lazy" src={Packaging} alt="Packaging" className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
                         <p className="text-left font-poiret font-bold">Invitez-vous au voyage.</p>
                         <p className="text-left font-poiret font-bold">
                             Vos commandes sont soigneusement emballées et embaumées aux senteurs du Sud.
@@ -153,7 +152,7 @@ export function HomeScreen() {
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Prêt à porter</p>
-                        <img loading="lazy" src={Fou} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
+                        <img loading="lazy" src={Fou} alt="Foulard" className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
                         <p className="text-left font-poiret font-bold">De la douceur, rien que de la douceur .
                             Entretenues préalablement avec de la lessive hypoallergénique testée dermatologiquement sans phosphate, ne craignez pas de soucis de décoloration et de rétrécissement des textiles ni d’effets néfastes pour la peau de vos précieux.
                         </p>
@@ -214,7 +213,7 @@ export function HomeScreen() {
             </div>
             <div className="flex flex-row items-center justify-center">
                 {/* <img className="max-w-md h-16" src={Coli} /> */}
-                <img loading="lazy" className="max-w-md h-24" src={Mondial} />
+                <img loading="lazy"  alt="MondialRelay" className="max-w-md h-24" src={Mondial} />
             </div>
         </div>
     )

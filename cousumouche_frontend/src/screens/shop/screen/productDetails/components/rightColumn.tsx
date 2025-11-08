@@ -1079,7 +1079,7 @@ function GiftCard({ giftCardSended, setGiftCardSended, setGiftCardField, form, s
     const response = ["Voie éléctronique", "Lettre suivie"]
     const [buttonIndex, setButtonIndex] = useState<number>(0)
     const [priceButtonIndex, setPriceButtonIndex] = useState<number>(0)
-    const MailCardPrice = 3;
+    const MailCardPrice = 2;
 
     const handleClick = (index: number) => {
         setButtonIndex(index)

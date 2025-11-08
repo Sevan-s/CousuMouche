@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.51bf180e.css",
-    "main.js": "./static/js/main.ddb0111f.js",
+    "main.css": "./static/css/main.d56a7aa6.css",
+    "main.js": "./static/js/main.a5995991.js",
     "static/js/453.2886102a.chunk.js": "./static/js/453.2886102a.chunk.js",
     "static/media/fondLavande.jpg": "./static/media/fondLavande.56016be0201ee1d580f0.jpg",
     "static/media/serviette_turban.jpg": "./static/media/serviette_turban.7d991e9f9ff57382264c.jpg",
@@ -19,12 +19,12 @@
     "static/media/PoiretOne-Regular.ttf": "./static/media/PoiretOne-Regular.2d5fb32d52ffaed4fde4.ttf",
     "static/media/lit.jpg": "./static/media/lit.828b91d8797ad1bd7ec9.jpg",
     "index.html": "./index.html",
-    "main.51bf180e.css.map": "./static/css/main.51bf180e.css.map",
-    "main.ddb0111f.js.map": "./static/js/main.ddb0111f.js.map",
+    "main.d56a7aa6.css.map": "./static/css/main.d56a7aa6.css.map",
+    "main.a5995991.js.map": "./static/js/main.a5995991.js.map",
     "453.2886102a.chunk.js.map": "./static/js/453.2886102a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.51bf180e.css",
-    "static/js/main.ddb0111f.js"
+    "static/css/main.d56a7aa6.css",
+    "static/js/main.a5995991.js"
   ]
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
 import { ParcelShopSelector } from '@frontboi/mondial-relay/browser'
-var XMLParser = require('react-xml-parser');
 
 export function LivraisonForm({ parcelShop, setParcelShop }: { parcelShop: any, setParcelShop: any }) {
 
+    console.log(parcelShop)
     return (
         <div style={{ marginTop: 15, width: '100%' }}>
             <ParcelShopSelector

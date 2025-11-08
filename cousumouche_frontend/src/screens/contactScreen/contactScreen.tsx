@@ -32,7 +32,7 @@ export function ContactScreen() {
       <div className="flex justify-center">
         <div className="w-full max-w-[70%] text-[#4a3964] mb-8 py-4 text-center font-poiret font-bold text-lg">
           Besoin d’un renseignement sur une création, une commande en cours ou l'envie de personnaliser votre commande?<br />
-          Laissez-moi un message via ce formulaire de contact ou par message privé via les réseaux sociaux.<br /><br />
+          Laissez-moi un message via ce formulaire de contact.<br /><br />
           Je réponds à vos demandes dans un délai de 72h.<br />
           Merci pour votre compréhension.
         </div>
