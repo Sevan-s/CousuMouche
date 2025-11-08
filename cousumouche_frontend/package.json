@@ -2,7 +2,7 @@
   "name": "cousumouche_frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "/",
   "dependencies": {
     "@frontboi/mondial-relay": "^1.2.49",
     "@stripe/react-stripe-js": "^2.8.1",
