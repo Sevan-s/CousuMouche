@@ -520,6 +520,8 @@ const fabricsName = (type: string) => {
             return "Velour"
         case 'uni/satin':
             return "Satin"
+        case 'uni/maman':
+            return "Tissus uni"
         case 'motif/Coton':
             return "Coton"
         case 'motif/doubleGaz':
@@ -530,6 +532,8 @@ const fabricsName = (type: string) => {
             return "Noël"
         case 'motif/cuisine':
             return "Cuisine"
+        case 'motif/maman':
+            return "Tissus à motif"
         default:
             return type;
     }
