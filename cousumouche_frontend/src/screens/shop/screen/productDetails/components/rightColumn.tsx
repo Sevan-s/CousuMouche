@@ -685,15 +685,35 @@ function Strap({ straps, selectedStrap, setSelectedStrap }: { straps: ImageInter
     return (
         <div>
             <p className="font-poiret font-bold text-lg mt-5">Je sélectionne une sangle</p>
+
             <div className="flex flex-row flex-wrap gap-2">
                 {straps.map((strap) => {
-                    const isSelected = selectedStrap?.id === strap.id
+                    const isSelected = selectedStrap?.id === strap.id;
+
                     return (
-                        <button key={strap.id} onClick={() => handleSelectStrap(strap)}
-                            className={`w-20 border rounded transition ${isSelected ? "border-[#7E649D] border-2" : "border-transparent"}`}>
-                            <img src={strap.url} alt={strap.name} />
-                        </button>
-                    )
+                        <div key={strap.id} className="relative group">
+                            <button
+                                onClick={() => handleSelectStrap(strap)}
+                                className={`w-20 aspect-square overflow-hidden rounded transition ${isSelected
+                                    ? "ring-2 ring-[#7E649D]"
+                                    : "border border-transparent"
+                                    }`}
+                            >
+                                <img
+                                    src={strap.url}
+                                    alt={strap.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </button>
+                            <div className="pointer-events-none hidden group-hover:block absolute left-24 top-0 w-72 aspect-square rounded-xl shadow-2xl z-50 overflow-hidden">
+                                <img
+                                    src={strap.url}
+                                    alt={strap.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+                    );
                 })}
             </div>
         </div>
@@ -709,20 +729,42 @@ function Labels({ labels, selectedLabel, setSelectedLabel }: { labels: ImageInte
 
     return (
         <div>
-            <p className="font-poiret font-bold text-lg mt-5">Je sélectionne une étiquette</p>
+            <p className="font-poiret font-bold text-lg mt-5">
+                Je sélectionne une étiquette
+            </p>
+
             <div className="flex flex-row flex-wrap gap-2">
                 {labels.map((label) => {
-                    const isSelected = selectedLabel?.id === label.id
+                    const isSelected = selectedLabel?.id === label.id;
+
                     return (
-                        <button key={label.id} onClick={() => handleSelectStrap(label)}
-                            className={`w-20 border rounded transition ${isSelected ? "border-[#7E649D] border-2" : "border-transparent"}`}>
-                            <img src={label.url} alt={label.name} />
-                        </button>
-                    )
+                        <div key={label.id} className="relative group">
+                            <button
+                                onClick={() => handleSelectStrap(label)}
+                                className={`w-20 aspect-square overflow-hidden rounded transition ${isSelected
+                                        ? "ring-2 ring-[#7E649D]"
+                                        : "border border-transparent"
+                                    }`}
+                            >
+                                <img
+                                    src={label.url}
+                                    alt={label.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </button>
+                            <div className="pointer-events-none hidden group-hover:block absolute left-24 top-0 w-72 aspect-square rounded-xl shadow-2xl z-50 overflow-hidden">
+                                <img
+                                    src={label.url}
+                                    alt={label.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+                    );
                 })}
             </div>
         </div>
-    )
+    );
 }
 
 function Embroidery({
