@@ -37,19 +37,30 @@ export function usePriceHook(initialValue: PriceObjectType) {
 
 export function ProductInformation() {
     const location = useLocation();
-    const { productlist } = location.state as { productlist: Iproduct };
-    const { product } = location.state as { product: Product };
-    const hasSangles = !!product?.options?.includes("sangles");
-    const hasEtiquettes = !!product?.options?.includes("etiquettes");
+    const { productName } = useParams<{ productName: string }>();
 
-    const [price, setPrice] = useState<number>(product.price)
-    const [images, setImages] = useState<ImageInterface[]>([])
-    const [imagesSangles, setImagesSangles] = useState<string[]>([])
-    const [imagesEtiquettes, setImagesEtiquettes] = useState<string[]>([])
-    const [productImageIndex, setProductImageIndex] = useState<number>(0)
+    const state = (location.state || null) as {
+        productlist?: Iproduct;
+        product?: Product;
+    } | null;
+
+    const [product, setProduct] = useState<Product | null>(state?.product ?? null);
+    const [productlist, setProductlist] = useState<Iproduct | null>(
+        state?.productlist ?? null
+    );
+
+    const [price, setPrice] = useState<number>(state?.product?.price ?? 0);
+
+    const [images, setImages] = useState<ImageInterface[]>([]);
+    const [imagesSangles, setImagesSangles] = useState<string[]>([]);
+    const [imagesEtiquettes, setImagesEtiquettes] = useState<string[]>([]);
+    const [productImageIndex, setProductImageIndex] = useState<number>(0);
     const [selectedNames, setSelectedNames] = useState<string[]>([]);
 
-    const { priceFields, setPriceFields, setField } = usePriceHook({
+    const [isLoading, setIsLoading] = useState<boolean>(!product);
+    const [hasError, setHasError] = useState<boolean>(false);
+
+    const { priceFields, setField } = usePriceHook({
         dimensionPrice: { active: false, price: 0 },
         lotPrice: { active: false, price: 0 },
         broderiePrice: { active: false, price: 0 },
@@ -58,37 +69,96 @@ export function ProductInformation() {
         giftWrapPrice: { active: false, price: 0 },
         whoPrice: { active: false, price: 0 },
         anneauDeDentision: { active: false, price: 0 },
-        giftCard: {active: false, price: 0},
-        giftCardMail:{active: false, price:0},
-    })
+        giftCard: { active: false, price: 0 },
+        giftCardMail: { active: false, price: 0 },
+    });
 
     useEffect(() => {
-        fetch('https://cmback-ab08.onrender.com/upload/images/tissus')
-            .then(res => res.json())
-            .then(data => {
+        if (!product && productName) {
+            setIsLoading(true);
+            setHasError(false);
+            fetch(
+                `https://cmback-ab08.onrender.com/products/${encodeURIComponent(
+                    productName
+                )}`
+            )
+                .then((res) => {
+                    if (!res.ok) throw new Error("Product not found");
+                    return res.json();
+                })
+                .then((data) => {
+                    setProduct(data as Product);
+                    setProductlist(data as Iproduct);
+                    setPrice((data as Product).price);
+                })
+                .catch(() => {
+                    setHasError(true);
+                    setProduct(null);
+                    setProductlist(null);
+                })
+                .finally(() => setIsLoading(false));
+        }
+    }, [product, productName]);
+
+    useEffect(() => {
+        if (product) {
+            setPrice(product.price);
+        }
+    }, [product]);
+
+    useEffect(() => {
+        if (!product) return;
+
+        const hasSangles = !!product.options?.includes("sangles");
+        const hasEtiquettes = !!product.options?.includes("etiquettes");
+
+        fetch("https://cmback-ab08.onrender.com/upload/images/tissus")
+            .then((res) => res.json())
+            .then((data) => {
                 if (Array.isArray(data)) setImages(data);
                 else setImages([]);
             })
             .catch(() => setImages([]));
+
         if (hasSangles) {
-            fetch('https://cmback-ab08.onrender.com/upload/images/sangles')
-                .then(res => res.json())
-                .then(data => {
+            fetch("https://cmback-ab08.onrender.com/upload/images/sangles")
+                .then((res) => res.json())
+                .then((data) => {
                     if (Array.isArray(data)) setImagesSangles(data);
                     else setImagesSangles([]);
                 })
                 .catch(() => setImagesSangles([]));
         }
+
         if (hasEtiquettes) {
-            fetch('https://cmback-ab08.onrender.com/upload/images/etiquettes')
-                .then(res => res.json())
-                .then(data => {
+            fetch("https://cmback-ab08.onrender.com/upload/images/etiquettes")
+                .then((res) => res.json())
+                .then((data) => {
                     if (Array.isArray(data)) setImagesEtiquettes(data);
                     else setImagesEtiquettes([]);
                 })
                 .catch(() => setImagesEtiquettes([]));
         }
-    }, []);
+    }, [product]);
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center mt-10">
+                Chargement du produit...
+            </div>
+        );
+    }
+
+    if (hasError || !product || !productlist) {
+        return (
+            <div className="flex justify-center items-center mt-10">
+                Produit introuvable. Retournez à la boutique.
+            </div>
+        );
+    }
+
+    const hasSangles = !!product.options?.includes("sangles");
+    const hasEtiquettes = !!product.options?.includes("etiquettes");
 
     return (
         <div className="flex sm:mb-20 mb-40 mt-10 justify-center">
@@ -117,5 +187,5 @@ export function ProductInformation() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
