@@ -142,32 +142,43 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
 
 
     useEffect(() => {
-        fetch('https://cmback-ab08.onrender.com/upload/images/tissus')
-            .then(res => res.json())
-            .then(data => {
+        fetch("https://cmback-ab08.onrender.com/upload/images/tissus")
+            .then((res) => res.json())
+            .then((data) => {
                 if (Array.isArray(data)) setFabricsImages(data);
                 else setFabricsImages([]);
             })
             .catch(() => setFabricsImages([]));
-        if (hasSangles) {
-            fetch('https://cmback-ab08.onrender.com/upload/images/sangles')
-                .then(res => res.json())
-                .then(data => {
-                    if (Array.isArray(data)) setImagesSangles(data);
-                    else setImagesSangles([]);
-                })
-                .catch(() => setImagesSangles([]));
-        }
-        if (hasEtiquettes) {
-            fetch('https://cmback-ab08.onrender.com/upload/images/etiquettes')
-                .then(res => res.json())
-                .then(data => {
-                    if (Array.isArray(data)) setImagesEtiquettes(data);
-                    else setImagesEtiquettes([]);
-                })
-                .catch(() => setImagesEtiquettes([]));
-        }
     }, []);
+    useEffect(() => {
+        if (!hasSangles) {
+            setImagesSangles([]);
+            return;
+        }
+
+        fetch("https://cmback-ab08.onrender.com/upload/images/sangles")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data)) setImagesSangles(data);
+                else setImagesSangles([]);
+            })
+            .catch(() => setImagesSangles([]));
+    }, [hasSangles]);
+
+    useEffect(() => {
+        if (!hasEtiquettes) {
+            setImagesEtiquettes([]);
+            return;
+        }
+
+        fetch("https://cmback-ab08.onrender.com/upload/images/etiquettes")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data)) setImagesEtiquettes(data);
+                else setImagesEtiquettes([]);
+            })
+            .catch(() => setImagesEtiquettes([]));
+    }, [hasEtiquettes]);
 
     const productDetails: Shopping = {
         name: !selectedNames ? product.name : product.name + ' / ' + selectedNames,
@@ -685,7 +696,6 @@ function Strap({ straps, selectedStrap, setSelectedStrap }: { straps: ImageInter
     return (
         <div>
             <p className="font-poiret font-bold text-lg mt-5">Je sélectionne une sangle</p>
-
             <div className="flex flex-row flex-wrap gap-2">
                 {straps.map((strap) => {
                     const isSelected = selectedStrap?.id === strap.id;
@@ -732,7 +742,6 @@ function Labels({ labels, selectedLabel, setSelectedLabel }: { labels: ImageInte
             <p className="font-poiret font-bold text-lg mt-5">
                 Je sélectionne une étiquette
             </p>
-
             <div className="flex flex-row flex-wrap gap-2">
                 {labels.map((label) => {
                     const isSelected = selectedLabel?.id === label.id;
@@ -742,8 +751,8 @@ function Labels({ labels, selectedLabel, setSelectedLabel }: { labels: ImageInte
                             <button
                                 onClick={() => handleSelectStrap(label)}
                                 className={`w-20 aspect-square overflow-hidden rounded transition ${isSelected
-                                        ? "ring-2 ring-[#7E649D]"
-                                        : "border border-transparent"
+                                    ? "ring-2 ring-[#7E649D]"
+                                    : "border border-transparent"
                                     }`}
                             >
                                 <img

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { ParcelShop } from "../../screens/panier/panierScreen";
 
 declare global {
@@ -76,7 +76,7 @@ export default function MondialRelayPicker({ parcelShop, setParcelShop }: { parc
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [setParcelShop]);
 
   return (
     <div className="w-full">

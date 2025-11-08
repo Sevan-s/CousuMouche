@@ -1,7 +1,7 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllItemsList } from "../../../API/api";
 import { ProductCard } from "../components/productCard/productcard";
-import { Iproduct, productData } from "../../../utils/interfaces/productInterface";
+import { Iproduct } from "../../../utils/interfaces/productInterface";
 import styles from '../shopStyles.module.css'
 
 interface shopCategory {

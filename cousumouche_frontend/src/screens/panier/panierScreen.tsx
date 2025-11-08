@@ -99,7 +99,8 @@ const { subtotal, deliveryPrice, total } = useMemo(() => {
   };
 
   useEffect(() => {
-    if (code.length === 19) checkIfCodeExist();
+    if (code.length === 19) 
+        checkIfCodeExist();
     else setReduction(0);
   }, [code]);
 
@@ -169,6 +170,7 @@ const { subtotal, deliveryPrice, total } = useMemo(() => {
                   <img
                     loading="lazy"
                     src={Array.isArray(item.image) ? item.image[0] : (item.image as any)}
+                    alt={item.name}
                     style={{ width: "200px", marginRight: "5%", marginBottom: 10 }}
                   />
 

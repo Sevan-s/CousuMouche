@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { relayPoint } from "../../API/api";
-import { countries } from "../../utils/countriesList";
-import { convertXML, createAST } from "simple-xml-to-json"
+import React from "react";
+
 import { ParcelShopSelector } from '@frontboi/mondial-relay/browser'
-import { ParcelShopID, ParcelShopSelected } from '@frontboi/mondial-relay/types'
 var XMLParser = require('react-xml-parser');
 
 export function LivraisonForm({ parcelShop, setParcelShop }: { parcelShop: any, setParcelShop: any }) {

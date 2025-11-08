@@ -1,5 +1,4 @@
 import React from "react";
-import styles from './aboutstyles.module.css';
 import Mouche from '../../assets/images//mouche.jpg';
 export function Aboutscreen() {
     return (

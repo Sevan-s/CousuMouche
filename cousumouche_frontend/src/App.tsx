@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { AppRoutes } from './utils/routes/routes';
 import { Elements } from '@stripe/react-stripe-js';

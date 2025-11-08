@@ -4,14 +4,7 @@ import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout
 } from '@stripe/react-stripe-js';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate
-} from "react-router-dom";
-import { createStripeSession, getStripeStatus } from "../../API/api";
-import Stripe from "stripe";
+import { createStripeSession } from "../../API/api";
 
 const stripePromise = loadStripe("pk_test_51NSIZ7HiexHhMVstDdU5QphNH5lvdMevutvMLr1LqocTxrnDJIxpC8IzCl6VXAtuKGylraowNJgMU6VjJUIZVkqo00sNmm30hU");
 

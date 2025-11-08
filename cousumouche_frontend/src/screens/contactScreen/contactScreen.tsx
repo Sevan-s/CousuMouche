@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Styles from './contactStyles.module.css';
-import Lavande from '../../assets/images/lavande.jpg'
+
 export function ContactScreen() {
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef } from "react"
 import { Iproduct, Product } from "../../../../../utils/interfaces/productInterface"
 import { ProductCard } from "../../../components/productCard/productcard"
 import { PriceField, PriceObjectType } from "../productDetails"
@@ -109,7 +109,7 @@ function ScrollPictureComponent(props: PictureComponent) {
         <div className="flex flex-col min-w-0">
             <div className="flex justify-center">
                 {props.product.imageUrls && (
-                    <img className={!hasGiftCard ? " aspect-square object-cover" : ""} src={props.product.imageUrls[props.productImageIndex]} />
+                    <img className={!hasGiftCard ? " aspect-square object-cover" : ""} alt={props.product.name} src={props.product.imageUrls[props.productImageIndex]} />
                 )}
             </div>
 
@@ -119,7 +119,7 @@ function ScrollPictureComponent(props: PictureComponent) {
                 <div className="flex flex-row flex-nowrap gap-2 ">
                     {props.product.imageUrls?.map((image, index) => (
                         <button key={index} onClick={() => props.setProductImageIndex(index)} className={index === props.productImageIndex ? "sm:w-28 sm:h-28 w-20 h-20 shrink-0 rounded mt-2 border-4 border-[#c3a2df] " : "sm:w-28 sm:h-28 w-20 h-20 shrink-0 rounded mt-2 "}>
-                            <img src={image}     className="w-full h-full object-cover block"/>
+                            <img src={image} alt={props.product.name} className="w-full h-full object-cover block"/>
                         </button>
                     ))}
                 </div>

@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from './homestyles.module.css';
 import Bed from '../../assets/images/lit.jpg';
 import BathTowel from '../../assets/images/SortieDeBains.jpg';
 import Blanket from '../../assets/images/couvertureTresor.jpg';
 import Broderie from '../../assets/images/broderie.jpg';
 import Fou from '../../assets/images/fou3.jpg';
 import Packaging from '../../assets/images/packaging.jpg';
-import Balle from '../../assets/images/balle_de_prehension.jpg';
-import Bag from '../../assets/images/sac_a_dos.jpg';
-import Bavoir from '../../assets/images/bavoirBandana.jpg';
-import Coli from '../../assets/images/coli.png';
 import Serviette from '../../assets/images/serviette_turban.jpg';
-import Doudou from '../../assets/images/doudou.jpg';
 import Gigoteuse from '../../assets/images/gigoteuse.jpg';
 import MatchyMatchy from '../../assets/images/tablier_matchy_matchy.jpg';
 import Mondial from '../../assets/images/mondial.png';
@@ -20,8 +13,6 @@ import { FaTruck } from "react-icons/fa";
 import { BsCreditCard2FrontFill } from "react-icons/bs";
 import { FaHands } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { Carousel } from "flowbite-react";
-import CustomCarousel from "../../components/carroussel"
 import WelcomeBanner from "../../components/welcomeBanner";
 import { getAllOpinion } from "../../API/api";
 import fondLavande from '../../assets/images/fondLavande.jpg';

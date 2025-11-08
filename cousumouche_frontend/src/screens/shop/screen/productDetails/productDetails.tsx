@@ -1,10 +1,8 @@
 import { useLocation, useParams } from "react-router-dom";
-import { Article } from "../../../../utils/interfaces/articleInterfaces"
 import { Iproduct, Product } from "../../../../utils/interfaces/productInterface";
-import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import { LeftColumn } from "./components/leftColumn";
 import { RightColumn } from "./components/rightColumn";
-
 
 interface ImageInterface {
     name: string
@@ -46,7 +44,6 @@ export function ProductInformation() {
 
     const [price, setPrice] = useState<number>(product.price)
     const [images, setImages] = useState<ImageInterface[]>([])
-    const [imageIndex, setImageIndex] = useState<number[]>([])
     const [imagesSangles, setImagesSangles] = useState<string[]>([])
     const [imagesEtiquettes, setImagesEtiquettes] = useState<string[]>([])
     const [productImageIndex, setProductImageIndex] = useState<number>(0)
@@ -65,7 +62,6 @@ export function ProductInformation() {
         giftCardMail:{active: false, price:0},
     })
 
-    console.log("this field : ", priceFields)
     useEffect(() => {
         fetch('https://cmback-ab08.onrender.com/upload/images/tissus')
             .then(res => res.json())

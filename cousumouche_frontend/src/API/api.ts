@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Iproduct } from "../utils/interfaces/productInterface";
 
 const apiUrl = process.env.REACT_APP_BACK_URL;
 export async function getShopItem() {

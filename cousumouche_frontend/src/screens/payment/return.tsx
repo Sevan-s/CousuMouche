@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import { Navigate } from "react-router-dom";
 import { getStripeStatus } from "../../API/api";
 import { Article } from "../../utils/interfaces/articleInterfaces";
 
