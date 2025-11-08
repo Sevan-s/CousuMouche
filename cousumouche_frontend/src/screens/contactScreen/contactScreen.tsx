@@ -29,6 +29,9 @@ export function ContactScreen() {
     <div
       className="w-screen mb-32 mt-12"
     >
+      <div style={{ marginTop: '2%', marginBottom: '2%' }}>
+        <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Contact</h1>
+      </div>
       <div className="flex justify-center">
         <div className="w-full max-w-[70%] text-[#4a3964] mb-8 py-4 text-center font-poiret font-bold text-lg">
           Besoin d’un renseignement sur une création, une commande en cours ou l'envie de personnaliser votre commande?<br />

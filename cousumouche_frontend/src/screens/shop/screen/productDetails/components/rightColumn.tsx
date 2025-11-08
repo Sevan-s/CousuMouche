@@ -594,7 +594,7 @@ function FabricsOptions({ hasEmbroidery, fabricsImages, fabricsType, fabricsQuan
                         color="red"
                         size={24}
                     />
-                    <p className="pl-1 font-poiret font-bold text-red-500 text-sm">Si vous souhaitez faire broder un prénom ou un surnom, veuillez sélectionner un tissu uni dans la liste ci-dessous</p>
+                    <p className="pl-1 font-poiret font-bold text-red-500 text-sm">Si vous souhaitez faire broder un prénom, veuillez sélectionner un tissu uni dans la liste ci-dessous</p>
                 </div>
             }
             <div className="flex flex-row gap-2 mb-2 mx-4 sm:mx-0">
