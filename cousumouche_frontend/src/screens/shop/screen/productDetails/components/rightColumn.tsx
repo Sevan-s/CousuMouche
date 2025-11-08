@@ -587,6 +587,13 @@ function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricS
         <div className="flex flex-col flex-wrap mt-5 gap-2 text-start">
             <p className="font-poiret font-bold text-xl">Je choisis le(s) tissu(s)</p>
             <p className="font-poiret font-bold text-gray-500 mb-2" >Nombre de tissus séléctionnés : {quantities} / {fabricsQuantitiesSelected}</p>
+            <div className="flex flex-row items-center">
+                <IoIosWarning
+                    color="red"
+                    size={24}
+                />
+                <p className="pl-1 font-poiret font-bold text-red-500 text-sm">Si vous souhaitez faire broder un prénom ou un surnom, veuillez sélectionner un tissu uni dans la liste ci-dessous</p>
+            </div>
             <div className="flex flex-row gap-2 mb-2 mx-4 sm:mx-0">
                 {typeSelected.map((model, index) => (
                     <button key={index} onClick={() => handleClick(model, index)} className={FabricTypeIndex === index ? "border-2 bg-[#7E649D] border-[#7E649D] text-white w-1/2" : "border-2 w-1/2 border-[#7E649D] text-lg"}>
@@ -813,13 +820,13 @@ function Embroidery({
             <div className="border border-[#7E649D] mt-5">
             </div>
             <p className="font-poiret font-bold text-lg text-left mt-5">Je souhaite broder le prénom (+5€)</p>
-            <div className="flex flex-row items-center">
+            {/* <div className="flex flex-row items-center">
                 <IoIosWarning
                     color="red"
                     size={24}
                 />
                 <p className="pl-1 font-poiret font-bold text-red-500 text-sm">Je brode uniquement sur un tissu uni !</p>
-            </div>
+            </div> */}
             <div className="flex mt-2">
                 <input
                     placeholder="Prénom / Surnom"
