@@ -123,9 +123,12 @@ export function ShopScreen() {
                 MumCategoryIndex={MumCategoryIndex}
                 setMumCategoryIndex={setMumCategoryIndex}
             />
-            <div className="ml-[10%] mr-[10%] mb-16 pb-20 ">
-                {category[categoryIndex] === 'Matchy Matchy' && 
-                    <p className="font-poiret font-bold">« Matchy-Matchy », QUESAKO ? Cela désigne un style assorti, que ce soit par la couleur, le motif ou le modèle.</p>
+            <div className=" ml-[10%] mr-[10%] mb-16 pb-20">
+                {category[categoryIndex] === 'Matchy Matchy' &&
+                    <div className="flex items-center justify-center">
+                        <p className="font-poiret font-bold bg-[#7E649D] py-2 text-white rounded-lg w-[800px]">« Matchy-Matchy », QUESAKO ? Cela désigne un style assorti, que ce soit par la couleur, le motif ou le modèle.</p>
+                    </div>
+
                 }
                 <div className={styles.productCardPosition}>
                     {displayedProducts?.map((item, index) => (
