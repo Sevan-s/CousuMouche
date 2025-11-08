@@ -62,7 +62,7 @@ export function HomeScreen() {
                             Création couture pour enfants et parents
                         </h1>
                         <h2 className="font-poiret text-black font-bold text-xl mb-4">
-                            AUTHENTIQUE, PERSONNALISÉ ET ÉCO-RESPONSABLE
+                            AUTHENTIQUE, PERSONNALISÉE ET ÉCO-RESPONSABLE
                         </h2>
                     </div>
                     <div className=" w-full h-full bg-cover bg-center flex"
@@ -89,7 +89,7 @@ export function HomeScreen() {
                             Cousu Mouche accorde une attention particulière à vos envies et vos goûts.
                         </p>
                         <p className="text-left font-poiret font-bold ">
-                            Ici, découvrez les incontournables du moucheron. Des créations personnalisées, uniques, et pensées par vous, dans mon petit atelier Sud de France.
+                            Ici, découvrez les incontournables du moucheron. Des créations personnalisées, uniques et pensées par vous, dans mon petit atelier Sud de France.
                         </p>
                     </div>
                     <div className="flex flex-row gap-5 w-full custom:w-auto justify-center">
@@ -142,10 +142,10 @@ export function HomeScreen() {
                         >
                             Broderie à la main</p>
                         <img loading="lazy" src={Broderie} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
-                        <p className="text-left font-poiret font-bold">Cousu Mouche vous offre la possibilité d’ajouter votre touche personnelle et authentique grâce à une broderie réalisée à la main, avec soin et précision.
+                        <p className="text-left font-poiret font-bold">Cousu Mouche vous offre la possibilité d’ajouter votre touche personnelle et authentique grâce à une broderie réalisée à la main avec soin et précision.
                         </p>
                         <p className="text-left font-poiret font-bold">
-                            Initiales ou prénoms, chaque détail est travaillé avec passion.
+                            Initiales ou prénom, chaque détail est travaillé avec passion.
 
                         </p>
                     </div>
@@ -157,14 +157,14 @@ export function HomeScreen() {
                             Vos commandes sont soigneusement emballées et embaumées aux senteurs du Sud.
                         </p>
                         <p className="text-left font-poiret font-bold">
-                            Et si c’est à offrir, comblez les heureux parents en y glissant votre doux message.
+                            Si c'est un cadeau, vos doux messages glissés dans le paquet combleront les heureux parents ou vous amies.
                         </p>
                     </div>
                     <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                         <p className="font-nickainley font-normal text-[#7E649D] text-2xl">Prêt à porter</p>
                         <img loading="lazy" src={Fou} className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
                         <p className="text-left font-poiret font-bold">De la douceur, rien que de la douceur .
-                            Entretenues préalablement avec de la lessive hypoallergénique testée dermatologiquement sans phosphates, ne craignez pas de soucis de décoloration et de rétrécissement des textiles ni d’effets néfastes pour la peau de vos précieux.
+                            Entretenues préalablement avec de la lessive hypoallergénique testée dermatologiquement sans phosphate, ne craignez pas de soucis de décoloration et de rétrécissement des textiles ni d’effets néfastes pour la peau de vos précieux.
                         </p>
                     </div>
                 </div>
