@@ -293,6 +293,7 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
             }
             {hasFabrics &&
                 <FabricsOptions
+                    hasEmbroidery={hasEmbroidery}
                     fabricsImages={fabricsImages}
                     fabricsType={product.fabrics}
                     fabricsQuantities={product.fabricsQuantities}
@@ -544,7 +545,7 @@ type FabricSelected = {
     name: string
 }
 
-function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricSelected, setFabricsSelected, priceFields, lot, name }: { fabricsImages: ImageInterface[], fabricsType: string[] | undefined, fabricsQuantities: number, fabricSelected: FabricSelected[], setFabricsSelected: Dispatch<SetStateAction<FabricSelected[]>>, priceFields: PriceObjectType, lot: Lot[], name: string }) {
+function FabricsOptions({ hasEmbroidery, fabricsImages, fabricsType, fabricsQuantities, fabricSelected, setFabricsSelected, priceFields, lot, name }: { hasEmbroidery: boolean, fabricsImages: ImageInterface[], fabricsType: string[] | undefined, fabricsQuantities: number, fabricSelected: FabricSelected[], setFabricsSelected: Dispatch<SetStateAction<FabricSelected[]>>, priceFields: PriceObjectType, lot: Lot[], name: string }) {
 
     let filteredFabrics
     let simpleFabrics: ImageInterface[]
@@ -587,13 +588,15 @@ function FabricsOptions({ fabricsImages, fabricsType, fabricsQuantities, fabricS
         <div className="flex flex-col flex-wrap mt-5 gap-2 text-start">
             <p className="font-poiret font-bold text-xl">Je choisis le(s) tissu(s)</p>
             <p className="font-poiret font-bold text-gray-500 mb-2" >Nombre de tissus séléctionnés : {quantities} / {fabricsQuantitiesSelected}</p>
-            <div className="flex flex-row items-center">
-                <IoIosWarning
-                    color="red"
-                    size={24}
-                />
-                <p className="pl-1 font-poiret font-bold text-red-500 text-sm">Si vous souhaitez faire broder un prénom ou un surnom, veuillez sélectionner un tissu uni dans la liste ci-dessous</p>
-            </div>
+            {hasEmbroidery &&
+                <div className="flex flex-row items-center">
+                    <IoIosWarning
+                        color="red"
+                        size={24}
+                    />
+                    <p className="pl-1 font-poiret font-bold text-red-500 text-sm">Si vous souhaitez faire broder un prénom ou un surnom, veuillez sélectionner un tissu uni dans la liste ci-dessous</p>
+                </div>
+            }
             <div className="flex flex-row gap-2 mb-2 mx-4 sm:mx-0">
                 {typeSelected.map((model, index) => (
                     <button key={index} onClick={() => handleClick(model, index)} className={FabricTypeIndex === index ? "border-2 bg-[#7E649D] border-[#7E649D] text-white w-1/2" : "border-2 w-1/2 border-[#7E649D] text-lg"}>
