@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { Article } from "../../utils/interfaces/articleInterfaces";
 import styles from './panierStyles.module.css';
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -33,9 +33,9 @@ const adaptCartToPanier = (items: AnyObj[]): Article[] => {
 
     const tissus = Array.isArray(it.fabricSelected)
       ? it.fabricSelected
-          .map((f: any) => (typeof f === "string" ? f : f?.name ?? ""))
-          .filter(Boolean)
-          .join(", ")
+        .map((f: any) => (typeof f === "string" ? f : f?.name ?? ""))
+        .filter(Boolean)
+        .join(", ")
       : (it.fabricSelected ?? "");
 
     const broderieFirstName = it.embroidery ?? "";
@@ -54,13 +54,13 @@ const adaptCartToPanier = (items: AnyObj[]): Article[] => {
   });
 };
 
-export function PanierScreen(
+export function PanierScreen({cartCount, setCartCount }: {cartCount: number, setCartCount: Dispatch<SetStateAction<number>> }
 ) {
   const [panier, setPanier] = useState<Article[]>([]);
   const [parcelShop, setParcelShop] = useState<ParcelShop | undefined>();
   const [code, setCode] = useState<string>("");
   const [reduction, setReduction] = useState<number>(0);
-  
+
   console.log("item ! ", panier)
 
   useEffect(() => {
@@ -74,14 +74,14 @@ export function PanierScreen(
     }
   }, []);
 
-const { subtotal, deliveryPrice, total } = useMemo(() => {
-  const sub = panier.reduce((acc, it) => acc + (Number(it.subTotal) || 0), 0);
-  const deliv = parcelShop ? (sub < 120 ? getDeliveryPrice(500, "FR") : 0) : 0;
-  const r = Number(reduction) || 0;
-  const tot = Math.max(0, (parcelShop ? sub + deliv : sub) - r);
+  const { subtotal, deliveryPrice, total } = useMemo(() => {
+    const sub = panier.reduce((acc, it) => acc + (Number(it.subTotal) || 0), 0);
+    const deliv = parcelShop ? (sub < 120 ? getDeliveryPrice(500, "FR") : 0) : 0;
+    const r = Number(reduction) || 0;
+    const tot = Math.max(0, (parcelShop ? sub + deliv : sub) - r);
 
-  return { subtotal: sub, deliveryPrice: deliv, total: tot };
-}, [panier, parcelShop, reduction]);
+    return { subtotal: sub, deliveryPrice: deliv, total: tot };
+  }, [panier, parcelShop, reduction]);
 
   const promotionCode = (e: ChangeEvent<HTMLInputElement>) => setCode(e.target.value);
 
@@ -99,8 +99,8 @@ const { subtotal, deliveryPrice, total } = useMemo(() => {
   };
 
   useEffect(() => {
-    if (code.length === 19) 
-        checkIfCodeExist();
+    if (code.length === 19)
+      checkIfCodeExist();
     else setReduction(0);
   }, [code]);
 
@@ -132,7 +132,7 @@ const { subtotal, deliveryPrice, total } = useMemo(() => {
   const deleteShoppingCartElement = (id: string) => {
     const next = panier.filter((it) => (it as any).id !== id);
     setPanier(next);
-
+    setCartCount(cartCount - 1)
     const raw = localStorage.getItem(KEY);
     const arr: AnyObj[] = raw ? JSON.parse(raw) : [];
     const updated = arr.filter((it) => it.id !== id);
@@ -211,7 +211,7 @@ const { subtotal, deliveryPrice, total } = useMemo(() => {
         )}
 
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-          <MondialRelayPicker parcelShop={parcelShop} setParcelShop={setParcelShop}/>
+          <MondialRelayPicker parcelShop={parcelShop} setParcelShop={setParcelShop} />
         </div>
       </div>
 

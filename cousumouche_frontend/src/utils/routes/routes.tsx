@@ -22,6 +22,7 @@ import { ProductInformation } from "../../screens/shop/screen/productDetails/pro
 export function AppRoutes() {
     const [cartItems, setCartItems] = useState<Article[]>([]);
     const [parcelShop, setParcelShop] = useState<ParcelShopSelected & ParcelShopID>()
+    const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
         const storedCartItems = localStorage.getItem('Panier');
@@ -39,7 +40,7 @@ export function AppRoutes() {
 
     return (
         <BrowserRouter>
-            <Header  />
+            <Header cartCount={cartCount} setCartCount={setCartCount}/>
             <ScrollToTop />
             <Routes>
                 <Route path="/" Component={HomeScreen} />
@@ -50,7 +51,7 @@ export function AppRoutes() {
                 <Route path="/mentionlegal" Component={LegalMention} />
                 <Route path="/livraison" Component={Livraison} />
                 <Route path="/confidentialite" Component={confidentiality} />
-                <Route path="/panier" element={<PanierScreen />} />
+                <Route path="/panier" element={<PanierScreen cartCount={cartCount} setCartCount={setCartCount}/>} />
                 <Route path="/livraisonForm" element={<LivraisonForm parcelShop={parcelShop} setParcelShop={setParcelShop} />} />
                 <Route path="/boutique/:productName" element={<ProductInformation />} />
                 <Route path="/return" element={<ReturnPage parcelShop={parcelShop} setCartItems={setCartItems} cartItems={cartItems} />} />

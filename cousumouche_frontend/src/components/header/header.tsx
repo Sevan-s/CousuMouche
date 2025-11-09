@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Logo from '../../assets/images/CousuMoucheLogo.png';
 import { Link, useLocation } from "react-router-dom";
 import France from '../../assets/images/france.png';
@@ -11,9 +11,8 @@ const navItems = [
   { path: "/panier", label: "Panier" },
 ];
 
-export function Header() {
+export function Header({cartCount, setCartCount} : {cartCount : number, setCartCount: Dispatch<SetStateAction<number>>}) {
   const location = useLocation();
-  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     const updateCartSize = () => {
@@ -95,50 +94,6 @@ export function Header() {
           </div>
         </nav>
       </div>
-      {/* <div className="flex flex-col items-center w-full">
-        <nav className="w-full">
-          <div className="flex items-center justify-around">
-            <div className="shrink-0">
-              <img
-                loading="lazy"
-                src={Logo}
-                alt="Logo"
-                className="w-[40vw] max-w-[180px] min-w-[80px] md:max-w-[240px] md:min-w-[120px]"
-              />
-            </div>
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-6 ">
-                {navItems.map((item) => {
-                  let text = item.label;
-                  if (item.path === "/panier" && cartCount > 0) text += ` (${cartCount})`;
-                  const isActive = location.pathname === item.path;
-
-                  return (
-                    <Link key={item.path} to={item.path} className="w-auto">
-                      <button
-                        className={`font-poiret font-bold text-sm xs:text-base md:text-lg px-2 transition-colors
-                ${isActive ? "text-[#BDA9D4]" : "text-[#7E649D]"} hover:underline focus:outline-none`}
-                        style={{ background: "none", boxShadow: "none", border: "none" }}
-                      >
-                        {text}
-                      </button>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="shrink-0">
-              <img
-                src={France}
-                loading="lazy"
-                alt="FR"
-                className="w-[20vw] max-w-[80px] min-w-[40px] max-h-[80px] min-h-[40px] md:max-w-[100px] md:min-w-[40px] md:max-h-[100px] md:min-h-[40px]"
-              />
-            </div>
-          </div>
-        </nav>
-      </div> */}
     </header>
   );
 }
