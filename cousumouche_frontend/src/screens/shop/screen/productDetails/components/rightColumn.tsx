@@ -754,7 +754,7 @@ function Labels({ labels, selectedLabel, setSelectedLabel }: { labels: ImageInte
     return (
         <div>
             <p className="font-poiret font-bold text-lg mt-5">
-                Je sélectionne une étiquette
+                Je sélectionne une étiquette (en option)
             </p>
             <div className="flex flex-row flex-wrap gap-2">
                 {labels.map((label) => {
