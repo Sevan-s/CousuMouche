@@ -39,17 +39,16 @@ export function ProductInformation() {
     const location = useLocation();
     const { productName } = useParams<{ productName: string }>();
 
-    const state = (location.state || null) as {
+    const navState = (location.state || null) as {
         productlist?: Iproduct;
         product?: Product;
     } | null;
 
-    const [product, setProduct] = useState<Product | null>(state?.product ?? null);
+    const [product, setProduct] = useState<Product | null>(navState?.product ?? null);
     const [productlist, setProductlist] = useState<Iproduct | null>(
-        state?.productlist ?? null
+        navState?.productlist ?? null
     );
-
-    const [price, setPrice] = useState<number>(state?.product?.price ?? 0);
+    const [price, setPrice] = useState<number>(navState?.product?.price ?? 0);
 
     const [images, setImages] = useState<ImageInterface[]>([]);
     const [imagesSangles, setImagesSangles] = useState<string[]>([]);
@@ -57,7 +56,7 @@ export function ProductInformation() {
     const [productImageIndex, setProductImageIndex] = useState<number>(0);
     const [selectedNames, setSelectedNames] = useState<string[]>([]);
 
-    const [isLoading, setIsLoading] = useState<boolean>(!product);
+    const [isLoading, setIsLoading] = useState<boolean>(!navState?.product);
     const [hasError, setHasError] = useState<boolean>(false);
 
     const { priceFields, setField } = usePriceHook({
@@ -74,36 +73,48 @@ export function ProductInformation() {
     });
 
     useEffect(() => {
-        if (!product && productName) {
-            setIsLoading(true);
+        if (navState?.product) {
+            setProduct(navState.product);
+            setProductlist(navState.productlist ?? null);
+            setPrice(navState.product.price);
+            setIsLoading(false);
             setHasError(false);
-            fetch(
-                `https://cmback-ab08.onrender.com/products/${encodeURIComponent(
-                    productName
-                )}`
-            )
-                .then((res) => {
-                    if (!res.ok) throw new Error("Product not found");
-                    return res.json();
-                })
-                .then((data) => {
-                    setProduct(data as Product);
-                    setProductlist(data as Iproduct);
-                    setPrice((data as Product).price);
-                })
-                .catch(() => {
-                    setHasError(true);
-                    setProduct(null);
-                    setProductlist(null);
-                })
-                .finally(() => setIsLoading(false));
+            return;
         }
-    }, [product, productName]);
+        if (!productName) return;
+
+        setIsLoading(true);
+        setHasError(false);
+
+        fetch(
+            `https://cmback-ab08.onrender.com/products/${encodeURIComponent(
+                productName
+            )}`
+        )
+            .then((res) => {
+                if (!res.ok) throw new Error("Product not found");
+                return res.json();
+            })
+            .then((data) => {
+                const prod = data as Product;
+                setProduct(prod);
+                setProductlist(null);
+                setPrice(prod.price);
+            })
+            .catch(() => {
+                setHasError(true);
+                setProduct(null);
+                setProductlist(null);
+            })
+            .finally(() => setIsLoading(false));
+    }, [productName, navState]);
 
     useEffect(() => {
-        if (product) {
-            setPrice(product.price);
-        }
+        if (!product) return;
+
+        setPrice(product.price);
+        setProductImageIndex(0);
+        setSelectedNames([]);
     }, [product]);
 
     useEffect(() => {
@@ -128,6 +139,8 @@ export function ProductInformation() {
                     else setImagesSangles([]);
                 })
                 .catch(() => setImagesSangles([]));
+        } else {
+            setImagesSangles([]);
         }
 
         if (hasEtiquettes) {
@@ -138,6 +151,8 @@ export function ProductInformation() {
                     else setImagesEtiquettes([]);
                 })
                 .catch(() => setImagesEtiquettes([]));
+        } else {
+            setImagesEtiquettes([]);
         }
     }, [product]);
 
@@ -149,7 +164,7 @@ export function ProductInformation() {
         );
     }
 
-    if (hasError || !product || !productlist) {
+    if (hasError || !product) {
         return (
             <div className="flex justify-center items-center mt-10">
                 Produit introuvable. Retournez à la boutique.
@@ -157,15 +172,12 @@ export function ProductInformation() {
         );
     }
 
-    const hasSangles = !!product.options?.includes("sangles");
-    const hasEtiquettes = !!product.options?.includes("etiquettes");
-
     return (
         <div className="flex sm:mb-20 mb-40 mt-10 justify-center">
             <div className="flex sm:flex-row sm:w-[80%] xl:w-[60%] min-w-0 sm:mr-4 flex-col w-[100%] justify-center sm:items-start items-center">
                 <LeftColumn
                     product={product}
-                    productlist={productlist}
+                    productlist={productlist ?? { products: [] }}
                     productImageIndex={productImageIndex}
                     setProductImageIndex={setProductImageIndex}
                     price={price}

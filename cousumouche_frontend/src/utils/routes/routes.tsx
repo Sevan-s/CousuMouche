@@ -18,29 +18,38 @@ import { ParcelShopID, ParcelShopSelected } from '@frontboi/mondial-relay/types'
 import ReturnPage from "../../screens/payment/return";
 import ScrollToTop from "../../components/scrollToTop";
 import { ProductInformation } from "../../screens/shop/screen/productDetails/productDetails";
+import { cleanObject } from "../cleanObject";
 
 export function AppRoutes() {
     const [cartItems, setCartItems] = useState<Article[]>([]);
-    const [parcelShop, setParcelShop] = useState<ParcelShopSelected & ParcelShopID>()
+    const [parcelShop, setParcelShop] = useState<ParcelShopSelected & ParcelShopID>();
     const [cartCount, setCartCount] = useState(0);
+    const KEY = "cm_cart";
 
     useEffect(() => {
-        const storedCartItems = localStorage.getItem('Panier');
+        const storedCartItems = localStorage.getItem(KEY);
         if (storedCartItems) {
-            setCartItems(JSON.parse(storedCartItems));
+            try {
+                const parsed = JSON.parse(storedCartItems);
+                setCartItems(parsed);
+            } catch (e) {
+                console.error("Panier invalide en localStorage:", e);
+            }
         }
-        // localStorage.clear();
     }, []);
 
     useEffect(() => {
+        setCartCount(cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0));
+
         if (cartItems.length > 0) {
-            localStorage.setItem('Panier', JSON.stringify(cartItems));
+            const cleanedCart = cartItems.map((item) => cleanObject(item));
+            localStorage.setItem("cm_cart", JSON.stringify(cleanedCart));
         }
     }, [cartItems]);
 
     return (
         <BrowserRouter>
-            <Header cartCount={cartCount} setCartCount={setCartCount}/>
+            <Header cartCount={cartCount} setCartCount={setCartCount} />
             <ScrollToTop />
             <Routes>
                 <Route path="/" Component={HomeScreen} />
@@ -51,10 +60,35 @@ export function AppRoutes() {
                 <Route path="/mentionlegal" Component={LegalMention} />
                 <Route path="/livraison" Component={Livraison} />
                 <Route path="/confidentialite" Component={confidentiality} />
-                <Route path="/panier" element={<PanierScreen cartCount={cartCount} setCartCount={setCartCount}/>} />
-                <Route path="/livraisonForm" element={<LivraisonForm parcelShop={parcelShop} setParcelShop={setParcelShop} />} />
+                <Route
+                    path="/panier"
+                    element={
+                        <PanierScreen
+                            cartCount={cartCount}
+                            setCartCount={setCartCount}
+                        />
+                    }
+                />
+                <Route
+                    path="/livraisonForm"
+                    element={
+                        <LivraisonForm
+                            parcelShop={parcelShop}
+                            setParcelShop={setParcelShop}
+                        />
+                    }
+                />
                 <Route path="/boutique/:productName" element={<ProductInformation />} />
-                <Route path="/return" element={<ReturnPage parcelShop={parcelShop} setCartItems={setCartItems} cartItems={cartItems} />} />
+                <Route
+                    path="/return"
+                    element={
+                        <ReturnPage
+                            parcelShop={parcelShop}
+                            setCartItems={setCartItems}
+                            cartItems={cartItems}
+                        />
+                    }
+                />
             </Routes>
             <Footer />
         </BrowserRouter>

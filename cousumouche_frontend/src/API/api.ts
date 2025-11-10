@@ -1,6 +1,29 @@
 import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_BACK_URL;
+
+export type OrderItemPayload = {
+    name: string;
+    quantity: number;
+    price: number;
+    subTotal: number;
+};
+
+export type OrderPayload = {
+    sessionId: string | null;
+    customerEmail: string;
+    adminEmail: string;
+    customer: {
+        firstName?: string;
+        lastName?: string;
+        address?: string;
+        phone?: string;
+    };
+    adresse?: any;
+    items: OrderItemPayload[];
+    total?: number;
+};
+
 export async function getShopItem() {
     try {
         const response = await axios.get(apiUrl + '/products?populate=*');
@@ -117,3 +140,21 @@ export async function getAllOpinion() {
         console.error('Erreur lors de la requête : ', error);
     }
 }
+
+export const sendOrderConfirmation = async (payload: OrderPayload) => {
+  try {
+    const res = await axios.post(
+      apiUrl + "/api/orders/confirm",
+      payload
+    );
+    console.log("sendOrderConfirmation OK:", res.data);
+    return res.data;
+  } catch (error: any) {
+    console.error(
+      "Erreur lors de la requête :",
+      error.response?.status,
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};

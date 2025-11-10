@@ -10,21 +10,21 @@ interface ImageInterface {
     url: string
 }
 
-export type Article = {
-    name: string;
-    price: number;
-    quantity: number;
-    subTotal: number;
-    broderieFirstName?: string;
-    image: string | string[] | '';
-    tissus?: string[];
-    message?: string;
-    gift?: boolean;
-    who?: string;
-    parcelShop?: ParcelShopSelected & ParcelShopID;
-    lot?: { quantities: number; price: number };
-    anneauDeDentision?: boolean;
-};
+// export type Article = {
+//     name: string;
+//     price: number;
+//     quantity: number;
+//     subTotal: number;
+//     broderieFirstName?: string;
+//     image: string | string[] | '';
+//     tissus?: string[];
+//     message?: string;
+//     gift?: boolean;
+//     who?: string;
+//     parcelShop?: ParcelShopSelected & ParcelShopID;
+//     lot?: { quantities: number; price: number };
+//     anneauDeDentision?: boolean;
+// };
 
 export type Shopping = {
     name: string;

@@ -33,7 +33,7 @@ export function ProductCard({ product, productlist }: { product: Product, produc
             </div>
             <p className={styles.fontStyle} title={product.name}>{product.name}</p>
             <p className={styles.fontStyle}>{product.price} €</p>
-            <button className={styles.buttonStyles} onClick={handleNavigateToProductDetails}>
+            <button className={styles.buttonStyles} onClick={handleNavigateToProductDetails} type="button">
                 <p className={styles.buttonFontStyle}>Je découvre</p>
             </button>
         </div>

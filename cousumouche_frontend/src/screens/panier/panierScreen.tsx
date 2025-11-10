@@ -18,14 +18,21 @@ export type ParcelShop = {
   Pays: string;
 };
 
+export type CustomerInfo = {
+  firstName: string;
+  lastName: string;
+  address: string;
+  phone: string;
+};
 const KEY = "cm_cart";
+const CUSTOMER_KEY = "cm_customer_info";
 
 const adaptCartToPanier = (items: AnyObj[]): Article[] => {
   return items.map((it) => {
     const price = Number(it.price ?? 0);
     const quantity = Number(it.quantity ?? 1);
 
-    const image =
+    const image: Article["image"] =
       it.image ??
       it.product?.imageUrls?.[0] ??
       it.product?.imageUrl ??
@@ -33,15 +40,19 @@ const adaptCartToPanier = (items: AnyObj[]): Article[] => {
 
     const tissus = Array.isArray(it.fabricSelected)
       ? it.fabricSelected
-        .map((f: any) => (typeof f === "string" ? f : f?.name ?? ""))
+        .map((f: any) => (typeof f === "string" ? f : f?.name))
         .filter(Boolean)
-        .join(", ")
-      : (it.fabricSelected ?? "");
+      : it.tissus;
 
-    const broderieFirstName = it.embroidery ?? "";
+    const broderieFirstName = it.embroidery ?? it.broderieFirstName ?? "";
 
     return {
-      id: it.id ?? String(Date.now()) + Math.random().toString(16).slice(2),
+      ...it,
+      id:
+        it.id ??
+        `${Date.now().toString(36)}-${Math.random()
+          .toString(16)
+          .slice(2)}`,
       name: it.name,
       price,
       quantity,
@@ -49,19 +60,24 @@ const adaptCartToPanier = (items: AnyObj[]): Article[] => {
       image,
       tissus,
       broderieFirstName,
-      ...it,
+      product: it.product,
     } as Article;
   });
 };
 
-export function PanierScreen({cartCount, setCartCount }: {cartCount: number, setCartCount: Dispatch<SetStateAction<number>> }
+export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, setCartCount: Dispatch<SetStateAction<number>> }
 ) {
   const [panier, setPanier] = useState<Article[]>([]);
   const [parcelShop, setParcelShop] = useState<ParcelShop | undefined>();
   const [code, setCode] = useState<string>("");
   const [reduction, setReduction] = useState<number>(0);
+  const { customer, handleChange: handleCustomerChange } = useCustomerInfo();
 
+  const hasGiftCard = panier[0]?.name.includes("Carte cadeau");
+  const letterFollowed = panier[0]?.giftCardSended
+  console.log("hasGiftCard : ", customer)
   console.log("item ! ", panier)
+
 
   useEffect(() => {
     const raw = localStorage.getItem(KEY);
@@ -103,6 +119,10 @@ export function PanierScreen({cartCount, setCartCount }: {cartCount: number, set
       checkIfCodeExist();
     else setReduction(0);
   }, [code]);
+
+  useEffect(() => {
+  localStorage.setItem("cm_total", JSON.stringify(total));
+}, [total]);
 
   const savePanierToStorage = (next: Article[]) => {
     const raw = localStorage.getItem(KEY);
@@ -209,14 +229,51 @@ export function PanierScreen({cartCount, setCartCount }: {cartCount: number, set
         ) : (
           <p className="text-center font-poiret text-2xl font-bold">Votre panier est vide</p>
         )}
-
-        <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-          <MondialRelayPicker parcelShop={parcelShop} setParcelShop={setParcelShop} />
-        </div>
+        {!hasGiftCard &&
+          <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+            <MondialRelayPicker parcelShop={parcelShop} setParcelShop={setParcelShop} />
+          </div>
+        }
       </div>
 
       {total > 0 && (
-        <div>
+        <div className="lg:w-[40%]">
+          <div className="ml-5">
+            <p className="font-poiret font-bold text-2xl">Informations de livraison</p>
+
+            <input
+              name="firstName"
+              value={customer.firstName}
+              onChange={handleCustomerChange}
+              placeholder="Prénom"
+              className="p-2 w-full mb-2 rounded border"
+            />
+
+            <input
+              name="lastName"
+              value={customer.lastName}
+              onChange={handleCustomerChange}
+              placeholder="Nom"
+              className="p-2 w-full mb-2 rounded border"
+            />
+
+            <textarea
+              name="address"
+              value={customer.address}
+              onChange={handleCustomerChange}
+              placeholder="Adresse postale complète"
+              className="p-2 w-full mb-2 rounded border"
+            />
+
+            <input
+              name="phone"
+              value={customer.phone}
+              onChange={handleCustomerChange}
+              placeholder="Numéro de téléphone"
+              className="p-2 w-full mb-4 rounded border"
+            />
+          </div>
+
           <div className="ml-5">
             <p className="font-poiret font-bold text-2xl">Code promo</p>
             <input
@@ -234,9 +291,44 @@ export function PanierScreen({cartCount, setCartCount }: {cartCount: number, set
             <p className="mt-2 text-lg">Total : <strong>{total.toFixed(2)} €</strong></p>
           </div>
 
-          <CheckoutForm key={total} total={total} />
+          <CheckoutForm
+            key={total}
+            total={total}
+          />
         </div>
       )}
     </div>
   );
 }
+
+const useCustomerInfo = () => {
+  const [customer, setCustomer] = useState<CustomerInfo>({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    const raw = localStorage.getItem(CUSTOMER_KEY);
+    if (raw) {
+      try {
+        const saved = JSON.parse(raw);
+        setCustomer((prev) => ({ ...prev, ...saved }));
+      } catch {
+        console.warn("Impossible de parser les infos client sauvegardées");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(CUSTOMER_KEY, JSON.stringify(customer));
+  }, [customer]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setCustomer((prev) => ({ ...prev, [name]: value }));
+  };
+
+  return { customer, handleChange };
+};
