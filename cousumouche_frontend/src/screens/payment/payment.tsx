@@ -1,12 +1,18 @@
-import React, { useCallback, useState, useEffect } from "react";
-import { loadStripe } from '@stripe/stripe-js';
+import React, { useCallback } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
-  EmbeddedCheckout
-} from '@stripe/react-stripe-js';
+  EmbeddedCheckout,
+} from "@stripe/react-stripe-js";
 import { createStripeSession } from "../../API/api";
 
-const stripePromise = loadStripe("pk_test_51NSIZ7HiexHhMVstDdU5QphNH5lvdMevutvMLr1LqocTxrnDJIxpC8IzCl6VXAtuKGylraowNJgMU6VjJUIZVkqo00sNmm30hU");
+const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
+
+if (!publishableKey) {
+  console.error("❌ REACT_APP_STRIPE_PUBLISHABLE_KEY is missing. Check your .env.");
+}
+
+const stripePromise = loadStripe(publishableKey as string);
 
 export function CheckoutForm({ total }: { total: number }) {
   const totalAmount = Math.round(total * 100);

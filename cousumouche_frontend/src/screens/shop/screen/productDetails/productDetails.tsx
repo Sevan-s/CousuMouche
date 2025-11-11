@@ -87,7 +87,7 @@ export function ProductInformation() {
         setHasError(false);
 
         fetch(
-            `https://cmback-ab08.onrender.com/products/${encodeURIComponent(
+            `${process.env.REACT_APP_BACK_URL}/products/${encodeURIComponent(
                 productName
             )}`
         )
@@ -123,7 +123,7 @@ export function ProductInformation() {
         const hasSangles = !!product.options?.includes("sangles");
         const hasEtiquettes = !!product.options?.includes("etiquettes");
 
-        fetch("https://cmback-ab08.onrender.com/upload/images/tissus")
+        fetch(`${process.env.REACT_APP_BACK_URL}/upload/images/tissus`)
             .then((res) => res.json())
             .then((data) => {
                 if (Array.isArray(data)) setImages(data);
@@ -132,7 +132,7 @@ export function ProductInformation() {
             .catch(() => setImages([]));
 
         if (hasSangles) {
-            fetch("https://cmback-ab08.onrender.com/upload/images/sangles")
+            fetch(`${process.env.REACT_APP_BACK_URL}/upload/images/sangles`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (Array.isArray(data)) setImagesSangles(data);
@@ -144,7 +144,7 @@ export function ProductInformation() {
         }
 
         if (hasEtiquettes) {
-            fetch("https://cmback-ab08.onrender.com/upload/images/etiquettes")
+            fetch(`${process.env.REACT_APP_BACK_URL}/upload/images/etiquettes`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (Array.isArray(data)) setImagesEtiquettes(data);

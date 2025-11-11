@@ -134,7 +134,7 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
     } else {
       setReduction(0);
       localStorage.removeItem("cm_giftcard_code");
-      localStorage.removeItem("cm_giftcard_amount"); // 👈 NEW
+      localStorage.removeItem("cm_giftcard_amount");
     }
   }, [code]);
 

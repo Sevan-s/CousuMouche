@@ -142,7 +142,7 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
 
 
     useEffect(() => {
-        fetch("https://cmback-ab08.onrender.com/upload/images/tissus")
+        fetch(`${process.env.REACT_APP_BACK_URL}/upload/images/tissus`)
             .then((res) => res.json())
             .then((data) => {
                 if (Array.isArray(data)) setFabricsImages(data);
@@ -156,7 +156,7 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
             return;
         }
 
-        fetch("https://cmback-ab08.onrender.com/upload/images/sangles")
+        fetch(`${process.env.REACT_APP_BACK_URL}/upload/images/sangles`)
             .then((res) => res.json())
             .then((data) => {
                 if (Array.isArray(data)) setImagesSangles(data);
@@ -171,7 +171,7 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
             return;
         }
 
-        fetch("https://cmback-ab08.onrender.com/upload/images/etiquettes")
+        fetch(`${process.env.REACT_APP_BACK_URL}/upload/images/etiquettes`)
             .then((res) => res.json())
             .then((data) => {
                 if (Array.isArray(data)) setImagesEtiquettes(data);
