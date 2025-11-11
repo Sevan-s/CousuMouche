@@ -4,9 +4,10 @@ export function ContactScreen() {
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+const apiUrl = process.env.REACT_APP_BACK_URL;
 
   const handleSubmit = async () => {
-    const response = await fetch("http://localhost:8000/contact", {
+    const response = await fetch(apiUrl + "/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

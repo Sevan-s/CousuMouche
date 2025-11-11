@@ -22,6 +22,8 @@ export type OrderPayload = {
     adresse?: any;
     items: OrderItemPayload[];
     total?: number;
+    giftCardCode: string | undefined;
+    giftCardAmount: number | undefined
 };
 
 export async function getShopItem() {
@@ -145,6 +147,7 @@ export const sendOrderConfirmation = async (payload: OrderPayload) => {
   try {
     const res = await axios.post(
       apiUrl + "/api/orders/confirm",
+    // "http://localhost:8000/api/orders/confirm",
       payload
     );
     console.log("sendOrderConfirmation OK:", res.data);

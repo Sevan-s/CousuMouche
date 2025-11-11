@@ -84,6 +84,13 @@ export default function ReturnPage({
     })();
   }, [sessionId]);
 
+  const giftCardCode = localStorage.getItem("cm_giftcard_code") || undefined;
+  const giftCardAmount = (() => {
+    const raw = localStorage.getItem("cm_giftcard_amount");
+    const n = raw ? Number(raw) : NaN;
+    return Number.isFinite(n) && n > 0 ? n : undefined;
+  })();
+
   useEffect(() => {
     const totalRaw = localStorage.getItem("cm_total");
     if (totalRaw) {
@@ -129,6 +136,8 @@ export default function ReturnPage({
           adresse: adresseInfo ? cleanObject(adresseInfo) : undefined,
           items: cleanedItems,
           total: totalPaid ?? undefined,
+          giftCardCode,
+          giftCardAmount,
         };
 
         console.log("🧾 Payload envoyé :", payload);
@@ -140,6 +149,8 @@ export default function ReturnPage({
         localStorage.removeItem("cm_customer_info");
         localStorage.removeItem("adresse");
         localStorage.removeItem("cm_total");
+        localStorage.removeItem("cm_giftcard_code");
+        localStorage.removeItem("cm_giftcard_amount");
         setCartItems([]);
       } catch (err) {
         console.error("Erreur lors de l'envoi de l'e-mail de confirmation :", err);

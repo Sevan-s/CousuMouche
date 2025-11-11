@@ -73,7 +73,10 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
   const [reduction, setReduction] = useState<number>(0);
   const { customer, handleChange: handleCustomerChange } = useCustomerInfo();
 
-  const hasGiftCard = panier[0]?.name.includes("Carte cadeau");
+  const giftCardItems = panier.filter((it) =>
+    it.name.toLowerCase().includes("carte cadeau")
+  );
+  const hasOnlyGiftCard = giftCardItems.length > 0 && giftCardItems.length === panier.length;
   const letterFollowed = panier[0]?.giftCardSended
   console.log("hasGiftCard : ", customer)
   console.log("item ! ", panier)
@@ -105,24 +108,39 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
     try {
       const response = await GetPromotionCodeByCode(code);
       if (response && response.data) {
-        setReduction(Number(response.data.price) || 0);
+        const data = response.data;
+        const price = Number(data.price) || 0;
+
+        setReduction(price);
+
+        const usedCode = data.code || code;
+        localStorage.setItem("cm_giftcard_code", usedCode);
+        localStorage.setItem("cm_giftcard_amount", String(price));
       } else {
         setReduction(0);
+        localStorage.removeItem("cm_giftcard_code");
+        localStorage.removeItem("cm_giftcard_amount");
       }
     } catch {
       setReduction(0);
+      localStorage.removeItem("cm_giftcard_code");
+      localStorage.removeItem("cm_giftcard_amount");
     }
   };
 
   useEffect(() => {
-    if (code.length === 19)
+    if (code.length === 19) {
       checkIfCodeExist();
-    else setReduction(0);
+    } else {
+      setReduction(0);
+      localStorage.removeItem("cm_giftcard_code");
+      localStorage.removeItem("cm_giftcard_amount"); // 👈 NEW
+    }
   }, [code]);
 
   useEffect(() => {
-  localStorage.setItem("cm_total", JSON.stringify(total));
-}, [total]);
+    localStorage.setItem("cm_total", JSON.stringify(total));
+  }, [total]);
 
   const savePanierToStorage = (next: Article[]) => {
     const raw = localStorage.getItem(KEY);
@@ -229,7 +247,7 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
         ) : (
           <p className="text-center font-poiret text-2xl font-bold">Votre panier est vide</p>
         )}
-        {!hasGiftCard &&
+        {!hasOnlyGiftCard &&
           <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
             <MondialRelayPicker parcelShop={parcelShop} setParcelShop={setParcelShop} />
           </div>
