@@ -36,7 +36,7 @@ export function Header({cartCount, setCartCount} : {cartCount : number, setCartC
     <header className="m-0 w-full">
       <div className="w-full font-poiret font-bold bg-[#7E649D] mt-0 py-2 text-center text-xs sm:text-base">
         <p className="m-0 text-white">
-          Délai de confection actuel 4 à 5 semaines, hors délai de livraison. Livraison: France métropolitaine, Belgique, Espagne, Portugal, Luxembourg, Italie, Pologne et Pays-Bas. <br/>Merci pour votre patience et votre compréhension.
+          Délai de confection actuel 4 à 5 semaines, hors délai de livraison. Livraison uniquement via Mondial Relay. Livraison en France métropolitaine, Belgique, Espagne, Portugal, Luxembourg, Italie, Pologne et Pays-Bas. <br/>Merci pour votre patience et votre compréhension.
         </p>
       </div>
       <div className="flex flex-col items-center w-full">
