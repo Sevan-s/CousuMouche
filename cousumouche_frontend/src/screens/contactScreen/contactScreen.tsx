@@ -4,25 +4,36 @@ export function ContactScreen() {
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-const apiUrl = process.env.REACT_APP_BACK_URL;
 
-  const handleSubmit = async () => {
-    const response = await fetch(apiUrl + "/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ subject, email, message }),
-    });
+  const apiUrl = process.env.REACT_APP_BACK_URL;
 
-    const data = await response.json();
-    if (response.ok) {
-      alert("Message envoyé !");
-      setSubject("");
-      setEmail("");
-      setMessage("");
-    } else {
-      alert("Erreur lors de l'envoi : " + data.error);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log("API URL =", apiUrl);
+
+    try {
+      const response = await fetch(`http://localhost:8000/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ subject, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Message envoyé !");
+        setSubject("");
+        setEmail("");
+        setMessage("");
+      } else {
+        alert("Erreur lors de l'envoi : " + (data.error || "Erreur inconnue"));
+      }
+    } catch (error) {
+      console.error("Erreur requête :", error);
+      alert("Impossible de contacter le serveur.");
     }
   };
 
