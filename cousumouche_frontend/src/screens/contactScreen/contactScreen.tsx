@@ -13,7 +13,7 @@ export function ContactScreen() {
     console.log("API URL =", apiUrl);
 
     try {
-      const response = await fetch(`http://localhost:8000/contact`, {
+      const response = await fetch(`${apiUrl}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
