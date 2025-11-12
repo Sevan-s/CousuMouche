@@ -5,7 +5,9 @@ export function ContactScreen() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const apiUrl = process.env.REACT_APP_BACK_URL;
+  const apiUrl = process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_LOCAL_BACK_URL
+    : process.env.REACT_APP_BACK_URL;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
