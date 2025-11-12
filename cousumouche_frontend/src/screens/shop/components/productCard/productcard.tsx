@@ -20,20 +20,29 @@ export function ProductCard({ product, productlist }: { product: Product, produc
     const navigate = useNavigate();
 
     const handleNavigateToProductDetails = () => {
-        navigate(`/boutique/${product.name}`, { state: { product, productlist } });
-
-    }
+        if (product.slug) {
+            navigate(`/produit/${product.slug}`, { state: { product, productlist } });
+        } else {
+            navigate(`/boutique/${encodeURIComponent(product.name)}`, { state: { product, productlist } });
+        }
+    };
 
     return (
         <div className="mt-10 w-full">
             <div>
-                {product.imageUrls && product.imageUrls?.length !== 0 ?
-                    <img loading="lazy" src={product.imageUrls[0]} className={styles.productImage} /> : <img loading="lazy" src={product.imageUrl} className={styles.productImage} />
-                }
+                {product.imageUrls && product.imageUrls.length > 0 ? (
+                    <img loading="lazy" src={product.imageUrls[0]} className={styles.productImage} />
+                ) : (
+                    <img loading="lazy" src={product.imageUrl} className={styles.productImage} />
+                )}
             </div>
             <p className={styles.fontStyle} title={product.name}>{product.name}</p>
             <p className={styles.fontStyle}>{product.price} €</p>
-            <button className={styles.buttonStyles} onClick={handleNavigateToProductDetails} type="button">
+            <button
+                className={styles.buttonStyles}
+                onClick={handleNavigateToProductDetails}
+                type="button"
+            >
                 <p className={styles.buttonFontStyle}>Je découvre</p>
             </button>
         </div>

@@ -11,6 +11,7 @@ export interface IWho {
 export interface Product {
   _id: string
   name: string
+  slug: string
   price: number
   description: string
   dimension: string

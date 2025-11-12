@@ -101,6 +101,7 @@ export function AppRoutes() {
                         />
                     }
                 />
+                <Route path="/produit/:slug" element={<ProductInformation />} />
                 <Route path="/boutique/:productName" element={<ProductInformation />} />
                 <Route
                     path="/return"

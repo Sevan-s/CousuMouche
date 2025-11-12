@@ -1,6 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 import { Iproduct, Product } from "../../../../utils/interfaces/productInterface";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 import { LeftColumn } from "./components/leftColumn";
 import { RightColumn } from "./components/rightColumn";
 
@@ -35,9 +35,13 @@ export function usePriceHook(initialValue: PriceObjectType) {
     return { priceFields, setPriceFields, setField };
 }
 
+const apiUrl = process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_LOCAL_BACK_URL
+    : process.env.REACT_APP_BACK_URL;
+
 export function ProductInformation() {
     const location = useLocation();
-    const { productName } = useParams<{ productName: string }>();
+    const { slug, productName } = useParams();
 
     const navState = (location.state || null) as {
         productlist?: Iproduct;
@@ -45,9 +49,7 @@ export function ProductInformation() {
     } | null;
 
     const [product, setProduct] = useState<Product | null>(navState?.product ?? null);
-    const [productlist, setProductlist] = useState<Iproduct | null>(
-        navState?.productlist ?? null
-    );
+    const [productlist, setProductlist] = useState<Iproduct | null>(navState?.productlist ?? null);
     const [price, setPrice] = useState<number>(navState?.product?.price ?? 0);
 
     const [images, setImages] = useState<ImageInterface[]>([]);
@@ -81,16 +83,19 @@ export function ProductInformation() {
             setHasError(false);
             return;
         }
-        if (!productName) return;
+
+        const key = slug ?? productName;
+        if (!key) return;
 
         setIsLoading(true);
         setHasError(false);
 
-        fetch(
-            `${process.env.REACT_APP_BACK_URL}/products/${encodeURIComponent(
-                productName
-            )}`
-        )
+
+        const url = slug
+            ? `${apiUrl}/products/slug/${key}`
+            : `${apiUrl}/products/${encodeURIComponent(key)}`;
+
+        fetch(url)
             .then((res) => {
                 if (!res.ok) throw new Error("Product not found");
                 return res.json();
@@ -107,7 +112,7 @@ export function ProductInformation() {
                 setProductlist(null);
             })
             .finally(() => setIsLoading(false));
-    }, [productName, navState]);
+    }, [slug, productName, navState]);
 
     useEffect(() => {
         if (!product) return;
