@@ -140,8 +140,6 @@ export default function ReturnPage({
           giftCardAmount,
         };
 
-        console.log("🧾 Payload envoyé :", payload);
-
         await sendOrderConfirmation(payload);
 
         setEmailSent(true);

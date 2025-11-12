@@ -78,9 +78,6 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
   );
   const hasOnlyGiftCard = giftCardItems.length > 0 && giftCardItems.length === panier.length;
   const letterFollowed = panier[0]?.giftCardSended
-  console.log("hasGiftCard : ", customer)
-  console.log("item ! ", panier)
-
 
   useEffect(() => {
     const raw = localStorage.getItem(KEY);

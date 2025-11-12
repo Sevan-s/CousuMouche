@@ -31,7 +31,6 @@ export type OrderPayload = {
 export async function getShopItem() {
     try {
         const response = await axios.get(apiUrl + '/products?populate=*');
-        console.log("getShopItem response : ", response.data)
         return response.data;
     } catch (error) {
         console.error('Error creating shop item:', error);
@@ -42,7 +41,6 @@ export async function getShopItem() {
 export async function getColors() {
     try {
         const response = await axios.get(apiUrl + '/colors');
-        console.log("getColors response : ", response.data)
         return response.data;
     } catch (error) {
         console.error('Error creating shop item:', error);
@@ -84,12 +82,8 @@ export async function relayPoint(country: string, city: string, cp: string) {
 
 
 export async function getAllItemsList() {
-    console.log("apiUrl :", apiUrl);
-
-    console.log("getAllItemsList called");
     try {
         const response = await axios.get(apiUrl + "/products");
-        console.log('Réponse : ', response.data);
         return response.data;
     } catch (error) {
         console.error('Erreur lors de la requête : ', error);
@@ -102,7 +96,6 @@ export async function createStripeSession(amount: number) {
         const response = await axios.post(apiUrl + "/checkout/create-checkout-session", {
             amount,
         });
-        console.log("paiement stripe", response);
         return response;
     } catch (error) {
         console.log("Erreur lors de la requête : ", error);
@@ -111,12 +104,10 @@ export async function createStripeSession(amount: number) {
 }
 
 export async function getStripeStatus(sessionId: string) {
-    console.log("inside : ", sessionId)
     try {
         const response = await axios.get(apiUrl + "/checkout/session-status", {
             params: { session_id: sessionId },
         });
-        console.log("stripe", response);
         window.dispatchEvent(new Event("storage"));
         return response;
     } catch (error) {
@@ -128,7 +119,6 @@ export async function getStripeStatus(sessionId: string) {
 export async function GetPromotionCodeByCode(code: string) {
     try {
         const response = await axios.get(apiUrl + `/giftcards/${code}`)
-        console.log("gift : ", response)
         return response
     } catch (error) {
         console.log(error);
@@ -138,7 +128,6 @@ export async function GetPromotionCodeByCode(code: string) {
 export async function getAllOpinion() {
     try {
         const response = await axios.get(apiUrl + "/opinion")
-        console.log("response : ", response)
         return response.data.Opinion;
     } catch (error) {
         console.error('Erreur lors de la requête : ', error);
@@ -152,7 +141,6 @@ export const sendOrderConfirmation = async (payload: OrderPayload) => {
     // "http://localhost:8000/api/orders/confirm",
       payload
     );
-    console.log("sendOrderConfirmation OK:", res.data);
     return res.data;
   } catch (error: any) {
     console.error(

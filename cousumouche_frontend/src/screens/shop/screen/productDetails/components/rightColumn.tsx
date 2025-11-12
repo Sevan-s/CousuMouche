@@ -101,7 +101,7 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
         montant: 20,
         message: "",
     });
-    
+
     const hasUni = fabricSelected.some(fabric => {
         const name = fabric.name.toLowerCase();
         return name.includes('uni/coton') || name.includes('uni/doublegaz');
@@ -137,7 +137,6 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
             setField("anneauDeDentision", { active: false, price: 0 })
     };
     useEffect(() => {
-        console.log("embroidery ->", embroidery);
     }, [embroidery]);
 
 
@@ -206,7 +205,6 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
         giftCardData: form
     };
 
-    console.log("productDetails : ", productDetails)
     return (
         <div className="text-left w-[90%] flex-col ">
             <div className="hidden sm:block">
@@ -899,9 +897,6 @@ function ConditionChecker({ productDetails }: { productDetails: Shopping }) {
     const [conditionIsChecked, setConditionIsChecked] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const conditionCheckHandler = () => setConditionIsChecked((v) => !v);
-
-
-    console.log("productDetails : ", productDetails)
     const handleAddToCart = () => {
         setError(null);
         if (!conditionIsChecked) {

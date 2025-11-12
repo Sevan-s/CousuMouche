@@ -3,8 +3,6 @@ import React from "react";
 import { ParcelShopSelector } from '@frontboi/mondial-relay/browser'
 
 export function LivraisonForm({ parcelShop, setParcelShop }: { parcelShop: any, setParcelShop: any }) {
-
-    console.log(parcelShop)
     return (
         <div style={{ marginTop: 15, width: '100%' }}>
             <ParcelShopSelector
