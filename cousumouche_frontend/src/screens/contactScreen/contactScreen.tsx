@@ -9,9 +9,7 @@ export function ContactScreen() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log("API URL =", apiUrl);
-
+    
     try {
       const response = await fetch(`${apiUrl}/contact`, {
         method: "POST",
