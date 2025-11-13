@@ -78,7 +78,11 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
   );
   const hasOnlyGiftCard = giftCardItems.length > 0 && giftCardItems.length === panier.length;
   const letterFollowed = panier[0]?.giftCardSended
-
+  const isCustomerInfoComplete =
+    customer.firstName.trim() !== "" &&
+    customer.lastName.trim() !== "" &&
+    customer.address.trim() !== "" &&
+    customer.phone.trim() !== "";
   useEffect(() => {
     const raw = localStorage.getItem(KEY);
     try {
@@ -99,6 +103,16 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
     return { subtotal: sub, deliveryPrice: deliv, total: tot };
   }, [panier, parcelShop, reduction]);
 
+  const mustBlockPayment =
+    total > 0 &&
+    (
+      (!hasOnlyGiftCard && !parcelShop) ||
+      (hasOnlyGiftCard && !isCustomerInfoComplete)
+    );
+
+  const overlayMessage = !hasOnlyGiftCard
+    ? "Veuillez choisir un point Mondial Relay pour continuer le paiement."
+    : "Veuillez renseigner toutes les informations de livraison pour continuer le paiement.";
   const promotionCode = (e: ChangeEvent<HTMLInputElement>) => setCode(e.target.value);
 
   const checkIfCodeExist = async () => {
@@ -305,12 +319,31 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
             {reduction > 0 && <p>Réduction : <strong>-{reduction.toFixed(2)} €</strong></p>}
             <p className="mt-2 text-lg">Total : <strong>{total.toFixed(2)} €</strong></p>
           </div>
-
-          <CheckoutForm
-            key={total}
-            total={total}
-          />
+           <div className="relative ml-5">
+            {mustBlockPayment && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-4">
+                <p className="text-center text-sm mb-2">
+                  {overlayMessage}
+                </p>
+                {!hasOnlyGiftCard && (
+                  <p className="text-xs text-gray-600">
+                    Le récapitulatif Stripe est visible, mais le paiement est désactivé tant que le point relais n’est pas sélectionné.
+                  </p>
+                )}
+                {hasOnlyGiftCard && (
+                  <p className="text-xs text-gray-600">
+                    Merci de compléter tous les champs (prénom, nom, adresse, téléphone).
+                  </p>
+                )}
+              </div>
+            )}
+            <CheckoutForm
+              key={total}
+              total={total}
+            />
+          </div>
         </div>
+
       )}
     </div>
   );
