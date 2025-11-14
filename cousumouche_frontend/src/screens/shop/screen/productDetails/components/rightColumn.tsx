@@ -4,6 +4,8 @@ import { IoIosWarning } from "react-icons/io";
 import { ParcelShopID, ParcelShopSelected } from "@frontboi/mondial-relay/types";
 import { PriceField, PriceObjectType } from "../productDetails";
 
+const WarningIcon: any = IoIosWarning;
+
 interface ImageInterface {
     id: string
     name: string
@@ -588,7 +590,7 @@ function FabricsOptions({ hasEmbroidery, fabricsImages, fabricsType, fabricsQuan
             <p className="font-poiret font-bold text-gray-500 mb-2" >Nombre de tissus séléctionnés : {quantities} / {fabricsQuantitiesSelected}</p>
             {hasEmbroidery &&
                 <div className="flex flex-row items-center">
-                    <IoIosWarning
+                    <WarningIcon
                         color="red"
                         size={24}
                     />
@@ -964,7 +966,7 @@ function CustomBlanket({ setBlanketDimension }: { setBlanketDimension: Dispatch<
         <div className="mt-5">
             <p className="mb-5 font-poiret font-bold text-xl">Je définis la dimension de ma couverture</p>
             <div className="flex flex-row items-center">
-                <IoIosWarning
+                <WarningIcon
                     color="red"
                     size={24}
                 />

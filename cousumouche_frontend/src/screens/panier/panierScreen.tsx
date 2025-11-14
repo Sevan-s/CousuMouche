@@ -7,6 +7,8 @@ import { CheckoutForm } from "../payment/payment";
 import { GetPromotionCodeByCode } from "../../API/api";
 import MondialRelayPicker from "../../utils/mondialRelay/mondialRelay";
 
+const DeleteIcon: any = RiDeleteBin6Line;
+
 type AnyObj = Record<string, any>;
 
 export type ParcelShop = {
@@ -249,7 +251,7 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
                   onClick={() => deleteShoppingCartElement((item as any).id)}
                   style={{ fontSize: "20px", color: "#4E1511", backgroundColor: "transparent", border: "none" }}
                 >
-                  <RiDeleteBin6Line />
+                  <DeleteIcon  />
                 </button>
               </div>
               <div style={{ border: "0.5px solid #EAEAEA", width: "100%" }} />

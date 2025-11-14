@@ -4,6 +4,10 @@ import { BiLogoFacebookCircle } from "react-icons/bi";
 import { FaInstagram } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+
+const FacebookIcon: any = BiLogoFacebookCircle;
+const InstagramIcon: any = FaInstagram;
+
 export function Footer() {
     return (
         <footer className="bg-[#8574A6] w-full fixed left-0 bottom-0 z-[99999] flex flex-col md:flex-row items-center md:justify-between h-auto md:h-[50px] px-4 py-2">
@@ -39,7 +43,7 @@ export function Footer() {
                         className="inline-flex"
                     >
                         <button className="bg-[#8574A6] border-none hover:bg-[#6a5984] focus:outline-none transition-colors">
-                            <BiLogoFacebookCircle />
+                            <FacebookIcon />
                         </button>
                     </a>
                     <a
@@ -49,7 +53,7 @@ export function Footer() {
                         className="inline-flex"
                     >
                         <button className="bg-[#8574A6] border-none hover:bg-[#6a5984] focus:outline-none transition-colors">
-                            <FaInstagram />
+                            <InstagramIcon />
                         </button>
                     </a>
                 </IconContext.Provider>
