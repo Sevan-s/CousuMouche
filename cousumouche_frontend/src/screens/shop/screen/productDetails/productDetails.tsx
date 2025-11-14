@@ -3,6 +3,7 @@ import { Iproduct, Product } from "../../../../utils/interfaces/productInterface
 import { useEffect, useState } from "react";
 import { LeftColumn } from "./components/leftColumn";
 import { RightColumn } from "./components/rightColumn";
+import { ProductSeo } from "../../../../utils/productSeo";
 
 interface ImageInterface {
     name: string
@@ -179,6 +180,8 @@ export function ProductInformation() {
 
     return (
         <div className="flex sm:mb-20 mb-40 mt-10 justify-center">
+            <ProductSeo product={product} />
+
             <div className="flex sm:flex-row sm:w-[80%] xl:w-[60%] min-w-0 sm:mr-4 flex-col w-[100%] justify-center sm:items-start items-center">
                 <LeftColumn
                     product={product}

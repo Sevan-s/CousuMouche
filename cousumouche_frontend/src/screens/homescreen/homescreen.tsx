@@ -46,7 +46,7 @@ export function HomeScreen() {
                 <title>CousuMouche – Créations couture artisanales pour bébé, enfant & cadeaux de naissance</title>
                 <meta
                     name="description"
-                    content="CousuMouche crée des cadeaux de naissance, accessoires bébé et coutures enfant faits main, personnalisés et éco-responsables, réalisés dans un atelier du Sud de la France."
+                    content="CousuMouche (Cousu Mouche) propose des créations couture artisanales pour bébé, enfant et parent : cadeaux de naissance personnalisés, broderie et articles faits main en Occitanie."
                 />
                 <link rel="canonical" href="https://cousumouche.fr/" />
                 <meta property="og:type" content="website" />
