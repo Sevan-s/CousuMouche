@@ -6,6 +6,7 @@ import { getDeliveryPrice } from "@frontboi/mondial-relay";
 import { CheckoutForm } from "../payment/payment";
 import { GetPromotionCodeByCode } from "../../API/api";
 import MondialRelayPicker from "../../utils/mondialRelay/mondialRelay";
+import { Helmet } from "react-helmet-async";
 
 const DeleteIcon: any = RiDeleteBin6Line;
 
@@ -197,7 +198,12 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
     }
   }, [parcelShop]);
 
-  return (
+  return (<>
+    <Helmet>
+      <meta name="robots" content="noindex, nofollow" />
+      <title>Panier | Cousu Mouche</title>
+    </Helmet>
+
     <div className="mt-5 block lg:flex mb-36 mx-auto w-[90%] justify-center text-center lg:text-left">
       <div className="w-full lg:w-[70%] border-[#EAEAEA] border-solid border-0">
         <div className="grid grid-cols-5 w-full gap-5 bg-[#E8E3F1] mb-5">
@@ -251,7 +257,7 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
                   onClick={() => deleteShoppingCartElement((item as any).id)}
                   style={{ fontSize: "20px", color: "#4E1511", backgroundColor: "transparent", border: "none" }}
                 >
-                  <DeleteIcon  />
+                  <DeleteIcon />
                 </button>
               </div>
               <div style={{ border: "0.5px solid #EAEAEA", width: "100%" }} />
@@ -321,7 +327,7 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
             {reduction > 0 && <p>Réduction : <strong>-{reduction.toFixed(2)} €</strong></p>}
             <p className="mt-2 text-lg">Total : <strong>{total.toFixed(2)} €</strong></p>
           </div>
-           <div className="relative ml-5">
+          <div className="relative ml-5">
             {mustBlockPayment && (
               <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-sm px-4">
                 <p className="text-center text-sm mb-2">
@@ -348,6 +354,7 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
 
       )}
     </div>
+  </>
   );
 }
 

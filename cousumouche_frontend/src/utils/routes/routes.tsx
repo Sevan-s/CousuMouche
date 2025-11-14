@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { HomeScreen } from "../../screens/homescreen/homescreen";
 import { Aboutscreen } from "../../screens/aboutscreen/aboutscreen";
 import { ShopScreen } from "../../screens/shop/screen/shop";
@@ -18,6 +18,7 @@ import ReturnPage from "../../screens/payment/return";
 import ScrollToTop from "../../components/scrollToTop";
 import { ProductInformation } from "../../screens/shop/screen/productDetails/productDetails";
 import { cleanObject } from "../cleanObject";
+import { Helmet } from "react-helmet-async";
 
 export function AppRoutes() {
     const [cartItems, setCartItems] = useState<Article[]>([]);
@@ -113,8 +114,48 @@ export function AppRoutes() {
                         />
                     }
                 />
+                <Route path="*" element={<NotFoundScreen />} />
             </Routes>
             <Footer />
         </BrowserRouter>
+    );
+}
+
+export function NotFoundScreen() {
+    return (
+        <>
+            <Helmet>
+                <title>Page introuvable – CousuMouche</title>
+                <meta name="robots" content="noindex" />
+            </Helmet>
+
+            <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center mb-20 sm:mb-0">
+                <h1 className="text-5xl font-bold text-[#7E649D] mb-6 font-poiret">
+                    Oups !
+                </h1>
+
+                <p className="text-xl text-gray-700 font-poiret max-w-[600px] leading-relaxed">
+                    La page que vous recherchez semble s’être envolée…
+                    <br />
+                    Pas de panique, revenez à la boutique ou explorez l’univers CousuMouche ✨
+                </p>
+
+                <div className="flex gap-4 mt-10">
+                    <Link
+                        to="/"
+                        className="bg-[#7E649D] text-white px-6 py-3 rounded-xl font-poiret font-bold hover:bg-[#6b5387] transition"
+                    >
+                        Retour à l’accueil
+                    </Link>
+
+                    <Link
+                        to="/boutique"
+                        className="border border-[#7E649D] text-[#7E649D] px-6 py-3 rounded-xl font-poiret font-bold hover:bg-[#7E649D] hover:text-white transition"
+                    >
+                        Voir la boutique
+                    </Link>
+                </div>
+            </div>
+        </>
     );
 }

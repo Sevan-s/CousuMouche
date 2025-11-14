@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { getStripeStatus, OrderPayload, sendOrderConfirmation } from "../../API/api";
 import { Article } from "../../utils/interfaces/articleInterfaces";
 import { cleanObject } from "../../utils/cleanObject";
+import { Helmet } from "react-helmet-async";
 
 type CustomerInfo = {
   firstName?: string;
@@ -179,23 +180,29 @@ export default function ReturnPage({
 
   if (status === "complete") {
     return (
-      <section id="success">
-        <p>
-          Paiement réussi ✅ <br />
-          Un e-mail de confirmation sera envoyé à :{" "}
-          <strong>{customerEmail}</strong> (copie à {ADMIN_EMAIL})
-        </p>
-
-        {emailError && (
-          <p style={{ color: "red", marginTop: "0.5rem" }}>{emailError}</p>
-        )}
-
-        {emailSent && (
-          <p style={{ color: "green", marginTop: "0.5rem" }}>
-            E-mail de confirmation envoyé ✅
+      <>
+        <Helmet>
+          <meta name="robots" content="noindex, nofollow" />
+          <title>Paiement réussi | Cousu Mouche</title>
+        </Helmet>
+        <section id="success">
+          <p>
+            Paiement réussi ✅ <br />
+            Un e-mail de confirmation sera envoyé à :{" "}
+            <strong>{customerEmail}</strong> (copie à {ADMIN_EMAIL})
           </p>
-        )}
-      </section>
+
+          {emailError && (
+            <p style={{ color: "red", marginTop: "0.5rem" }}>{emailError}</p>
+          )}
+
+          {emailSent && (
+            <p style={{ color: "green", marginTop: "0.5rem" }}>
+              E-mail de confirmation envoyé ✅
+            </p>
+          )}
+        </section>
+      </>
     );
   }
 

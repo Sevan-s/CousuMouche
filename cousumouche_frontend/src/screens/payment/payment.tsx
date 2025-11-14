@@ -5,6 +5,7 @@ import {
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
 import { createStripeSession } from "../../API/api";
+import { Helmet } from "react-helmet-async";
 
 const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
 
@@ -25,10 +26,16 @@ export function CheckoutForm({ total }: { total: number }) {
   const options = { fetchClientSecret };
 
   return (
-    <div id="checkout">
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-    </div>
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <title>Paiement | Cousu Mouche</title>
+      </Helmet>
+      <div id="checkout">
+        <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+          <EmbeddedCheckout />
+        </EmbeddedCheckoutProvider>
+      </div>
+    </>
   );
 }
