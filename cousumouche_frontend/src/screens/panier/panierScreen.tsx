@@ -198,7 +198,8 @@ export function PanierScreen({ cartCount, setCartCount }: { cartCount: number, s
     }
   }, [parcelShop]);
 
-  return (<>
+  return (
+  <>
     <Helmet>
       <meta name="robots" content="noindex, nofollow" />
       <title>Panier | Cousu Mouche</title>
