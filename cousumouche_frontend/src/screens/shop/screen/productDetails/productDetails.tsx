@@ -24,6 +24,7 @@ export type PriceObjectType = {
     anneauDeDentision: PriceField;
     giftCard: PriceField;
     giftCardMail: PriceField
+    label: PriceField
 }
 
 export function usePriceHook(initialValue: PriceObjectType) {
@@ -73,6 +74,7 @@ export function ProductInformation() {
         anneauDeDentision: { active: false, price: 0 },
         giftCard: { active: false, price: 0 },
         giftCardMail: { active: false, price: 0 },
+        label: { active: false, price: 0 },
     });
 
     useEffect(() => {

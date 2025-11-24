@@ -325,6 +325,9 @@ export function RightColumn({ product, price, setPrice, selectedNames, priceFiel
                     labels={imagesEtiquettes}
                     selectedLabel={selectedLabel}
                     setSelectedLabel={setSelectedLabel}
+                    setField={setField}
+                    priceFields={priceFields}
+                    productSlug={product.name}
                 />
             }
             {!hasGiftCard &&
@@ -744,50 +747,79 @@ function Strap({ straps, selectedStrap, setSelectedStrap }: { straps: ImageInter
     )
 }
 
-function Labels({ labels, selectedLabel, setSelectedLabel }: { labels: ImageInterface[], selectedLabel: ImageInterface | null, setSelectedLabel: Dispatch<SetStateAction<ImageInterface | null>> }) {
+type LabelsProps = {
+    labels: ImageInterface[];
+    selectedLabel: ImageInterface | null;
+    setSelectedLabel: Dispatch<SetStateAction<ImageInterface | null>>;
+    priceFields: PriceObjectType;
+    setField: (key: keyof PriceObjectType, value: PriceField) => void;
+    productSlug: string;
+};
 
+function Labels({labels, selectedLabel, setSelectedLabel, priceFields, setField, productSlug}: LabelsProps) {
+    const paidLabelProducts = [
+        "Marque page",
+        "Couverture chéquier",
+        "Pochette liseuse",
+        "Pochette molletonnée",
+        "Pochette lunettes",
+    ];
+    const hasPaidLabel = (productSlug: string) => {
+        return paidLabelProducts.includes(productSlug);
+    };
 
+    const labelPrice = hasPaidLabel(productSlug) ? 1 : 0;
     const handleSelectStrap = (strap: ImageInterface) => {
-        setSelectedLabel((prev) => (prev?.id === strap.id ? null : strap))
-    }
+        setSelectedLabel((prev) => {
+            const isSame = prev?.id === strap.id;
 
-    return (
-        <div>
-            <p className="font-poiret font-bold text-lg mt-5">
-                Je sélectionne une étiquette (en option)
-            </p>
-            <div className="flex flex-row flex-wrap gap-2">
-                {labels.map((label) => {
-                    const isSelected = selectedLabel?.id === label.id;
+            if (isSame) {
+                setField("label", { active: false, price: 0 });
+                return null;
+            }
+            setField("label", { active: true, price: labelPrice });
+            return strap;
+        });
+    };
 
-                    return (
-                        <div key={label.id} className="relative group">
-                            <button
-                                onClick={() => handleSelectStrap(label)}
-                                className={`w-20 aspect-square overflow-hidden rounded transition ${isSelected
-                                    ? "ring-2 ring-[#7E649D]"
-                                    : "border border-transparent"
-                                    }`}
-                            >
-                                <img
-                                    src={label.url}
-                                    alt={label.name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </button>
-                            <div className="pointer-events-none hidden group-hover:block absolute left-24 top-0 w-72 aspect-square rounded-xl shadow-2xl z-50 overflow-hidden">
-                                <img
-                                    src={label.url}
-                                    alt={label.name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                        </div>
-                    );
-                })}
+     return (
+    <div>
+      <p className="font-poiret font-bold text-lg mt-5">
+        Je sélectionne une étiquette {labelPrice === 1 ? "(+1€)" :""}
+      </p>
+      <div className="flex flex-row flex-wrap gap-2">
+        {labels.map((label) => {
+          const isSelected = selectedLabel?.id === label.id;
+
+          return (
+            <div key={label.id} className="relative group">
+              <button
+                onClick={() => handleSelectStrap(label)}
+                className={`w-20 aspect-square overflow-hidden rounded transition ${
+                  isSelected
+                    ? "ring-2 ring-[#7E649D]"
+                    : "border border-transparent"
+                }`}
+              >
+                <img
+                  src={label.url}
+                  alt={label.name}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+              <div className="pointer-events-none hidden group-hover:block absolute left-24 top-0 w-72 aspect-square rounded-xl shadow-2xl z-50 overflow-hidden">
+                <img
+                  src={label.url}
+                  alt={label.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-        </div>
-    );
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function Embroidery({
