@@ -29,12 +29,28 @@ export function ProductCard({ product, productlist }: { product: Product, produc
 
     return (
         <div className="mt-10 w-full">
-            <div>
+            <div className={styles.imageWrapper}>
                 {product.imageUrls && product.imageUrls.length > 0 ? (
-                    <img loading="lazy" src={product.imageUrls[0]} className={styles.productImage} />
+                    <img
+                        loading="lazy"
+                        src={product.imageUrls[0]}
+                        className={styles.productImage}
+                    />
                 ) : (
-                    <img loading="lazy" src={product.imageUrl} className={styles.productImage} />
+                    <img
+                        loading="lazy"
+                        src={product.imageUrl}
+                        className={styles.productImage}
+                    />
                 )}
+
+                {product.category === "Stock" &&
+                    product.stock !== undefined &&
+                    product.stock > 0 && (
+                        <div className={styles.stockBadge}>
+                            {`${product.stock} en stock`}
+                        </div>
+                    )}
             </div>
             <p className={styles.fontStyle} title={product.name}>{product.name}</p>
             <p className={styles.fontStyle}>{product.price} €</p>

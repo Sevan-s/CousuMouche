@@ -119,7 +119,7 @@ function ScrollPictureComponent(props: PictureComponent) {
                 <div className="flex flex-row flex-nowrap gap-2 ">
                     {props.product.imageUrls?.map((image, index) => (
                         <button key={index} onClick={() => props.setProductImageIndex(index)} className={index === props.productImageIndex ? "sm:w-28 sm:h-28 w-20 h-20 shrink-0 rounded mt-2 border-4 border-[#c3a2df] " : "sm:w-28 sm:h-28 w-20 h-20 shrink-0 rounded mt-2 "}>
-                            <img src={image} alt={props.product.name} className="w-full h-full object-cover block"/>
+                            <img src={image} alt={props.product.name} className="w-full h-full object-cover block" />
                         </button>
                     ))}
                 </div>
@@ -233,20 +233,32 @@ function MaintenanceAndDescription(props: maintenanceAndDescription) {
         <div className="mt-5">
             <p className="font-nickainley font-bold text-xl text-start mb-5">Description :</p>
             <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.description}</p>
-            <div className="border border-[#7E649D] mt-5 mb-5">
-            </div>
             {!props.hasGiftCard &&
                 <div>
-                    <p className="font-nickainley font-bold text-xl text-start mb-5">Dimension :</p>
-                    <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.dimension}</p>
-                    <div className="border border-[#7E649D] mt-5 mb-5">
-                    </div>
-                    <p className="font-nickainley font-bold text-xl text-start mb-5">Composition :</p>
-                    <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.composition}</p>
-                    <div className="border border-[#7E649D] mt-5 mb-5">
-                    </div>
-                    <p className="font-nickainley font-bold text-xl text-start mt-5  mb-5">Entretien :</p>
-                    <p className="font-poiret font-bold text-lg text-start mb-5 whitespace-pre-line">{props.maintenance}</p>
+                    {props.dimension !== "" &&
+                        <div>
+                            <div className="border border-[#7E649D] mt-5 mb-5">
+                            </div>
+                            <p className="font-nickainley font-bold text-xl text-start mb-5">Dimension :</p>
+                            <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.dimension}</p>
+                            <div className="border border-[#7E649D] mt-5 mb-5">
+                            </div>
+                        </div>
+                    }
+                    {props.composition !== "" &&
+                        <div>
+                            <p className="font-nickainley font-bold text-xl text-start mb-5">Composition :</p>
+                            <p className="font-poiret font-bold text-lg text-start whitespace-pre-line">{props.composition}</p>
+                            <div className="border border-[#7E649D] mt-5 mb-5">
+                            </div>
+                        </div>
+                    }
+                    {props.maintenance !== "" &&
+                        <div>
+                            <p className="font-nickainley font-bold text-xl text-start mt-5  mb-5">Entretien :</p>
+                            <p className="font-poiret font-bold text-lg text-start mb-5 whitespace-pre-line">{props.maintenance}</p>
+                        </div>
+                    }
                 </div>
             }
         </div>

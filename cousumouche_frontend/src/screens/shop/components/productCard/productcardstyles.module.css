@@ -184,14 +184,38 @@
     display: block;
 }
 
+.imageWrapper {
+    position: relative;
+    width: 100%;
+}
+
 .productImage {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 8px;
     background: #f9f9f9;
     display: block;
 }
+
+.stockBadge {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    padding: 6px 0;
+    background-color: #7E649D;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    font-family:Poiret;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 
 .associateProductButton {
     background-color: white;

@@ -133,6 +133,7 @@ export function ShopScreen() {
         "Enfant",
         "Maman",
         "Matchy Matchy",
+        "Stock",
         "Carte cadeau"
     ]
     const childrenSubCategory = [
@@ -175,53 +176,45 @@ export function ShopScreen() {
         getItems()
     }, [])
 
+    console.log("product : ", products)
+
 
     const allProducts = products?.products ?? [];
 
-    let list =
-        categoryIndex !== 0
-            ? allProducts.filter(
+    const currentCategory = category[categoryIndex];
+
+    let list = allProducts;
+
+    if (currentCategory === "Stock") {
+        list = allProducts.filter(p => {
+            const stock = p.stock ?? 0;
+            return p.category === "Stock" && stock > 0;
+        });
+    } else {
+        list = allProducts.filter(p => p.category !== "Stock");
+
+        if (currentCategory !== "Tout") {
+            list = list.filter(
                 p =>
                     Array.isArray(p.subCategory) &&
-                    p.subCategory.includes(category[categoryIndex])
-            )
-            : allProducts;
+                    p.subCategory.includes(currentCategory)
+            );
+        }
 
-    if (category[categoryIndex] === "Enfant" && childrenCategoryIndex !== 0) {
-        const selected = childrenSubCategory[childrenCategoryIndex];
-        list = list.filter(p => p.category === selected);
-    } else if (category[categoryIndex] === "Maman" && MumCategoryIndex !== 0) {
-        const selected = mumSubCategory[MumCategoryIndex];
-        list = list.filter(p => p.category === selected);
+        if (currentCategory === "Enfant" && childrenCategoryIndex !== 0) {
+            const selected = childrenSubCategory[childrenCategoryIndex];
+            list = list.filter(p => p.category === selected);
+        }
+
+        if (currentCategory === "Maman" && MumCategoryIndex !== 0) {
+            const selected = mumSubCategory[MumCategoryIndex];
+            list = list.filter(p => p.category === selected);
+        }
     }
-
     const displayedProducts = list.filter(
         p => Array.isArray(p.imageUrls) && p.imageUrls.length > 0
     );
 
-    // const categoryList = categoryIndex !== 0
-    //     ? products?.products.filter(product => product.subCategory[0] === category[categoryIndex])
-    //     : products?.products;
-
-    // let displayedProducts = categoryList?.filter(product => product.imageUrls && product.imageUrls?.length > 0);
-
-    // const childrenSubCat = childrenCategoryIndex !== 0
-    //     ? categoryList?.filter(product => product.category === childrenSubCategory[childrenCategoryIndex])
-    //     : categoryList;
-
-    // const mumSubCat = MumCategoryIndex !== 0
-    //     ? categoryList?.filter(product => product.category === mumSubCategory[MumCategoryIndex])
-    //     : categoryList;
-
-    // if (category[categoryIndex] === "Enfant" && childrenCategoryIndex !== 0) {
-    //     displayedProducts = childrenSubCat?.filter(product => product.imageUrls && product.imageUrls?.length > 0);;
-    // }
-
-    // if (category[categoryIndex] === "Maman" && MumCategoryIndex !== 0) {
-    //     displayedProducts = mumSubCat?.filter(product => product.imageUrls && product.imageUrls?.length > 0);;
-    // }
-
-    const currentCategory = category[categoryIndex];
     const currentChildrenSub = childrenSubCategory[childrenCategoryIndex];
     const currentMumSub = mumSubCategory[MumCategoryIndex];
 
