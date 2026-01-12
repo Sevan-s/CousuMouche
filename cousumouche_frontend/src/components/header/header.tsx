@@ -38,7 +38,7 @@ export function Header({cartCount, setCartCount} : {cartCount : number, setCartC
         <p className="m-0 text-white">
           Délai de confection actuel 4 semaines, hors délai de livraison. Livraison en France métropolitaine, Belgique, Espagne, Portugal, Luxembourg, Italie, Pologne et Pays-Bas. <br/>Merci pour votre patience et votre compréhension.
           {/* Pour recevoir vos commandes avant les fêtes, merci de commander au plus tard le 11 décembre. Livraison en France métropolitaine, Belgique, Espagne, Portugal, Luxembourg, Italie, Pologne et Pays-Bas.  */}
-          <br/>Merci pour votre patience et votre compréhension.
+          {/* <br/>Merci pour votre patience et votre compréhension. */}
         </p>
       </div>
       <div className="flex flex-col items-center w-full">
