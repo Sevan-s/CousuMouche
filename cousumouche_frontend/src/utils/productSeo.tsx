@@ -195,7 +195,7 @@ export function ProductSeo({ product }: Props) {
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={seoDescription} />
-
+      <link rel="canonical" href={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={seoDescription} />
       <meta property="og:url" content={url} />
