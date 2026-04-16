@@ -37,9 +37,11 @@ export function Aboutscreen() {
                 <div style={{ marginTop: '2%', marginBottom: '2%' }}>
                     <h1 style={{ fontFamily: 'Nickainley', color: '#7E649D', fontWeight: 'normal', fontSize: '24px' }}>Qui suis-je ?</h1>
                 </div>
-                <div className="mb-5">
-                    <h1 style={{ fontFamily: 'Nickainley', fontWeight: 'normal', fontSize: '24px', marginLeft: 10, marginRight: 10 }}>« Mes envies de liberté, de créativité et la maternité m’ont amené à me créer une vie sur mesure . »</h1>
-                    <p style={{ fontFamily: 'poiret', textAlign: 'right', marginRight: '15%' }}>Perrine, créatrice de « Cousu Mouche »</p>
+                <div className="flex justify-center">
+                    <div className="mb-5 sm:w-[100%] md:w-[90%] lg:w-90%] xl:w-[80%] 2xl:w-[60%] 3xl:w-[50%]">
+                        <h1 style={{ fontFamily: 'Nickainley', fontWeight: 'normal', fontSize: '24px', marginLeft: 10, marginRight: 10 }}>« Mes envies de liberté, de créativité et la maternité m’ont amené à me créer une vie sur mesure . »</h1>
+                        <p style={{ fontFamily: 'poiret', textAlign: 'right'}}>Perrine, créatrice de « Cousu Mouche »</p>
+                    </div>
                 </div>
                 <div className=" block lg:flex lg:flex-wrap w-full lg:justify-center gap-10 lg:content-center mb-20">
                     <div className="flex justify-center items-center w-full mx-auto lg:mx-0 aspect-[2/3] mb-6 lg:mb-0 lg:max-w-[350px] min-w-[200px] max-w-[40%]">
