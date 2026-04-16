@@ -2,3 +2,6 @@
 .env
 .env.production
 .env.d.ts
+*.pem
+*.key
+certs/
