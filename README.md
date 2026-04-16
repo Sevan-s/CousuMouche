@@ -84,7 +84,7 @@ REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
 ## 👨‍💻 Auteur
 
 **Sevan Sarikaya** — Développeur Front-End React  
-[GitHub](https://github.com/Sevan-s) · [LinkedIn](#) · [cousumouche.fr](https://www.cousumouche.fr)
+[GitHub](https://github.com/Sevan-s) · [LinkedIn](https://www.linkedin.com/in/sevan-sarikaya/) · [cousumouche.fr](https://www.cousumouche.fr)
 
 ---
 
