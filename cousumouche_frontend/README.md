@@ -1,46 +1,185 @@
-# Getting Started with Create React App
+# 🧵 CousuMouche — Frontend Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Interface e-commerce développée pour une micro-entreprise de couture artisanale française. Projet en production sur [cousumouche.fr](https://www.cousumouche.fr).
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-635BFF?style=flat-square&logo=stripe)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat-square&logo=vercel)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🌐 Démo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+🔗 [cousumouche.fr](https://www.cousumouche.fr)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 📖 Présentation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+CousuMouche est la vitrine e-commerce d'une vraie micro-entreprise spécialisée dans les créations couture artisanales pour enfants et parents. Ce repo contient le frontend client : catalogue, panier et tunnel d'achat complet avec paiement Stripe.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ✨ Fonctionnalités
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 🛍️ Catalogue produits avec navigation par catégorie
+- 🛒 Panier dynamique (ajout, suppression, quantités)
+- 💳 Tunnel d'achat avec paiement sécurisé **Stripe**
+- 📸 Galerie d'images produits (AWS S3)
+- 📱 Design responsive mobile-first
+- 🔗 Consommation de l'API REST ([cmback](https://github.com/Sevan-s/cmback))
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🛠️ Stack technique
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| Technologie | Usage |
+|-------------|-------|
+| **React 18** | UI et gestion des composants |
+| **Tailwind CSS** | Styling responsive |
+| **React Router** | Navigation SPA |
+| **Stripe.js** | Intégration paiement front |
+| **Axios** | Appels API REST |
+| **Vercel** | Déploiement et hosting |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🏗️ Repos liés
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+| Repo | Description |
+|------|-------------|
+| [cmback](https://github.com/Sevan-s/cmback) | API REST Express — backend |
+| [cmadmindashboard](https://github.com/Sevan-s/cmadmindashboard) | Back-office admin |
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🚀 Lancer en local
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+git clone https://github.com/Sevan-s/CousuMouche.git
+cd CousuMouche
+npm install
+npm start
+```
+
+### Variables d'environnement
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
+```
+
+---
+
+## 💡 Ce que j'ai appris
+
+- Intégration de **Stripe.js** côté client (Stripe Elements, gestion des erreurs de paiement)
+- Architecture **SPA** avec React Router et gestion d'état global
+- Communication avec une **API REST** sécurisée
+- Déploiement continu sur **Vercel**
+
+---
+
+## 👨‍💻 Auteur
+
+**Sevan Sarikaya** — Développeur Front-End React  
+[GitHub](https://github.com/Sevan-s) · [LinkedIn](#) · [cousumouche.fr](https://www.cousumouche.fr)
+
+---
+
+*Projet en production depuis 2025*
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+# 🧵 CousuMouche — Client Frontend
+
+> E-commerce interface developed for a French handmade sewing micro-business. Project live in production at [cousumouche.fr](https://www.cousumouche.fr).
+
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-635BFF?style=flat-square&logo=stripe)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=flat-square&logo=vercel)
+
+---
+
+## 🌐 Demo
+
+🔗 [cousumouche.fr](https://www.cousumouche.fr)
+
+---
+
+## 📖 Overview
+
+CousuMouche is the e-commerce showcase of a real micro-business specializing in handmade sewing creations for children and parents. This repository contains the client frontend: product catalog, shopping cart, and complete checkout flow with Stripe payments.
+
+---
+
+## ✨ Features
+
+- 🛍️ Product catalog with category navigation
+- 🛒 Dynamic cart (add, remove, update quantities)
+- 💳 Checkout flow with secure **Stripe** payment
+- 📸 Product image gallery (AWS S3)
+- 📱 Mobile-first responsive design
+- 🔗 REST API integration ([cmback](https://github.com/Sevan-s/cmback))
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Usage |
+|------------|-------|
+| **React 18** | UI and component management |
+| **Tailwind CSS** | Responsive styling |
+| **React Router** | SPA navigation |
+| **Stripe.js** | Frontend payment integration |
+| **Axios** | REST API requests |
+| **Vercel** | Deployment and hosting |
+
+---
+
+## 🏗️ Related Repositories
+
+| Repo | Description |
+|------|-------------|
+| [cmback](https://github.com/Sevan-s/cmback) | Express REST API — backend |
+| [cmadmindashboard](https://github.com/Sevan-s/cmadmindashboard) | Admin back-office dashboard |
+
+---
+
+## 🚀 Run Locally
+
+```bash
+git clone https://github.com/Sevan-s/CousuMouche.git
+cd CousuMouche
+npm install
+npm start
+```
+
+### Environment Variables
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
+```
+
+---
+
+## 💡 What I Learned
+
+- Integrating Stripe.js on the client side (Stripe Elements, payment error handling)
+- Building an SPA architecture with React Router and global state management
+- Communicating with a secure REST API
+- Continuous deployment with Vercel
+
+---
+
+## 👨‍💻 Author
+
+**Sevan Sarikaya** — Front-End React Developer 
+[GitHub](https://github.com/Sevan-s) · [LinkedIn](https://www.linkedin.com/in/sevan-sarikaya/) · [cousumouche.fr](https://www.cousumouche.fr)
+
+---
+
+*Project live in production since 2025*
