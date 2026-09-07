@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { LeftColumn } from "./components/leftColumn";
 import { RightColumn } from "./components/rightColumn";
 import { ProductSeo } from "../../../../utils/productSeo";
+import { Helmet } from "react-helmet-async";
 
 interface ImageInterface {
     name: string
@@ -174,9 +175,15 @@ export function ProductInformation() {
 
     if (hasError || !product) {
         return (
-            <div className="flex justify-center items-center mt-10">
-                Produit introuvable. Retournez à la boutique.
-            </div>
+            <>
+                <Helmet>
+                    <title>Produit introuvable | CousuMouche</title>
+                    <meta name="robots" content="noindex, nofollow" />
+                </Helmet>
+                <div className="flex justify-center items-center mt-10">
+                    Produit introuvable. Retournez à la boutique.
+                </div>
+            </>
         );
     }
 
