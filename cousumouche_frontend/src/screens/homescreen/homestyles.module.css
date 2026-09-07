@@ -14,3 +14,19 @@
     justify-content: center;
     width: 100%;
 }
+
+.perspective1000 {
+  perspective: 1000px;
+}
+
+.transformStyle3d {
+  transform-style: preserve-3d;
+}
+
+.backfaceHidden {
+  backface-visibility: hidden;
+}
+
+.rotateY180 {
+  transform: rotateY(180deg);
+}

@@ -17,8 +17,6 @@ import { getAllOpinion } from "../../API/api";
 import fondLavande from '../../assets/images/fondLavande.jpg';
 import { Helmet } from "react-helmet-async";
 
-
-
 const FaHandsIcon: any = FaHands;
 const FaTruckIcon: any = FaTruck;
 const CreditCardIcon: any = BsCreditCard2FrontFill;
@@ -28,7 +26,7 @@ type Opinion = {
     _id: string
 }
 
-export function HomeScreen() {
+export function OldHomeScreen() {
     const [allOpinion, setAllOpinion] = useState<Opinion[]>([])
 
     const getOpinion = async () => {
@@ -62,16 +60,17 @@ export function HomeScreen() {
             <div style={{ marginBottom: 50 }}>
                 <section className="
                 h-[calc(100dvh-750px)]
-                sm:h-[calc(100dvh-500px)]
-                md:h-[calc(100dvh-500px)]
-                lg:h-[calc(100dvh-700px)]
-                2xl:h-[calc(100dvh-310px)]
+                sm:h-[calc(100dvh-600px)]
+                md:h-[calc(100dvh-600px)]
+                lg:h-[calc(100dvh-500px)]
+                xl:h-[calc(100dvh-350px)]
+                2xl:h-[calc(100dvh-230px)]
                 min-h-[400px]          
             ">
                     <div className="mx-auto flex h-full w-full flex-col items-center">
                         <div className="shrink-0 pb-2 text-center w-full"
                         >
-                            <h1 className="text-black font-nickainley font-normal text-4xl mb-2 mt-8">
+                            <h1 className="text-black font-nickainley font-normal text-4xl mb-4 mt-8">
                                 Création couture pour enfants et parents
                             </h1>
                             <h2 className="font-poiret text-black font-bold text-xl mb-4">
@@ -158,7 +157,6 @@ export function HomeScreen() {
                             </p>
                             <p className="text-left font-poiret font-bold">
                                 Initiales ou prénom, chaque détail est travaillé avec passion.
-
                             </p>
                         </div>
                         <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
@@ -177,7 +175,6 @@ export function HomeScreen() {
                         <div className="max-w-[300px] mediumcustom:mx-w-[350px]">
                             <h3 className="font-nickainley font-normal text-[#7E649D] text-2xl">
                                 Prêt à porter
-
                             </h3>
                             <img loading="lazy" src={Fou} alt="Foulard" className="w-full max-w-[300px] mediumcustom:mx-w-[350px]" />
                             <p className="text-left font-poiret font-bold">De la douceur, rien que de la douceur .
@@ -198,12 +195,12 @@ export function HomeScreen() {
                                 {allOpinion.map((op) => (
                                     <li
                                         key={op._id}
-                                        className="whitespace-pre-line leading-[1.5] bg-[#7E649D] rounded-full w-80 h-80 flex flex-col items-center justify-center relative text-center p-6"
+                                        className="whitespace-pre-line leading-[1.5] bg-[#D9D1E6] rounded-full w-80 h-80 flex flex-col items-center justify-center relative text-center p-6"
                                     >
-                                        <p className="absolute top-3 left-1/2 -translate-x-1/2 text-[50px] text-white m-0">
+                                        <p className="absolute top-3 left-1/2 -translate-x-1/2 text-[50px]  m-0">
                                             "
                                         </p>
-                                        <p className="font-poiret font-bold text-white text-center break-words">
+                                        <p className="font-poiret font-bold text-center break-words">
                                             {op.text}
                                         </p>
                                     </li>
@@ -227,7 +224,7 @@ export function HomeScreen() {
                             <IconContext.Provider value={{ style: { color: "#7E649D", fontSize: 60 } }}>
                                 <FaTruckIcon />
                             </IconContext.Provider>
-                            <p className="font-poiret font-bold">Livraison<br />3 à 5 semaines<br /> Offert à partir de 120€</p>
+                            <p className="font-poiret font-bold">Livraison<br />3 à 5 semaines</p>
                         </div>
                         <div className="flex items-center flex-col">
                             <IconContext.Provider value={{ style: { color: "#7E649D", fontSize: 60 } }}>

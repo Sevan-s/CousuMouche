@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import { HomeScreen } from "../../screens/homescreen/homescreen";
+// import { HomeScreen } from "../../screens/homescreen/homescreen";
 import { Aboutscreen } from "../../screens/aboutscreen/aboutscreen";
 import { ShopScreen } from "../../screens/shop/screen/shop";
 import { Header } from "../../components/header/header";
@@ -19,6 +19,7 @@ import ScrollToTop from "../../components/scrollToTop";
 import { ProductInformation } from "../../screens/shop/screen/productDetails/productDetails";
 import { cleanObject } from "../cleanObject";
 import { Helmet } from "react-helmet-async";
+import { HomeScreen } from "../../screens/homescreen/newVersion";
 
 export function AppRoutes() {
     const [cartItems, setCartItems] = useState<Article[]>([]);
