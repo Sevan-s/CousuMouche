@@ -51,7 +51,7 @@ export function Header({ cartCount, setCartCount }: { cartCount: number, setCart
 
   return (
     <header className="relative z-30 m-0 w-full">
-      <div className={`w-full font-poiret font-bold bg-[#8574A6] py-3 md:py-6 text-center text-xs sm:text-base text-white px-4 ${styles.sliderContainer}`}>
+      <div className={`w-full font-poiret font-bold bg-[#8574A6] py-6 text-center text-xs sm:text-base text-white px-4 ${styles.sliderContainer}`}>
         <p className={styles.fadeText}>
           Vos commandes sont confectionnées à la main sous 4 semaines. Merci de soutenir mon atelier artisanal
         </p>
